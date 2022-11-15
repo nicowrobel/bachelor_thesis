@@ -1,0 +1,47 @@
+\documentclass[
+ paper=A4,pagesize=automedia,fontsize=12pt,
+ BCOR=15mm,DIV=22,
+ twoside,headinclude,footinclude=false,
+ ngerman,fleqn,             % fleqn = linksbündige Ausrichtung von Formeln
+ bibliography=totocnumbered,          % Literaturverz. im Inhaltsverz. eintragen
+ listof=totoc,                % Abbildungsverz. im Inhaltsverz. eintragen
+ listof=flat,                 % Abbildungsverz. an der längsten Nummer ausrichten
+ numbers=noenddot,          % kein Punkt nach Überschriftsnummerierung
+ cleardoublepage=empty      % Vakatseiten ohne Paginierung
+]{tudscrbook}
+\setlength\parindent{0em}
+
+% Kodierung, Schrift und Sprache auswählen
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+% damit man Text aus dem PDF korrekt rauskopieren kann
+\usepackage{cmap}
+% Layout: Kopf-/Fußzeilen, anderthalbfacher Zeilenabstand
+\usepackage{scrlayer-scrpage} \pagestyle{scrheadings}
+                      \clearscrheadfoot
+                      \ihead{\headmark}\ohead{\pagemark}
+                      \automark[subsection]{section}
+                      \setheadsepline{0.5pt}
+\usepackage{setspace} \onehalfspacing
+\deffootnote{1em}{1em}{\textsuperscript{\thefootnotemark }}
+% Grafiken, Tabellen, Mathematikumgebungen
+\usepackage{graphicx,xcolor}
+\usepackage{tabularx}
+\usepackage{amsmath,amsfonts,amssymb}
+% Darstellung von Fließumgebungen
+\usepackage{flafter,afterpage}
+\usepackage[section]{placeins}
+\usepackage[margin=8mm,font=small,labelfont=bf,format=plain]{caption}
+\usepackage[margin=8mm,font=small,labelfont=bf,format=plain]{subcaption}
+
+\numberwithin{equation}{chapter}
+\numberwithin{figure}{chapter}
+\numberwithin{table}{chapter}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ab hier ist Platz für eigene Ergänzungen (Pakete, Befehle, etc.)
+
+% Dieses Paket liefert den Blindtext, der als Platzhalter in den Beispieldateien steht.
+% Das kannst Du also entfernen, wenn Du den Blindtext nicht mehr brauchst.
+\usepackage{lipsum}

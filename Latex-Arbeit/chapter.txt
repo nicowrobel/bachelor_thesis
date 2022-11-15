@@ -1,0 +1,18 @@
+1. Introduction
+2. Theoretical Background
+	2.1 LWFA (short)
+	2.2 PWFA
+	(Plamsa, L/PWFA Hybrid, relativistic Particles?)
+	2.3 PiC + PiConGPU (with acceleration phase)
+3. Setup of the Simulation
+	3.1 Parameters
+	3.2 Setting up the bunch from script
+	3.3 Entering Plasma
+4. Investigating Peak energy
+	4.1 It stays constant
+	(losing energy at plasma start, multiple smaller peaks)
+	4.2 Connection to start energy
+
+
+vaccum propagation
+(Something about stability)

@@ -1,0 +1,68 @@
+\documentclass[english,ngerman,BCOR=10mm,cdgeometry=no,DIV=15,twoside,open=right]{tudscrreprt}
+\usepackage{selinput}\SelectInputMappings{adieresis={ä},germandbls={ß}}
+
+\usepackage[T1]{fontenc}
+\setkomafont{caption}{\footnotesize}
+\usepackage{microtype}
+
+\usepackage[english]{babel}
+
+\selectlanguage{english}
+\hyphenation{PIConGPU}
+
+\usepackage[english]{isodate}
+\origdate            % sets date format to dd month yyyy
+
+\usepackage{blindtext}
+\usepackage{hyperref}
+
+\TUDoptions{cd=lightcolor,cdhead=heavy,ddcfoot=true, cdfont=true}
+
+\renewcaptionname{ngerman}{\abstractname}{Kurzfassung}
+
+
+% my packages:
+\usepackage{graphicx,caption,amsmath,amsfonts,amssymb}
+\graphicspath{{../images/}}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage[disable]{todonotes}                            
+\usepackage{csquotes}  % is recommended from some package that uses polyglossy
+
+\usepackage[backend=biber, style=numeric-comp, maxbibnames=12,
+            giveninits=true, terseinits=true, alldates=year, sorting=none,
+            hyperref=true, backref=true, defernumbers=true, language=english,
+            sortcites=true, url=false, doi=true]{biblatex}
+
+% macro to set bibers maxbibnames locally 
+\makeatletter
+\newcommand\Setmaxbibnames[1]{\renewcommand\blx@maxbibnames{#1}}
+\makeatletter
+        
+\usepackage{subfiles}
+
+\addbibresource[glob]{../Quellen/Sources.bib}
+
+\AtEveryBibitem{\clearfield{month}}
+\AtEveryBibitem{\clearfield{day}}
+
+
+\usepackage{mathtools}
+\usepackage{nicefrac}
+\usepackage{siunitx}    % provides correct typesetting of units
+                    % \si{kg.m/s^2} print units
+                    % \SI{<number>}{<unit>} prints numbers with units
+                    % there are different modes regarding type of unit
+                    % printing, e.g. slash or real fracs for fracs
+
+
+\usepackage{subcaption} % provides subfigure environment
+
+% Load the package
+\usepackage[nopostdot, style=super, nonumberlist, toc]{glossaries}
+
+\addto\captionsenglish{% Replace "english" with the language you use
+  \renewcommand{\contentsname}%
+    {Table of Contents}%
+}
+
+\renewcaptionname{english}{\refereename}{Referees}

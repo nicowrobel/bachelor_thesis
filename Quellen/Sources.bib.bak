@@ -1,0 +1,44 @@
+@Article{Chen1985,
+  author    = {Pisin Chen and J. M. Dawson and Robert W. Huff and T. Katsouleas},
+  journal   = {Physical Review Letters},
+  title     = {Acceleration of Electrons by the Interaction of a Bunched Electron Beam with a Plasma},
+  year      = {1985},
+  month     = feb,
+  number    = {7},
+  pages     = {693--696},
+  volume    = {54},
+  abstract  = {A new scheme for accelerating electrons, employing a bunched relativistic electron beam in a cold plasma, is analyzed. We show that energy gradients can exceed 1 GeV/m and that the driven electrons can be accelerated from γ0mc2 to 3γ0mc2 before the driving beam slows down enough to degrade the plasma wave. If the driving electrons are removed before they cause the collapse of the plasma wave, energies up to 4γc0mc2 are possible. A noncollinear injection scheme is suggested in order that the driving electrons can be removed.},
+  doi       = {10.1103/physrevlett.54.693},
+  file      = {:Chen1985 - Acceleration of Electrons by the Interaction of a Bunched Electron Beam with a Plasma.pdf:PDF},
+  publisher = {American Physical Society ({APS})},
+}
+
+@Article{Schoebel2022,
+  author    = {Susanne Schöbel and Richard Pausch and Yen-Yu Chang and S{\'{e}}bastien Corde and Jurjen Couperus Cabada{\u{g}} and Alexander Debus and Hao Ding and Andreas Döpp and F Moritz Foerster and Max Gilljohann and Florian Haberstroh and Thomas Heinemann and Bernhard Hidding and Stefan Karsch and Alexander Köhler and Olena Kononenko and Thomas Kurz and Alastair Nutter and Klaus Steiniger and Patrick Ufer and Alberto Martinez de la Ossa and Ulrich Schramm and Arie Irman},
+  journal   = {New Journal of Physics},
+  title     = {Effect of driver charge on wakefield characteristics in a plasma accelerator probed by femtosecond shadowgraphy},
+  year      = {2022},
+  month     = aug,
+  number    = {8},
+  pages     = {083034},
+  volume    = {24},
+  abstract  = {We report on experimental investigations of plasma wave structures in a plasma wakefield
+acceleration (PWFA) stage which is driven by electron beams from a preceding laser plasma
+accelerator. Femtosecond optical probing is utilized to allow for direct visualization of the plasma
+dynamics inside the target. We compare two regimes in which the driver propagates either through
+an initially neutral gas, or a preformed plasma. In the first case, plasma waves are observed that
+quickly damp after a few oscillations and are located within a narrow plasma channel ionized by
+the driver, having about the same transverse size as the plasma wakefield cavities. In contrast, for
+the latter robust cavities are recorded sustained over many periods. Furthermore, here an
+elongation of the first cavity is measured, which becomes stronger with increasing driver beam
+charge. Since the cavity length is linked to the maximum accelerating field strength, this elongation
+implies an increased field strength. This observation is supported by 3D particle-in-cell
+simulations performed with PIConGPU. This work can be extended for the investigation of driver
+depletion by probing at different propagation distances inside the plasma, which is essential for the
+development of high energy efficiency PWFAs.},
+  doi       = {10.1088/1367-2630/ac87c9},
+  file      = {:Schöbel_2022_New_J._Phys._24_083034.pdf:PDF},
+  publisher = {{IOP} Publishing},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}

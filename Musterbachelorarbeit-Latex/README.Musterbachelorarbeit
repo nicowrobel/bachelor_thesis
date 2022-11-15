@@ -1,0 +1,64 @@
+###############################################################################
+###############################################################################
+##### BITTE NIMM DIR FÜNF MINUTEN ZEIT UND LIES DIESES README AUFMERKSAM! #####
+###############################################################################
+###############################################################################
+
+Hello World!
+============
+
+Dieser Ordner enthält eine vorgefertigte Muster Bachelor Arbeit, die Du als Vorlage 
+Deiner eigenen Bachelor Arbeit verwenden kannst.
+
+- BA_main_englisch.tex bzw. BA_main_german ist die eigentliche Bachelor Arbeit.
+
+- Die Präambel von BA_main_englisch.tex bzw. BA_main_german, also alles vor \begin{document}, ist in die Datei
+  preamble.tex ausgelagert. Deswegen fängt main.tex mit \input{preamble} ein.
+
+Zur freundlichen Beachtung
+==========================
+
+- Diese Vorlage nutzt für das Seitenlayout ausschließlich KOMA-Script, also die
+  scrbook-Dokumentklasse und das scrpage2-Paket. Wenn Du irgendwas am
+  Seitenlayout verändern möchtest, lies bitte die KOMA-Script-Dokumentation
+  (zu finden mit dem Shell-Befehl "texdoc scrguide"), und widerstehe der
+  Versuchung, selber an den Längenregistern herumzuspielen, z.B. mit dem
+  geometry-Paket. Die Macher von KOMA-Script wissen besser als Du, wie gute
+  Typografie funktioniert.
+
+  Im Allgemeinen sollte es reichen, zum Anpassen des
+  Seitenlayouts an den Parametern "DIV" und "BCOR" in der dritten Zeile von
+  preamble.tex zu drehen:
+
+  * BCOR ist die Bundkorrektur. 15mm passen für eine Leimbindung.
+  * DIV bestimmt die Ränder. Je größer diese Ganzzahl ist, desto kleiner sind
+    die Ränder. KOMA-Script gibt je nach Schriftgröße DIV=8-12 vor, aber in
+    Texten mit vielen Formeln und kurzen Absätzen macht ein größerer DIV sich
+    besser.
+
+- Du brauchst nicht \"{a} statt ä schreiben. Wenn Sonderzeichen von pdflatex
+  kaputtgemacht werden, überprüfe bitte, ob dein Texteditor auf den Zeichensatz
+  UTF-8 eingestellt ist.
+
+- Kompilieren bitte nur mit pdflatex, nicht mit latex. Wenn du EPS-Grafiken
+  einbinden musst, erzeugt dir der Befehl epstopdf daraus eine PDF-Grafik.
+
+- Beachte bitte, dass dieses Repository eine .gitignore-Datei enthält. Die
+  meisten temporären Dateien sollten damit für Git unsichtbar sein. Falls Git
+  mal eine erwünschte Datei nicht sehen sollte, denk bitte an die .gitignore.
+
+Hilfreiche Ergänzungen
+======================
+
+- Wir haben auch ein Repository mit gesammelten Referenzen für BibTeX. Hol Dir
+  eine Working Copy und füge Sie zu deinen $BIBINPUTS dazu; Du wirst Dir sehr
+  viel Arbeit ersparen. (Außerdem funktioniert das Kompilieren dieses Musters
+  sonst nicht, da CP_theses.bib aus dem BibTeX-Repo eingebunden wird.)
+
+Credits
+=======
+
+- Prof. Dr. Lukas M. Eng: Autor dieser Vorlage zur Bachelor Arbeit 
+- Lars Bittrich, David Zwicker, Stefan Majewsky: Autor einer Musterdiplomarbeit, die hier als Vorlage diente
+- Arnd Bäcker: Autor von myunsrtger.bst
+- Martin Richter, Matthias Michler: BibTeX-Sammlung
