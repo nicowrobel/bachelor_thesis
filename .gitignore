@@ -1,0 +1,5 @@
+Musterbachelorarbeit-Latex/**
+Latex-Arbeit/*.synctex.gz
+Latex-Arbeit/*.pdf
+Quellen/*.bib.sav.tmp
+Quellen/*.bak
