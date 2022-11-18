@@ -1,19 +1,26 @@
-\documentclass[english,ngerman,BCOR=10mm,cdgeometry=no,DIV=15,twoside,open=right]{tudscrreprt}
-\usepackage{selinput}\SelectInputMappings{adieresis={ä},germandbls={ß}}
-
+% Last given language will be selected
+% twoside used for book layout
+% BCOR is space for bookbinding and should be chosen with the thickness of the book in mind
+\documentclass[ngerman,english,BCOR=10mm,cdgeometry=no,DIV=15,twoside,open=right]{tudscrreprt}
+% European Symbols
 \usepackage[T1]{fontenc}
+\usepackage[ngerman=ngerman-x-latest]{hyphsubst}
+\usepackage{selinput}
+\SelectInputMappings{adieresis={ä},germandbls={ß}}
+
 \setkomafont{caption}{\footnotesize}
-\usepackage{microtype}
 
-\usepackage[english]{babel}
 
-\selectlanguage{english}
+\usepackage{babel}
+\usepackage[babel]{microtype}
+
 \hyphenation{PIConGPU}
 
 \usepackage[english]{isodate}
 \origdate            % sets date format to dd month yyyy
 
 \usepackage{blindtext}
+% Hyperlinks to the refs given in table of contents or in the text
 \usepackage{hyperref}
 
 \TUDoptions{cd=lightcolor,cdhead=heavy,ddcfoot=true, cdfont=true}
@@ -25,7 +32,7 @@
 \usepackage{graphicx,caption,amsmath,amsfonts,amssymb}
 \graphicspath{{../images/}}
 \usepackage[table,xcdraw]{xcolor}
-\usepackage[disable]{todonotes}                            
+\usepackage{todonotes}                    
 \usepackage{csquotes}  % is recommended from some package that uses polyglossy
 
 \usepackage[backend=biber, style=numeric-comp, maxbibnames=12,
@@ -37,8 +44,11 @@
 \makeatletter
 \newcommand\Setmaxbibnames[1]{\renewcommand\blx@maxbibnames{#1}}
 \makeatletter
-        
+
+% for writing each chapter in own compilable tex-file
 \usepackage{subfiles}
+% for cross-referencing between different files
+\usepackage{xr}
 
 \addbibresource[glob]{../Quellen/Sources.bib}
 

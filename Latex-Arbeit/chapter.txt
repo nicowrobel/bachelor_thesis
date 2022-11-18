@@ -3,7 +3,7 @@
 	2.1 LWFA (short)
 	2.2 PWFA
 	(Plamsa, L/PWFA Hybrid, relativistic Particles?)
-	2.3 PiC + PiConGPU (with acceleration phase)
+	2.3 PiC + PIConGPU (with acceleration phase)
 3. Setup of the Simulation
 	3.1 Parameters
 	3.2 Setting up the bunch from script

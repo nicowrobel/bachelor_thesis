@@ -26,9 +26,7 @@
 \referee{Prof. Dr. Ulrich Schramm \newline Prof. Dr. Thomas E. Cowan}
 
 
-\selectlanguage{english}
 \maketitle
-\selectlanguage{ngerman}
 
 
 \TUDoption{abstract}{section,multiple}
@@ -65,19 +63,29 @@ Text
 text
 
 \newpage
+\pagenumbering{arabic}
 \chapter{Introduction}
-\section{LWFA}
-\section{PWFA}
-\section{Particle in Cell}
 
 \chapter{Theoretical Background}
-\section{Parameters}
+\section{Laser Wakefield Acceleration}
+\section{Plasma Wakefield Acceleration}
+\section{Particle in Cell}
+\subsection{PIConGPU}
 
-\chapter{Setup of the Simulation}
+\chapter{Setup}
+\section{Simulation Parameters}
+\section{Initialization of bunch from script}
+\section{Entering Plasma}
+
 \chapter{Investigating Peak energy}
+\section{Constant peak}
+\section{Smaller peaks}
+\section{Energy loss}
+
 %%%%%%%%%%%%%%%%
 % Bibliography %
+\printbibliography[heading=bibintoc]
 %%%%%%%%%%%%%%%%
 
-
+\confirmation
 \end{document}
