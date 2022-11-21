@@ -1,0 +1,36 @@
+\documentclass[bachelor_thesis]{subfiles}
+\begin{document}
+
+\chapter{Setup}
+While PIConGPU can set up all parts of the simulation by itself, it only initializes the electron plasma (\autoref{chap:plasma}), while the bunch particles are created via a Python script \todo{Richard Credit}(\autoref{chap:init}) defining a witness bunch exiting the LFWA stage.
+This allows us to define the parameters of the bunch itself instead of setting the parameters for a LWFA stage which outputs the needed bunch after a full simulation.
+
+\section{Simulation Parameters}
+For all setups a box consisting of \numproduct{1024 x 2048 x 1024} grid cells for field calculation is used. The currently simulated layer measures \qtyproduct{90.7 x 181.5 x 90.7}{\um} and moves in with light speed $c$ in the direction of propagation.
+Every calculated time step has a duration of \qty{1.33d-16}{\s}. \todo{motivate the parameters}
+\todo{Here or in c2: boundary conditions}
+
+
+
+\section{Initialization of bunch from script}\label{chap:init}
+
+
+
+
+
+
+\section{Entering Plasma}\label{chap:plasma}
+\todo{change for different density functions} After the acceleration (\autoref{chap:acc}\todo{add chapter in theory part}) phase our bunch can enter the plasma. For simplification only electrons are added, as the ions should have a small impact on this time scale\todo{citation needed}.
+The density function, as seen in \autoref{fig:dens}, is separated in multiple regimes, starting in the vacuum. 
+\begin{figure}
+\missingfigure{}
+\caption{The electron count plotted over the propagation direction. The function stays constant outside of the frame.}\label{fig:dens}
+\end{figure}
+A super-Gaussian density profile (\autoref{equ:sgauss})  is than used to aproximate a smooth transition into the plateau where our density stays constant at \qty{4d18}{\cm^{-3}} \cite{Schoebel2022}. 
+\begin{equation}
+density = \exp\left(-\left(\frac{y-peak\_start}{\sigma}\right)^6\right)
+\label{equ:sgauss}
+\end{equation}
+
+
+\end{document}
