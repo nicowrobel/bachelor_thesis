@@ -8,16 +8,27 @@ This allows us to define the parameters of the bunch itself instead of setting t
 \section{Simulation Parameters}
 For all setups a box consisting of \numproduct{1024 x 2048 x 1024} grid cells for field calculation is used. The currently simulated layer measures \qtyproduct{90.7 x 181.5 x 90.7}{\um} and moves in with light speed $c$ in the direction of propagation.
 Every calculated time step has a duration of \qty{1.33d-16}{\s}. \todo{motivate the parameters}
-\todo{Here or in c2: boundary conditions}
+\todo{solvers and pushers, see paper "PIConGPU2013". Here or in c2: boundary conditions}
 
 
 
 \section{Initialization of bunch from script}\label{chap:init}
+To save on computational power a python script generates the electron bunch after the LWFA stage from given parameters. These parameters are chosen to match common experiments \todo{citation needed}. The total charge $Q$ determines the number of bunch particles and equals \qty{400d-12}{\C}.
+After leaving the LWFA stage, the position of the particles is assumed to be normally distributed for each direction. For the transversal position this distribution is centered around the axis with the standard deviation $\sigma_{x,z}$ derived from \autoref{equ:sigma_x} with the root-mean-square radius $r_{rms}=\qty{10}{um}$.
 
+\begin{equation}
+\sigma_{x,z}=\frac{r_{rms}}{\sqrt{2}} 
+\label{equ:sigma_x}
+\end{equation}\todo{citation needed!}
 
+For calculation of the deviation for the longitudinal direction $\sigma_y$ the FWHM\todo{explain abbreviation in this or earlier chapters} of the bunch duration is chosen as $\tau_{FWHM}=\qty{20d-15}{\s}$. It follows \autoref{equ:sigma_y}.
 
+\begin{equation}
+\sigma_{y}=\frac{\tau_{FWHM}\cdot c}{2\sqrt{2\cdot\ln{2}}}
+\label{equ:sigma_y}
+\end{equation} \todo{citation needed!}
 
-
+Momenta are 
 
 \section{Entering Plasma}\label{chap:plasma}
 \todo{change for different density functions} After the acceleration (\autoref{chap:acc}\todo{add chapter in theory part}) phase our bunch can enter the plasma. For simplification only electrons are added, as the ions should have a small impact on this time scale\todo{citation needed}.
@@ -26,9 +37,9 @@ The density function, as seen in \autoref{fig:dens}, is separated in multiple re
 \missingfigure{}
 \caption{The electron count plotted over the propagation direction. The function stays constant outside of the frame.}\label{fig:dens}
 \end{figure}
-A super-Gaussian density profile (\autoref{equ:sgauss})  is than used to aproximate a smooth transition into the plateau where our density stays constant at \qty{4d18}{\cm^{-3}} \cite{Schoebel2022}. 
+A super-Gaussian density profile (\autoref{equ:sgauss}) is than used to approximate a smooth transition into the plateau where our density stays constant at \qty{4d18}{\cm^{-3}},a value which can be expected in experiments. \cite{Schoebel2022}. 
 \begin{equation}
-density = \exp\left(-\left(\frac{y-peak\_start}{\sigma}\right)^6\right)
+density = \exp\left(-\left(\frac{y-y_{peak start}}{\sigma}\right)^6\right)
 \label{equ:sgauss}
 \end{equation}
 
