@@ -69,6 +69,8 @@
 
 % Load the package
 \usepackage[nopostdot, style=super, nonumberlist, toc]{glossaries}
+\setacronymstyle{long-short} 	% first use in long form, abbreviation else
+\loadglsentries{defns}
 
 \addto\captionsenglish{% Replace "english" with the language you use
   \renewcommand{\contentsname}%
