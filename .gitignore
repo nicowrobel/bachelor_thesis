@@ -4,4 +4,4 @@ Latex-Arbeit/*.synctex.gz
 Quellen/*.bib.sav.tmp
 Quellen/*.bak
 Word-Text/**
-.ipynb_checkpoints/**
+Notebooks/.ipynb_checkpoints/**
