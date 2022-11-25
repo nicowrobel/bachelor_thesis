@@ -3,13 +3,12 @@
 
 \chapter{Setup}
 The goal of the setup is to simulate an \gls{lwfa} generated electron bunch in a \gls{pwfa} simulation. It would be possible to let PIConGPU run both stages or at least create the input bunch for the \gls{pwfa} based on on input files
-but creating the bunch via script makes it easier to control the wanted parameters and is faster than a full \gls{lwfa} simulation. \todo{write further on new introduction}
+but creating the bunch via script makes it easier to control the wanted parameters and is faster than a full \gls{lwfa} simulation. Therefore an electron beam which emulates a witness bunch leaving a \gls{lwfa} is generated with a python script,
+provided by my supervisor (see \autoref{chap:init}). Then it's fields and afterwards the plasma interaction will be computed from PIConGPU, the parameters for this will  be explained in \autoref{chap:param}, 
+before we go further to the initialization of the plasma in \autoref{chap:plasma}.
 
-%While PIConGPU is capable of simulating the whole LPWFA , it only initializes the electron plasma (\autoref{chap:plasma}), while the bunch particles are created via a Python script (\autoref{chap:init}), defining a witness bunch exiting the \gls{lwfa} stage.
-%This allows us to define the parameters of the bunch itself instead of setting parameters for a \gls{lwfa} stage which outputs the needed bunch after a full simulation.
 
-
-\section{Simulation Parameters}
+\section{Simulation Parameters}\label{chap:param}
 For all setups a box consisting of \numproduct{1024 x 2048 x 1024} grid cells for field calculation is used. The currently simulated layer measures \qtyproduct{90.7 x 181.5 x 90.7}{\um} and moves in with light speed $c$ in the direction of propagation.
 Every calculated time step has a duration of \qty{1.33d-16}{\s}. \todo{motivate the parameters}
 \todo{solvers and pushers, see paper "PIConGPU2013". Here or in c2: boundary conditions}
