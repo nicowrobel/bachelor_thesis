@@ -2,8 +2,11 @@
 \begin{document}
 
 \chapter{Setup}
-While PIConGPU is capable of simulating the whole LPWFA , it only initializes the electron plasma (\autoref{chap:plasma}), while the bunch particles are created via a Python script (\autoref{chap:init}), defining a witness bunch exiting the \gls{lwfa} stage.
-This allows us to define the parameters of the bunch itself instead of setting parameters for a \gls{lwfa} stage which outputs the needed bunch after a full simulation.
+The goal of the setup is to simulate an \gls{lwfa} generated electron bunch in a \gls{pwfa} simulation. It would be possible to let PIConGPU run both stages or at least create the input bunch for the \gls{pwfa} based on on input files
+but creating the bunch via script makes it easier to control the wanted parameters and is faster than a full \gls{lwfa} simulation. \todo{write further on new introduction}
+
+%While PIConGPU is capable of simulating the whole LPWFA , it only initializes the electron plasma (\autoref{chap:plasma}), while the bunch particles are created via a Python script (\autoref{chap:init}), defining a witness bunch exiting the \gls{lwfa} stage.
+%This allows us to define the parameters of the bunch itself instead of setting parameters for a \gls{lwfa} stage which outputs the needed bunch after a full simulation.
 
 
 \section{Simulation Parameters}
@@ -70,7 +73,7 @@ a higher directional momentum will move to the, while slower particles will fall
 \end{figure}
 
 Next our beam needs to be prepared for the \gls{pwfa} stage by transmitting it through a metal foil. In experiment the foil is used to block of the laser from the preceding \gls{lwfa} stage, 
-with the side effect of scattering our electron beam \cite{Raj2020}. Here our foil is positioned \qty{900}{\um} after the \gls{lwfa} gas\todo{most sources take shorter distances}.
+with the side effect of scattering our electron beam \cite{Raj2020}. Here our foil is positioned \qty{700}{\um} after the \gls{lwfa} gas.
 The beam positions are updated by moving the bunch uniformly through a vacuum without applied forces. This introduces a shift in the phase spaces for all directions, as can be seen in \autoref{fig:after_vac}.
 To emulate the divergence increase of the metal foil, random noise is added to the momentum in $p_x$ and $p_z$ direction, while the new $p_y$ will be calculated so that the total momentum for each particle is conserved.
 The standard deviation of the noise normal distribution was chosen so that after the foil a divergence of \qty{4.2}{\mrad} is achieved, comparable to experiments \cite{Schoebel2022}.
@@ -86,7 +89,8 @@ The movements of the ions is neglected as they don't move at our time scale \tod
 The density function as seen in \autoref{fig:dens} is separated in multiple regimes starting in the vacuum. 
 
 \begin{figure}
-	\missingfigure{}
+	\centering
+	\input{../images/e_density.pgf}
 	\caption{The electron count plotted over the propagation direction. The function stays constant outside of the frame.}
 	\label{fig:dens}
 \end{figure}
