@@ -1,7 +1,15 @@
 Musterbachelorarbeit-Latex/**
-Latex-Arbeit/*.synctex.gz
-*.pdf
 Quellen/*.bib.sav.tmp
 Quellen/*.bak
 Word-Text/**
 Notebooks/.ipynb_checkpoints/**
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.log
+*.out
+*.pdf
+*.run.xml
+*.synctex.gz
+*.toc

@@ -9,6 +9,7 @@
   volume       = {54},
   abstract     = {A new scheme for accelerating electrons, employing a bunched relativistic electron beam in a cold plasma, is analyzed. We show that energy gradients can exceed 1 GeV/m and that the driven electrons can be accelerated from γ0mc2 to 3γ0mc2 before the driving beam slows down enough to degrade the plasma wave. If the driving electrons are removed before they cause the collapse of the plasma wave, energies up to 4γc0mc2 are possible. A noncollinear injection scheme is suggested in order that the driving electrons can be removed.},
   file         = {:Chen1985 - Acceleration of Electrons by the Interaction of a Bunched Electron Beam with a Plasma.pdf:PDF},
+  groups       = {LPWFA},
   publisher    = {American Physical Society ({APS})},
 }
 
@@ -36,6 +37,7 @@ simulations performed with PIConGPU. This work can be extended for the investiga
 depletion by probing at different propagation distances inside the plasma, which is essential for the
 development of high energy efficiency PWFAs.},
   file         = {:Schöbel_2022_New_J._Phys._24_083034.pdf:PDF},
+  groups       = {Setup},
   publisher    = {{IOP} Publishing},
   readstatus   = {skimmed},
 }
@@ -55,6 +57,7 @@ development of high energy efficiency PWFAs.},
   address   = {New York, NY, USA},
   articleno = {5},
   file      = {:PIConGPU2013 - Radiative Signatures of the Relativistic Kelvin-Helmholtz Instability.pdf:PDF},
+  groups    = {PIConGPU},
   numpages  = {12},
 }
 
@@ -68,6 +71,7 @@ development of high energy efficiency PWFAs.},
   volume       = {12},
   abstract     = {Plasma wakefield accelerators are capable of sustaining gigavolt-per-centimeter accelerating fields, surpassing the electric breakdown threshold in state-of-the-art accelerator modules by 3-4 orders of magnitude. Beam-driven wakefields offer particularly attractive conditions for the generation and acceleration of high-quality beams. However, this scheme relies on kilometer-scale accelerators. Here, we report on the demonstration of a millimeter-scale plasma accelerator powered by laser-accelerated electron beams. We showcase the acceleration of electron beams to 128 MeV, consistent with simulations exhibiting accelerating gradients exceeding 100 GV m−1. This miniaturized accelerator is further explored by employing a controlled pair of drive and witness electron bunches, where a fraction of the driver energy is transferred to the accelerated witness through the plasma. Such a hybrid approach allows fundamental studies of beam-driven plasma accelerator concepts at widely accessible high-power laser facilities. It is anticipated to provide compact sources of energetic high-brightness electron beams for quality-demanding applications such as free-electron lasers.},
   file         = {:Kurz2021 - Demonstration of a compact plasma accelerator powered by laser-accelerated electron beams.pdf:PDF},
+  groups       = {Setup},
   publisher    = {Springer Science and Business Media {LLC}},
   readstatus   = {skimmed},
 }
@@ -82,6 +86,7 @@ development of high energy efficiency PWFAs.},
   pages        = {023123},
   volume       = {2},
   file         = {:Raj2020 - Probing ultrafast magnetic-field generation by current filamentation instability in femtosecond relativistic laser-matter interactions.pdf:PDF},
+  groups       = {Setup},
   publisher    = {American Physical Society ({APS})},
   readstatus   = {skimmed},
 }
@@ -96,10 +101,64 @@ development of high energy efficiency PWFAs.},
   pages        = {l042005},
   volume       = {3},
   file         = {:Cabadag2021 - Gas-dynamic density downramp injection in a beam-driven plasma wakefield accelerator.pdf:PDF},
+  groups       = {Setup},
   publisher    = {American Physical Society ({APS})},
   readstatus   = {skimmed},
+}
+
+@Software{PICRepo,
+  title  = {PIConGPU repository},
+  url    = {https://github.com/ComputationalRadiationPhysics/picongpu},
+  groups = {PIConGPU},
+}
+
+@Article{Burau2010,
+  author       = {Burau, Heiko and Widera, Renée and Hönig, Wolfgang and Juckeland, Guido and Debus, Alexander and Kluge, Thomas and Schramm, Ulrich and Cowan, Tomas E. and Sauerbrey, Roland and Bussmann, Michael},
+  date         = {2010},
+  journaltitle = {{IEEE} Transactions on Plasma Science},
+  title        = {PIConGPU: A Fully Relativistic Particle-in-Cell Code for a GPU Cluster},
+  doi          = {10.1109/tps.2010.2064310},
+  number       = {10},
+  pages        = {2831--2839},
+  volume       = {38},
+  abstract     = {The particle-in-cell (PIC) algorithm is one of the most widely used algorithms in computational plasma physics. With the advent of graphical processing units (GPUs), large-scale plasma simulations on inexpensive GPU clusters are in reach. We present an implementation of a fully relativistic plasma PIC algorithm for GPUs based on the NVIDIA CUDA library. It supports a hybrid architecture consisting of single computation nodes interconnected in a standard cluster topology, with each node carrying one or more GPUs. The internode communication is realized using the message-passing interface. The simulation code PIConGPU presented in this paper is, to our knowledge, the first scalable GPU cluster implementation of the PIC algorithm in plasma physics.},
+  groups       = {PIConGPU},
+  publisher    = {Institute of Electrical and Electronics Engineers ({IEEE})},
+}
+
+@Article{Huebl2019,
+  author    = {Huebl, Axel},
+  date      = {2019},
+  title     = {PIConGPU: Predictive Simulations of Laser-Particle Accelerators with Manycore Hardware},
+  doi       = {10.5281/ZENODO.3266820},
+  language  = {en},
+  copyright = {Creative Commons Attribution Share Alike 4.0 International},
+  file      = {:2019_Huebl_Dissertation_TU_Dresden.pdf:PDF},
+  groups    = {PIConGPU},
+  keywords  = {laser-plasma acceleration, modeling, HPC, GPU, laser-ion acceleration, exascale computing, open source, open data},
+  publisher = {Zenodo},
+}
+
+@Article{Yee1966,
+  author       = {Kane Yee},
+  date         = {1966-05},
+  journaltitle = {{IEEE} Transactions on Antennas and Propagation},
+  title        = {Numerical solution of initial boundary value problems involving maxwell{\textquotesingle}s equations in isotropic media},
+  doi          = {10.1109/tap.1966.1138693},
+  number       = {3},
+  pages        = {302--307},
+  volume       = {14},
+  groups       = {PIConGPU},
+  publisher    = {Institute of Electrical and Electronics Engineers ({IEEE})},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}
 
 @Comment{jabref-meta: fileDirectoryLatex-nicow-LAPTOP-DJ9NPV2U:C:\\Users\\nicow\\Documents\\Uni\\Semester VII\\Bachelor-Arbeit\\Latex-Arbeit;}
+
+@Comment{jabref-meta: grouping:
+0 AllEntriesGroup:;
+1 StaticGroup:Setup\;0\;1\;0xffff4dff\;\;Used mostly to motivate physical parameters.\;;
+1 StaticGroup:PIConGPU\;0\;1\;0xb36680ff\;\;Theory on PIC and PIConGPU.\;;
+1 StaticGroup:LPWFA\;0\;1\;0x669999ff\;\;Theory on PWFA, LWFA and hybrids\;;
+}
