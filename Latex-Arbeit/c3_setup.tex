@@ -2,21 +2,21 @@
 \begin{document}
 
 \chapter{Setup}
-The goal of the setup is to simulate an \gls{lwfa} generated electron bunch in a \gls{pwfa} simulation. It would be possible to let PIConGPU run both stages or at least create the input bunch for the \gls{pwfa} based on on input files
-but creating the bunch via script makes it easier to control the wanted parameters and is faster than a full \gls{lwfa} simulation. Therefore an electron beam which emulates a witness bunch leaving a \gls{lwfa} is generated with a python script,
-provided by my supervisor (see \autoref{chap:init}). Then it's fields and afterwards the plasma interaction will be computed from PIConGPU, the parameters for this will  be explained in \autoref{chap:param}, 
+The goal of the setup is to simulate a \gls{lwfa} generated electron bunch in a \gls{pwfa} simulation. It would be possible to let PIConGPU run both stages or at least create the input bunch for the \gls{pwfa} based on input files
+but creating the bunch via script makes it easier to control the wanted parameters and is faster than a full \gls{lwfa} simulation. Therefore, an electron beam, which emulates a witness bunch leaving a \gls{lwfa}, is generated with a python script,
+provided by my supervisor (see \autoref{chap:init}). Then it's fields and afterwards the plasma interaction will be computed with PIConGPU. The parameters for this will  be explained in \autoref{chap:param}, 
 before we go further to the initialization of the plasma in \autoref{chap:plasma}.
 
 
 \section{Simulation Parameters}\label{chap:param}
-For all setups a box consisting of \numproduct{1024 x 2048 x 1024} grid cells for field calculation is used. The currently simulated layer measures \qtyproduct{90.7 x 181.5 x 90.7}{\um} and moves in with light speed $c$ in the direction of propagation.
+For all setups a box consisting of \numproduct{1024 x 2048 x 1024} grid cells for field calculation is used. The currently simulated layer measures \qtyproduct{90.7 x 181.5 x 90.7}{\um} and moves with light speed $c$ in the direction of propagation.
 Every calculated time step has a duration of \qty{1.33d-16}{\s}. \todo{motivate the parameters}
 \todo{solvers and pushers, see paper "PIConGPU2013". Here or in c2: boundary conditions}
 
 
 \section{Initialization of bunch from script}\label{chap:init}
 To save on computational power, a python script, provided by my supervisor, generates the electron bunch after a \gls{lwfa} stage from given parameters. Parameters which can be measured in experiments are used,
-so a comparison is easily possible but they need to be converted to other statistical quantities like the standard deviation. The parameter values are based on recent experimental results\cite{Kurz2021, Schoebel2022, Cabadag2021}.
+so a comparison is easily possible, but they need to be converted to other statistical quantities like the standard deviation. The parameter values are based on recent experimental results\cite{Kurz2021, Schoebel2022, Cabadag2021}.
 The number of bunch particles is derived from the total charge, chosen as \qty{400d-12}{\C}, which results in roughly \num{250d9} particles. After leaving the \gls{lwfa} stage, the position of the particles is assumed to be normally distributed in each direction.
 For the transversal position this distribution is centered around the axis with the standard deviation $\sigma_{x,z}$ derived from \autoref{equ:sigma_x} with the \gls{rms} radius $r_{rms}=\qty{10}{um}$.
 The $1/\sqrt{2}$ factor is a geometric factor, originating from the fact that for a normal distribution with zero mean the \gls{rms} and the standard deviation are identical. 
@@ -44,9 +44,9 @@ This is a simplification of the relativistic energy-momentum relation where the 
 	\label{equ:E_to_mom}
 \end{equation}
 How much the momentum distribution deviates from the longitudinal $p_y$-axis is set by $\sigma_{\theta}=\qty{1.6}{\mrad}$, the standard deviation of the divergence \todo{explain divergence} so a distribution in spherical coordinates is appropriate. 
-In experiments this value is only calculated for the divergence towards either the x or z axis \todo{citation needed}, so a factor $\sqrt{2}$ must be multiplied (both directions are assumed to have the same divergence) before 
+In experiments this value is only calculated for the divergence towards either the x or z axis\todo{citation needed}, so a factor $\sqrt{2}$ must be multiplied (both directions are assumed to have the same divergence) before 
 it can be used as the standard deviation for the normal distribution of the azimuthal angle $\theta$. The polar angle $\phi$ is uniformly distributed over all particles, as the divergence is symmetric around the $p_y$-axis.
-Finally the particle momenta are calculated by transforming from spherical to Cartesian coordinates (\autoref{equ:sph_to_car}). 
+Finally, the particle momenta are calculated by transforming from spherical to Cartesian coordinates (\autoref{equ:sph_to_car}). 
 
 \begin{align}
 	p_x&=\sin{\phi} \cdot \sin{\theta} \cdot \left|p\right|	&
@@ -66,7 +66,6 @@ With the phase space of position and momentum defined for all particles, we can 
 	\missingfigure{}
 	\label{fig:after_vac}
 \end{subfigure}
-
 \caption{Calculated phase spaces. (a) After leaving the \gls{lwfa} stage. Transversal momentum is two orders of magnitude smaller than for the longitudinal direction. (b) After vacuum propagation. Particles with
 a higher directional momentum will move to the, while slower particles will fall behind to the left, resulting in shearing in the phase space.}
 \end{figure}
@@ -78,13 +77,13 @@ To emulate the divergence increase of the metal foil, random noise is added to t
 The standard deviation of the noise normal distribution was chosen so that after the foil a divergence of \qty{4.2}{\mrad} is achieved, comparable to experiments \cite{Schoebel2022}.
 
 The resulting particle bunch has now the wanted position and momentum that could result out of a ideal \gls{lwfa}. To calculate the corresponding electric and magnetic fields, the acceleration pusher is used, explained in \autoref{chap:acc}\todo{add reference and maybe explanation}.
-At last the bunch is placed inside the simulation box. In $x$- and $z$-direction it should be in the middle in the box, while being put closer to the front end in $y$-direction, so no particles fall so far behind, that they leave the box when moving.
-The siulation can now be run on this finished bunch.
+At last, the bunch is placed inside the simulation box. In $x$- and $z$-direction it should be in the middle in the box, while being put closer to the front end in $y$-direction, so no particles fall so far behind, that they leave the box when moving.
+The simulation can now be run on this finished bunch.
 
 \section{Entering Plasma}\label{chap:plasma}
 \todo{change for different density functions} After the acceleration (\autoref{chap:acc}\todo{add chapter in theory part}) phase our bunch can enter the plasma.
 Only electrons are explicitly added as particles, the corresponding ions are emulated from the field solver. It expects a neutral plasma, so a positive background charge is added. 
-The movements of the ions is neglected as they don't move at our time scale \todo{citation needed}. In this case our plasma is already defined as completely ionized.
+The movements of the ions is neglected as they don't move at our time scale\todo{citation needed}. In this case our plasma is already defined as completely ionized.
 The density function as seen in \autoref{fig:dens} is separated in multiple regimes starting in the vacuum. 
 
 \begin{figure}

@@ -6,10 +6,62 @@
 \section{Plasma Wakefield Acceleration}
 
 \section{PIConGPU}
-Particle-Plasma Interactions can be simulated in so called \gls{pic}-algorithms. 
+To simulate complex particle-plasma interactions efficiently, the \gls{pic}-Model is often chosen. There are many different code implementations, for this thesis PIConGPU \cite{PIConGPU2013, PICRepo} is used.
+
+\subsection{Particle-in-Cell model}
+\Gls{pic}-code describes the particles in our simulation box as a distribution function $f_s(\vec{x}, \vec{p}, t)$ of time $t$ , position $\vec{x}$ and momentum $\vec{p}$ for every particle species $s$.
+This distribution must now satisfy the collisionless Boltzmann equation, also called Vlasov equation\cite{Vlasov1968}, \autoref{equ:boltz}.
+
+\begin{equation}
+	\frac{\mathrm{d}f_s}{\mathrm{d}t}=\frac{\partial f_s}{\partial t} + \frac{\partial \vec{x}}{\partial t} \frac{\partial f_s}{\partial \vec{x}} + \frac{\partial \vec{p}}{\partial t} \frac{\partial f_s}{\partial \vec{p}} = 0
+	\label{equ:boltz}
+\end{equation}
+Using the Nabla-Operator and the derivatives of $\vec{x}$ and $\vec{p}$, we get \autoref{equ:vlasov} with the Lorentz factor $\gamma$ and the Lorentz Force $\vec{F}_L$, see \autoref{equ:lorentz}.
+
+\begin{equation}
+	\partial_t f_s + \frac{\vec{p}}{m_s \gamma} \vec{\nabla}_{\vec{x}} f_s + \vec{F}_L \vec{\nabla}_{\vec{p}} f_s = 0
+	\label{equ:boltz}
+\end{equation}
+
+\begin{equation}
+	\vec{F}_L=q_s\left(\vec{E}+\vec{v}\times\vec{B}\right)
+	\label{equ:lorentz}
+\end{equation}
+
+To be a self consistent set of electro-magnetic equations, the Maxwell equations (see \autoref{equ:maxwell} need to be added, which our $\vec{E}$- and $\vec{B}$-fields need to fulfill. Here $\rho_s$ and $\vec{J}_s$ are the charge and current density for a given species.
+
+\begin{align}
+	\vec{\nabla}\cdot\vec{E}  &= \frac{1}{\epsilon_0}\sum_s \rho_s 										\\
+	\vec{\nabla}\cdot\vec{B}  &= 0 													\nonumber	\\
+	\vec{\nabla}\times\vec{E} &= -\frac{\partial \vec{B}}{\partial t}								\nonumber	\\
+	\vec{\nabla}\times\vec{B}&= \mu_0 \left(\sum_s \vec{J}_s + \epsilon_0 \frac{\partial \vec{E}}{\partial t}\right)	\nonumber
+	\label{equ:maxwell}
+\end{align}
+
+The \gls{pic} model now makes several simplifications, so these dependencies can be implement.
+At first the time needs to be discretized into timesteps at which out distribution is updated. The equation system above must then be broken down in a system of steps, which will be processed every timestep.
+This system is often called the \gls{pic}-cycle \cite{Huebl2019}, which can be seen in \autoref{fig:cycle}
+
+\begin{figure}
+	\centering
+	\missingfigure{}
+	\caption{The \gls{pic}-cycle. Every timestep starts at .}
+	\label{fig:cycle}
+\end{figure}\todo{add image and start point}
+
+Then, instead of a distribution function $f_s(\vec{x}, \vec{p}, t)$ of time $t$ , position $\vec{x}$, we look at a simulation box in 3 space dimensions and describe the distribution for a species as discrete macro particles in this box \cite{Burau2010}.
+The movement of these macro particles are then described by their position and momentum, the acting force depend on their set mass $m$, charge $q$ and weighting $w$.
+The weighting is determined by the exact density function which the macro particle represents and can also be seen as the number of real particles for each macro particle.
 
 
+At last, the fields need to be divided into so called  Yee-cells \cite{Yee1966}, which can be seen in \autoref{fig:cell}.
 
+\begin{figure}
+	\centering
+	\missingfigure{}
+	\caption{One Yee-cell. Note, that fields are calculated between the grid-points.}
+	\label{fig:cycle}
+\end{figure}
 
 
 \end{document}
