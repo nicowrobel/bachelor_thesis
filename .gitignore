@@ -1,8 +1,11 @@
-Musterbachelorarbeit-Latex/**
-Quellen/*.bib.sav.tmp
-Quellen/*.bak
 Word-Text/**
 Notebooks/.ipynb_checkpoints/**
+
+# jabref temp
+*.bib.sav.tmp
+*.bak
+
+# latex output
 *.aux
 *.bbl
 *.bcf
