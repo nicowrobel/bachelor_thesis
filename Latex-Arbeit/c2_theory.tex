@@ -80,7 +80,32 @@ An example for this calculation with the field components in $x$-direction can b
 	\label{equ:derivB}
 \end{align} \todo{only second order spacial derivative, ArbitraryOrderFDTD<4> uses fourth order. Maybe append its solution in appendix}
 
-First, we calculate $\vec{E}^{(n+1)}$ from \autoref{equ:derivE}, then $\vec{B}^{(n+3/2)}$ from \autoref{equ:derivB}, giving us our fields at each grid point.
-To get the fields acting on each macro particle, now the grid fields need to be interpolated at their respective position. \todo{how?! no explanation in manual}
+First\todo{PIConGPU starts with field interpolation}, we calculate $\vec{E}^{(n+1)}$ from \autoref{equ:derivE}, then $\vec{B}^{(n+3/2)}$ from \autoref{equ:derivB}, giving us our fields at each grid point.
+To get the forces acting on each macro particle, the grid fields need to be interpolated at their respective position. PIConGPU uses trilinear interpolation for this task \cite{Huebl2019, PICRepo}, a 3D extension of a normal linear interpolation.
+Then the acting Lorentz Force can simply be calculated by \autoref{equ:lorentz}. With the forces at each particles position, now the particle pusher can calculate the new positions and momenta of the particle distributions.
+
+There exist multiple implementations for this problem in PIConGPU, the standard one being the relativistic Boris-pusher \cite{Boris1970}, as it conserves the phase-space volume \cite{PICRepo}. Instead of centering the $\vec{B}$-field on integer timesteps, here the momentum at half integer timesteps is
+calculated by only applying the first part of the Lorentz-Force $\vec{F}_L$ (the Coulomb-force) for $\Delta t/2$. Afterward the magnetic part of the Lorentz-Force is calculated at this half timestep $n+1/2$ and than added to the momentum, amounting for the full timestep.
+At last, a Coulomb force is applied again for half a time step, so the momentum at the full step $n+1$ is returned \cite{Zenitani2018, Pausch2019}. Updating the particle position is just applying the Euler-method, see \autoref{equ:euler}.
+
+\begin{equation}
+	\vec{x}^{(n+1)} = \vec{x}^{(n)} + \Delta t \frac{\vec{p}^{(n+1)}}{\gamma m}
+	\label{equ:euler}
+\end{equation}
+
+For the last step of the PIC-cycle, current $\vec{J}$ and charge density $\rho$ are calculated. \todo{write section about current deposition}
+
+\subsection{Boundary Conditions}
+The behavior of the fields and particles at the borders of the simulation box is determined by the boundary conditions.
+For fields there exist two options in PIConGPU. Either the boundaries are periodic or absorbing. In the first case, when a field reaches the boundary, it wraps around the box and appears again at the other side on the same axis.
+In the later case, the fields start to be absorbed at a set cell distance from the border, with the strength of the absorption increasing towards the boundary, until it fully vanishes at the border.
+The \gls{pml}-absorber is used as the standard in PIConGPU, but the periodic behavior can be toggled for all individual directions (periodic behavior in longitudinal direction is normally not wanted).
+Particles follow the periodicity of the fields, but have different option when no periodic conditions apply. For this thesis absorbing conditions are also used, so all particles crossing the border are deleted from the simulation.
+
+\subsection{Acceleration pusher}
+
+
+\subsection{openPMD}
+
 
 \end{document}
