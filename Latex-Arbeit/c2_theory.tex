@@ -8,7 +8,7 @@
 \section{PIConGPU}
 To simulate complex particle-plasma interactions efficiently, the \gls{pic}-Model is often chosen. There are many different code implementations, for this thesis PIConGPU \cite{PIConGPU2013, PICRepo} is used.
 
-\subsection{Particle-in-Cell model}
+\subsection{Particle-in-Cell model} \label{chap:pic}
 \todo{how to cite manual?}
 \Gls{pic}-code describes the particles in our simulation box as a distribution function $f_s(\vec{x}, \vec{p}, t)$ of time $t$ , position $\vec{x}$ and momentum $\vec{p}$ for every particle species $s$.
 This distribution must now satisfy the collisionless Boltzmann equation, also called Vlasov equation\cite{Vlasov1968}, see \autoref{equ:boltz}.
@@ -31,12 +31,15 @@ Using the Nabla-Operator and the derivatives of $\vec{x}$ and $\vec{p}$, we get 
 
 To be a self-consistent set of electro-magnetic equations, the Maxwell equations (see \autoref{equ:maxwell} need to be added, which our $\vec{E}$- and $\vec{B}$-fields need to fulfill. Here $\rho_s$ and $\vec{J}_s$ are the charge and current density for a given species $s$.
 
-\begin{align}
-	\vec{\nabla}\cdot\vec{E}  &= \frac{1}{\epsilon_0}\sum_s \rho_s 			\label{equ:maxwell}				\\
-	\vec{\nabla}\cdot\vec{B}  &= 0 													\nonumber	\\
-	\vec{\nabla}\times\vec{E} &= -\frac{\partial \vec{B}}{\partial t}								\nonumber	\\
-	\vec{\nabla}\times\vec{B}&= \mu_0 \left(\sum_s \vec{J}_s + \epsilon_0 \frac{\partial \vec{E}}{\partial t}\right)	\nonumber
-\end{align}
+\begin{equation}
+\begin{aligned}
+	\vec{\nabla}\cdot\vec{E}  &= \frac{1}{\epsilon_0}\sum_s \rho_s 									\\
+	\vec{\nabla}\cdot\vec{B}  &= 0 														\\
+	\vec{\nabla}\times\vec{E} &= -\frac{\partial \vec{B}}{\partial t}									\\
+	\vec{\nabla}\times\vec{B}&= \mu_0 \left(\sum_s \vec{J}_s + \epsilon_0 \frac{\partial \vec{E}}{\partial t}\right)	
+\end{aligned}
+\label{equ:maxwell}
+\end{equation}
 
 The \gls{pic} model now makes several simplifications, so these dependencies can be implemented.
 At first the time needs to be discretized into timesteps with length $\Delta t$ after which out distribution is updated. The equation system above must then be broken down in a system of steps, which will be processed every timestep.
@@ -102,10 +105,20 @@ In the later case, the fields start to be absorbed at a set cell distance from t
 The \gls{pml}-absorber is used as the standard in PIConGPU, but the periodic behavior can be toggled for all individual directions (periodic behavior in longitudinal direction is normally not wanted).
 Particles follow the periodicity of the fields, but have different option when no periodic conditions apply. For this thesis absorbing conditions are also used, so all particles crossing the border are deleted from the simulation.
 
-\subsection{Acceleration pusher}
+\subsection{Acceleration pusher} \label{chap:accpush}
+As will be later described in \autoref{chap:init}, the initial bunch from the \gls{lwfa} stage is only placed with given position and momentum of the macroparticles.
+No corresponding fields are given, so these need to be created by the simulation. This is an iterative process where we first apply a constant force in longitudinal direction to our bunch and calculate backwards how it looked a given number of timesteps before \cite{Huebl2014}.
+Then we can put it in the simulation, apply the same force and let it create a corresponding field through the PIC-cycle (see \autoref{	chap:pic}), while the bunch moves to it's initial position in phase space. 
+Problem is, PIConGPU expects a charge free box, so when electrons are placed in the box it will automatically put a positive mirror charge behind every particle. This mirror charge would then pull back our real 
+bunch, slowing it down in process. Therefore the acceleration pusher is used instead of the Boris pusher. Here, the constant accelerating force is the only acting force, completely ignoring the created fields.
+The mirror charge therefor is left back, while the bunch moves outside its reach and the corresponding fields build up. When the bunch arrives at its initial position, the pusher can be changed to a physical pusher and
+the real simulation can proceed.
 
 
 \subsection{openPMD}
-
+PIConGPU supports multiple plugins act as outputs for the simulated data. Most analysis in this thesis is done through the output of the openPMD-api \cite{openPMDAPI} plugin.
+It returns the simulation data according to the openPMD standard, which provides a unified convention for naming and attributes of experimental data \cite{openPMDstandard}.
+Stored will be data for the fields and the particle species for the timestep. Field data is stored per grid point and includes the $\vec{E}$- and $\vec{B}$-field as well as the charge- and energy density for every particle species.
+For particles the position (cell + position in cell), momentum and weighting can be read for example. Additional non-standard attributes can be defined and stored, a use case of this will be described in \autoref{chap:param}.
 
 \end{document}
