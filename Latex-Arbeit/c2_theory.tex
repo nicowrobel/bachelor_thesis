@@ -2,15 +2,34 @@
 
 \begin{document}
 \chapter{Theoretical Background}
-\section{Laser Wakefield Acceleration}
 \section{Plasma Wakefield Acceleration}
+\Gls{pwfa} is an novel particle accelerator concept (first theorized in 1985 \cite{chen1985}) with the possibility to produce high accelerating electric fields (more than \qty{100}{\GeV/\m}). This allows simultaneously for higher energy gains 
+and several order of magnitude smaller accelerators, compared to conventional \gls{rf} accelerators.
+\Gls{pwfa} works by sending a bunch of charged particles (also called drive beam or driver) with relativistic speed ($v_{beam}\approx c$) down into a neutral plasma. Multiple sources are possible for this beam and will be further discussed in \label{chap:lpfwa}.
+In our case, the beam consists of electrons but research on other species like positrons \cite{Gessner2016} is made as well. The plasma is often made from hydrogen gas, ionized either by the drive beam itself or a dedicated ionization laser.
+
+When entering the plasma, the drive beam interacts with the plasma electrons, while the effect on the ions can be neglected at the time scale of the electron movement. The electric field of the bunch pushes the electrons out of its way, comparable to a snow plow. 
+This leaves a electron free cavity on the propagation axis behind the driver while the expelled electrons culminate at the borders. As the ions are not moved, this cavity is positively charged which means, it acts as a attractive force to the plasma electrons.
+When being pulled back towards the center of the cavity, the electrons overshoot and produce another cavity. The result is electron oscillation, where multiple cavities form behind the beam as seen in \autoref{fig:pwfa}.
+This train \todo{better word?} of cavities is called the blowout regime. When injecting a charged witness bunch into this regime, it sees multiple field due to the gradient towards the center of the positive cavity.For a witness beam in propagation direction, 
+consisting of negative charged particles, the electric field accelerates towards the center of the cavity while decelerating when leaving it. Perpendicular to the direction of propagation are also electric field pointing toward the center, resulting in focusing of the witness beam. 
+In contrast there are defocusing forces between the cavities, where the electrons reach and fill the center. \todo{write more, why are acceleration and deceleration not canceling out?}
+
+\begin{figure}
+	\centering
+	\missingfigure{}
+	\caption{The blow-out regime of a \gls{pwfa} stage with an electron driver at the front. Alternating accelerating and deaccelerating fields in transversal and focusing/defocusing fields in longitudinal direction form in the cavities.}
+	\label{fig:pwfa}
+\end{figure} \todo{good picture in T. Kurz dissertation}
+
+\subsection{LPWFA} \label{chap:lpfwa}
 
 \section{PIConGPU}
 To simulate complex particle-plasma interactions efficiently, the \gls{pic}-Model is often chosen. There are many different code implementations, for this thesis PIConGPU \cite{PIConGPU2013, PICRepo} is used.
 
 \subsection{Particle-in-Cell model} \label{chap:pic}
 \todo{how to cite manual?}
-\Gls{pic}-code describes the particles in our simulation box as a distribution function $f_s(\vec{x}, \vec{p}, t)$ of time $t$ , position $\vec{x}$ and momentum $\vec{p}$ for every particle species $s$.
+\Gls{pic}-code describes particles in a simulation box as a distribution function $f_s(\vec{x}, \vec{p}, t)$ of time $t$ , position $\vec{x}$ and momentum $\vec{p}$ for every particle species $s$.
 This distribution must now satisfy the collisionless Boltzmann equation, also called Vlasov equation\cite{Vlasov1968}, see \autoref{equ:boltz}.
 
 \begin{equation}
@@ -29,7 +48,7 @@ Using the Nabla-Operator and the derivatives of $\vec{x}$ and $\vec{p}$, we get 
 	\label{equ:lorentz}
 \end{equation}
 
-To be a self-consistent set of electro-magnetic equations, the Maxwell equations (see \autoref{equ:maxwell} need to be added, which our $\vec{E}$- and $\vec{B}$-fields need to fulfill. Here $\rho_s$ and $\vec{J}_s$ are the charge and current density for a given species $s$.
+To be a self-consistent set of electro-magnetic equations, the Maxwell equations (see \autoref{equ:maxwell}) need to be fulfilled by our $\vec{E}$- and $\vec{B}$-fields. Here $\rho_s$ and $\vec{J}_s$ are the charge and current density for a given species $s$.
 
 \begin{equation}
 \begin{aligned}
@@ -52,7 +71,7 @@ This system is often called the \gls{pic}-cycle \cite{Huebl2019}, which can be s
 	\label{fig:cycle}
 \end{figure}\todo{add image and start point}
 
-Then, instead of a distribution function $f_s(\vec{x}, \vec{p}, t)$ of time $t$ , position $\vec{x}$, we look at a simulation box in 3 space dimensions and describe the distribution for a species as discrete macro particles in this box \cite{Burau2010}.
+Then, instead of a distribution function $f_s(\vec{x}, \vec{p}, t)$ of time $t$ , position $\vec{x}$, we look at a simulation box in 3 space dimensions and describe the distribution for a species as discrete macroparticles in this box \cite{Burau2010}.
 The movement of these macro particles are then described by their position and momentum, the acting force depend on their set mass $m$, charge $q$ and weighting $w$.
 The weighting is determined by the exact density function which the macro particle represents and can also be seen as the number of real particles for each macro particle.
 
@@ -68,8 +87,23 @@ at which place the time derivative is calculated (see \autoref{equ:derivE} and \
 \end{figure}
 
 When the macroparticles and the corresponding fields at each grid point $(i, \, j, \,k)$ at a timestep $n$ are given, the calculation of the next time step can start.
-At first, the new fields are calculated at each grid point. Only the last two of Maxwell's equation need to be solved, which is done by numerical differentiation\todo{Explain the first two Maxwell equations}. 
-An example for this calculation with the field components in $x$-direction can be found in \autoref{equ:derivE} and \autoref{equ:derivB}. Similar equations for the $y$-, and $z$-component can be found.
+At first, the grid fields are interpolated to the position of the macroparticles so the acting forces can be calculated. PIConGPU uses trilinear interpolation for this task \cite{Huebl2019, PICRepo}, a 3D extension of linear interpolation.
+Then the acting Lorentz Force can be calculated by \autoref{equ:lorentz}. With the forces at each particles position, now the particle pusher can calculate the new positions and momenta of the particle distributions.
+
+There exist multiple implementations for this problem in PIConGPU, the standard one being the relativistic Boris-pusher \cite{Boris1970}, as it conserves the phase-space volume \cite{PICRepo}. Instead of centering the $\vec{B}$-field on integer timesteps, here the momentum at half integer timesteps is
+calculated by only applying the first part of the Lorentz-Force $\vec{F}_L$ (the Coulomb-force) for $\Delta t/2$. Afterward the magnetic part of the Lorentz-Force is calculated at this half timestep $n+1/2$ and than added to the momentum, amounting for the full timestep.
+At last, a Coulomb force is applied again for half a time step, so the momentum at the full step $n+1$ is returned \cite{Zenitani2018, Pausch2019}. Updating the particle position is just applying the Euler-method, see \autoref{equ:euler}.
+
+\begin{equation}
+	\vec{x}^{(n+1)} = \vec{x}^{(n)} + \Delta t \frac{\vec{p}^{(n+1)}}{\gamma m}
+	\label{equ:euler}
+\end{equation}
+
+For the next step of the PIC-cycle, current $\vec{J}$ and charge density $\rho$ are calculated. \todo{write section about current deposition}
+
+At last the new fields are calculated at each grid point. The first two equations are only checked at initialization\todo{Citation?}, in general with $\rho=0$. This means, our box is charge free at the start, resulting in mirror charges when we don't have a completely neutral setup.
+For the rest of the simulation only the last two of Maxwell's equation need to be solved, which is done by numerical differentiation. 
+An example for this calculation with the field components in $x$-direction can be found in \autoref{equ:derivE} and \autoref{equ:derivB}. Equations corresponding to the $y$-, and $z$-component can be found too.
 
 \begin{align}
 	\frac{{E}_x\rvert_{i+1/2,\, j,\, k}^{n+1} - {E}_x\rvert_{i+1/2\, j,\, k}^{n}}{c^2\Delta t}
@@ -81,28 +115,17 @@ An example for this calculation with the field components in $x$-direction can b
 	 =& \frac{{E}_y\rvert_{i,\, j+1/2,\, k+1}^{n+1} - {E}_y\rvert_{i\, j+1/2,\, k}^{n+1}}{\Delta z}
 	- \frac{{E}_z\rvert_{i,\, j+1,\, k+1/2}^{n+1} - {E}_z\rvert_{i\, j,\, k+1/2}^{n+1}}{\Delta y}
 	\label{equ:derivB}
-\end{align} \todo{only second order spacial derivative, ArbitraryOrderFDTD<4> uses fourth order. Maybe append its solution in appendix}
+\end{align}
 
-First\todo{PIConGPU starts with field interpolation}, we calculate $\vec{E}^{(n+1)}$ from \autoref{equ:derivE}, then $\vec{B}^{(n+3/2)}$ from \autoref{equ:derivB}, giving us our fields at each grid point.
-To get the forces acting on each macro particle, the grid fields need to be interpolated at their respective position. PIConGPU uses trilinear interpolation for this task \cite{Huebl2019, PICRepo}, a 3D extension of a normal linear interpolation.
-Then the acting Lorentz Force can simply be calculated by \autoref{equ:lorentz}. With the forces at each particles position, now the particle pusher can calculate the new positions and momenta of the particle distributions.
+First, we calculate $\vec{E}^{(n+1)}$ from \autoref{equ:derivE}, then $\vec{B}^{(n+3/2)}$ from \autoref{equ:derivB}, giving us our fields at each grid point. \autoref{equ:derivE} and \autoref{equ:derivB} are only valid for the Yee-solver, which uses second order special derivatives.
+In this thesis the ArbitraryOrderFDTD solver is used with M=4 \todo{explain more}.
 
-There exist multiple implementations for this problem in PIConGPU, the standard one being the relativistic Boris-pusher \cite{Boris1970}, as it conserves the phase-space volume \cite{PICRepo}. Instead of centering the $\vec{B}$-field on integer timesteps, here the momentum at half integer timesteps is
-calculated by only applying the first part of the Lorentz-Force $\vec{F}_L$ (the Coulomb-force) for $\Delta t/2$. Afterward the magnetic part of the Lorentz-Force is calculated at this half timestep $n+1/2$ and than added to the momentum, amounting for the full timestep.
-At last, a Coulomb force is applied again for half a time step, so the momentum at the full step $n+1$ is returned \cite{Zenitani2018, Pausch2019}. Updating the particle position is just applying the Euler-method, see \autoref{equ:euler}.
-
-\begin{equation}
-	\vec{x}^{(n+1)} = \vec{x}^{(n)} + \Delta t \frac{\vec{p}^{(n+1)}}{\gamma m}
-	\label{equ:euler}
-\end{equation}
-
-For the last step of the PIC-cycle, current $\vec{J}$ and charge density $\rho$ are calculated. \todo{write section about current deposition}
 
 \subsection{Boundary Conditions}
 The behavior of the fields and particles at the borders of the simulation box is determined by the boundary conditions.
 For fields there exist two options in PIConGPU. Either the boundaries are periodic or absorbing. In the first case, when a field reaches the boundary, it wraps around the box and appears again at the other side on the same axis.
 In the later case, the fields start to be absorbed at a set cell distance from the border, with the strength of the absorption increasing towards the boundary, until it fully vanishes at the border.
-The \gls{pml}-absorber is used as the standard in PIConGPU, but the periodic behavior can be toggled for all individual directions (periodic behavior in longitudinal direction is normally not wanted).
+The \gls{pml}-absorber is used as the standard in PIConGPU. When using periodic conditions, the condition can be toggled for each individual axis (periodic behavior in longitudinal direction is normally not wanted).
 Particles follow the periodicity of the fields, but have different option when no periodic conditions apply. For this thesis absorbing conditions are also used, so all particles crossing the border are deleted from the simulation.
 
 \subsection{Acceleration pusher} \label{chap:accpush}
@@ -111,14 +134,15 @@ No corresponding fields are given, so these need to be created by the simulation
 Then we can put it in the simulation, apply the same force and let it create a corresponding field through the PIC-cycle (see \autoref{	chap:pic}), while the bunch moves to it's initial position in phase space. 
 Problem is, PIConGPU expects a charge free box, so when electrons are placed in the box it will automatically put a positive mirror charge behind every particle. This mirror charge would then pull back our real 
 bunch, slowing it down in process. Therefore the acceleration pusher is used instead of the Boris pusher. Here, the constant accelerating force is the only acting force, completely ignoring the created fields.
-The mirror charge therefor is left back, while the bunch moves outside its reach and the corresponding fields build up. When the bunch arrives at its initial position, the pusher can be changed to a physical pusher and
+The mirror charge therefor is left behind while the bunch moves outside of its reach and the corresponding fields build up. When the bunch arrives at its initial position, the pusher can be changed to a physical pusher and
 the real simulation can proceed.
 
 
 \subsection{openPMD}
-PIConGPU supports multiple plugins act as outputs for the simulated data. Most analysis in this thesis is done through the output of the openPMD-api \cite{openPMDAPI} plugin.
+PIConGPU supports multiple plugins which act as outputs for the simulated data. Most of the analysis in this thesis is done through the output of the openPMD-api \cite{openPMDAPI} plugin.
 It returns the simulation data according to the openPMD standard, which provides a unified convention for naming and attributes of experimental data \cite{openPMDstandard}.
 Stored will be data for the fields and the particle species for the timestep. Field data is stored per grid point and includes the $\vec{E}$- and $\vec{B}$-field as well as the charge- and energy density for every particle species.
 For particles the position (cell + position in cell), momentum and weighting can be read for example. Additional non-standard attributes can be defined and stored, a use case of this will be described in \autoref{chap:param}.
+All data is stored in PIConGPU-internal units but multiplication factors are stored as well to convert to SI units.
 
 \end{document}

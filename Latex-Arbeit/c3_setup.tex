@@ -3,8 +3,8 @@
 
 \chapter{Setup}
 The goal of the setup is to simulate a \gls{lwfa} generated electron bunch in a \gls{pwfa} simulation. It would be possible to let PIConGPU run both stages or at least create the input bunch for the \gls{pwfa} based on input files
-but creating the bunch via script makes it easier to control the wanted parameters and is faster than a full \gls{lwfa} simulation. Therefore, an electron beam, which emulates a witness bunch leaving a \gls{lwfa}, is generated with a python script,
-provided by my supervisor (see \autoref{chap:init}). Then it's fields and afterwards the plasma interaction will be computed with PIConGPU. The parameters for this will  be explained in \autoref{chap:param}, 
+but creating the bunch via script makes it easier to control the wanted parameters and is faster than a full \gls{lwfa} simulation. Therefore, an electron beam which emulates a witness bunch leaving a \gls{lwfa}, is generated with a python script,
+provided by my supervisor (see \autoref{chap:init}). Afterwards the corresponding fields and the plasma interaction will be computed with PIConGPU. The parameters for this will  be explained in \autoref{chap:param}, 
 before we go further to the initialization of the plasma in \autoref{chap:plasma}.
 
 
