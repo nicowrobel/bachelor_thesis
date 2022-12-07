@@ -5,15 +5,17 @@
 \section{Plasma Wakefield Acceleration}
 \Gls{pwfa} is an novel particle accelerator concept (first theorized in 1985 \cite{chen1985}) with the possibility to produce high accelerating electric fields (more than \qty{100}{\GeV/\m}). This allows simultaneously for higher energy gains 
 and several order of magnitude smaller accelerators, compared to conventional \gls{rf} accelerators.
-\Gls{pwfa} works by sending a bunch of charged particles (also called drive beam or driver) with relativistic speed ($v_{beam}\approx c$) down into a neutral plasma. Multiple sources are possible for this beam and will be further discussed in \label{chap:lpfwa}.
-In our case, the beam consists of electrons but research on other species like positrons \cite{Gessner2016} is made as well. The plasma is often made from hydrogen gas, ionized either by the drive beam itself or a dedicated ionization laser.
+
+\Gls{pwfa} works by sending a bunch of charged particles (also called drive beam or driver) with relativistic speed ($v_{beam}\approx c$) down into a neutral plasma. Multiple sources are possible for this beam and will be further discussed in \autoref{chap:lpfwa}.
+In this thesis, the beam consists of electrons but research on other species like positrons \cite{Gessner2016} is made as well. The plasma is often formed by light weight gases like hydrogen, ionized either by the drive beam itself or a dedicated ionization laser.
 
 When entering the plasma, the drive beam interacts with the plasma electrons, while the effect on the ions can be neglected at the time scale of the electron movement. The electric field of the bunch pushes the electrons out of its way, comparable to a snow plow. 
-This leaves a electron free cavity on the propagation axis behind the driver while the expelled electrons culminate at the borders. As the ions are not moved, this cavity is positively charged which means, it acts as a attractive force to the plasma electrons.
+This leaves a electron free cavity on the propagation axis behind the driver while the expelled electrons culminate at the borders. As the ions are not moved, this cavity is positively charged, meaning it acts as a attractive force to the plasma electrons.
 When being pulled back towards the center of the cavity, the electrons overshoot and produce another cavity. The result is electron oscillation, where multiple cavities form behind the beam as seen in \autoref{fig:pwfa}.
-This train \todo{better word?} of cavities is called the blowout regime. When injecting a charged witness bunch into this regime, it sees multiple field due to the gradient towards the center of the positive cavity.For a witness beam in propagation direction, 
-consisting of negative charged particles, the electric field accelerates towards the center of the cavity while decelerating when leaving it. Perpendicular to the direction of propagation are also electric field pointing toward the center, resulting in focusing of the witness beam. 
-In contrast there are defocusing forces between the cavities, where the electrons reach and fill the center. \todo{write more, why are acceleration and deceleration not canceling out?}
+This train \todo{better word?} of cavities is called the blowout regime. When injecting a charged witness bunch into this regime, it sees multiple field due to the gradient towards the center of the positive cavity. For a witness beam in propagation direction, 
+consisting of negative charged particles, the electric field accelerates towards the center of the cavity while decelerating when leaving it. Perpendicular to the direction of propagation are electric field pointing towards the center too, resulting in focusing of the witness beam. 
+In contrast there are defocusing forces between the cavities, where the electrons reach and fill the center. When electrons are injected into the back of the cavity, they will be accelerated while the cavity itself moves at light speed with the driver.
+Near light speed, the velocity of the witness bunch won't increase in a meaningful way. The witness electrons would therefor be trapped in the accelerating part of the cavity, resulting in a net increase of momentum and energy. \todo{does witness more energy tahn driver or what is the point?}
 
 \begin{figure}
 	\centering
@@ -23,6 +25,10 @@ In contrast there are defocusing forces between the cavities, where the electron
 \end{figure} \todo{good picture in T. Kurz dissertation}
 
 \subsection{LPWFA} \label{chap:lpfwa}
+A big downside for \gls{pwfa} was for a long time the creation of the relativistic drive beam, as this would need kilometer long \gls{rf} accelerators as a prephase. Recent research \cite{Kurz2021} looks into the potential of \gls{lpwfa}.
+Here, the witness bunch of a \gls{lwfa} is used as driver for the \gls{pwfa}. \Gls{lwfa} is very similar to \gls{pwfa}. Instead of charged particles, here a laser is shot into a plasma to drive the wakefields, also generating hundreds of \unit{\GeV/\m} of accelerating fields in only a few centimeters.
+The accelerated witness bunch can be accelerated to faster speeds than the speed of the laser in the plasma, resulting in dephasing, where the witness beam is fast enough to reach the front part of the cavity and get decelerated. This hinders the acceleration capabilities of the \gls{lwfa} but it's
+more than enough to provide a usable bunch for a \gls{pwfa}, allowing for the compact form of the \gls{lpwfa}.
 
 \section{PIConGPU}
 To simulate complex particle-plasma interactions efficiently, the \gls{pic}-Model is often chosen. There are many different code implementations, for this thesis PIConGPU \cite{PIConGPU2013, PICRepo} is used.
