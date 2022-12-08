@@ -15,7 +15,7 @@ When being pulled back towards the center of the cavity, the electrons overshoot
 This train \todo{better word?} of cavities is called the blowout regime. When injecting a charged witness bunch into this regime, it sees multiple field due to the gradient towards the center of the positive cavity. For a witness beam in propagation direction, 
 consisting of negative charged particles, the electric field accelerates towards the center of the cavity while decelerating when leaving it. Perpendicular to the direction of propagation are electric field pointing towards the center too, resulting in focusing of the witness beam. 
 In contrast there are defocusing forces between the cavities, where the electrons reach and fill the center. When electrons are injected into the back of the cavity, they will be accelerated while the cavity itself moves at light speed with the driver.
-Near light speed, the velocity of the witness bunch won't increase in a meaningful way. The witness electrons would therefor be trapped in the accelerating part of the cavity, resulting in a net increase of momentum and energy. \todo{does witness more energy tahn driver or what is the point?}
+Near light speed, the velocity of the witness bunch won't increase in a meaningful way. The witness electrons would therefor be trapped in the accelerating part of the cavity, resulting in a net increase of momentum and energy. \todo{has witness more energy than driver or what is the point?}
 
 \begin{figure}
 	\centering
@@ -25,13 +25,15 @@ Near light speed, the velocity of the witness bunch won't increase in a meaningf
 \end{figure} \todo{good picture in T. Kurz dissertation}
 
 \subsection{LPWFA} \label{chap:lpfwa}
-A big downside for \gls{pwfa} was for a long time the creation of the relativistic drive beam, as this would need kilometer long \gls{rf} accelerators as a prephase. Recent research \cite{Kurz2021} looks into the potential of \gls{lpwfa}.
+A big downside for \gls{pwfa} was for a long time the creation of the relativistic drive beams, as this would need kilometer long \gls{rf} accelerators as a prephase. Recent research \cite{Kurz2021} looks into the potential of \gls{lpwfa}.
 Here, the witness bunch of a \gls{lwfa} is used as driver for the \gls{pwfa}. \Gls{lwfa} is very similar to \gls{pwfa}. Instead of charged particles, here a laser is shot into a plasma to drive the wakefields, also generating hundreds of \unit{\GeV/\m} of accelerating fields in only a few centimeters.
 The accelerated witness bunch can be accelerated to faster speeds than the speed of the laser in the plasma, resulting in dephasing, where the witness beam is fast enough to reach the front part of the cavity and get decelerated. This hinders the acceleration capabilities of the \gls{lwfa} but it's
 more than enough to provide a usable bunch for a \gls{pwfa}, allowing for the compact form of the \gls{lpwfa}.
 
 \section{PIConGPU}
-To simulate complex particle-plasma interactions efficiently, the \gls{pic}-Model is often chosen. There are many different code implementations, for this thesis PIConGPU \cite{PIConGPU2013, PICRepo} is used.
+To simulate complex particle-plasma interactions efficiently, the \gls{pic}-Model is often chosen. There are many different code implementations, often started to innovate with new techniques. For this thesis PIConGPU \cite{PIConGPU2013, PICRepo} is used, 
+a relativistic \gls{pic}-code, which specializes in parallelisation of the computational steps. Therefor it's designed to work on GPUs instead of CPUs. We will start with a introduction to the \gls{pic} method in general in \autoref{chap:pic}.
+In the following subsection, we look further how input and output is handled in PIConGPU.
 
 \subsection{Particle-in-Cell model} \label{chap:pic}
 \todo{how to cite manual?}
@@ -75,7 +77,7 @@ This system is often called the \gls{pic}-cycle \cite{Huebl2019}, which can be s
 	\missingfigure{}
 	\caption{The \gls{pic}-cycle. Every timestep starts at .}
 	\label{fig:cycle}
-\end{figure}\todo{add image and start point}
+\end{figure}\todo{add image (ask Richard)}
 
 Then, instead of a distribution function $f_s(\vec{x}, \vec{p}, t)$ of time $t$ , position $\vec{x}$, we look at a simulation box in 3 space dimensions and describe the distribution for a species as discrete macroparticles in this box \cite{Burau2010}.
 The movement of these macro particles are then described by their position and momentum, the acting force depend on their set mass $m$, charge $q$ and weighting $w$.
@@ -83,7 +85,7 @@ The weighting is determined by the exact density function which the macro partic
 
 
 At last, the fields need to be divided into so called Yee-cells \cite{Yee1966}, which can be seen in \autoref{fig:cell}. The corresponding fields are placed between the grid points, motivated by the fact that the spatial derivatives of components lie between these components, 
-at which place the time derivative is calculated (see \autoref{equ:derivE} and \autoref{equ:derivB}).
+at which place the time derivative is calculated.
 
 \begin{figure}
 	\centering
@@ -109,23 +111,33 @@ For the next step of the PIC-cycle, current $\vec{J}$ and charge density $\rho$ 
 
 At last the new fields are calculated at each grid point. The first two equations are only checked at initialization\todo{Citation?}, in general with $\rho=0$. This means, our box is charge free at the start, resulting in mirror charges when we don't have a completely neutral setup.
 For the rest of the simulation only the last two of Maxwell's equation need to be solved, which is done by numerical differentiation. 
-An example for this calculation with the field components in $x$-direction can be found in \autoref{equ:derivE} and \autoref{equ:derivB}. Equations corresponding to the $y$-, and $z$-component can be found too.
+Multiple field solver implementations can be used in PIConGPU. In this thesis the Finite-Difference Time-Domain method is used in the form of the ArbitraryOrderFDTD solver. It uses centered finite differences with a given number $M$ of neighbor grid points around our point.
+The time derivative is always replaced by a second order approximation, seen in \autoref{equ:derTime}. The spacial derivative for a quantity $u$ of the order $2M$ can be calculated by \autoref{equ:derSpace} with $g_l^{2M}$ as a weighting factor (see \autoref{equ:g_factor}).
 
 \begin{align}
-	\frac{{E}_x\rvert_{i+1/2,\, j,\, k}^{n+1} - {E}_x\rvert_{i+1/2\, j,\, k}^{n}}{c^2\Delta t}
-	=& \frac{{B}_z\rvert_{i+1/2,\, j+1/2,\, k}^{n+1/2} - {B}_z\rvert_{i+1/2\, j-1/2,\, k}^{n+1/2}}{\Delta y}
-	- \frac{{B}_y\rvert_{i+1/2,\, j,\, k+1/2}^{n+1/2} - {B}_y\rvert_{i+1/2\, j,\, k-1/2}^{n+1/2}}{\Delta z}
-	\label{equ:derivE}	\\&
-	-\mu_0 J_x \rvert_{i+1/2,\, j,\, k}^{n+1/2}											\nonumber	\\
-	 \frac{{B}_x\rvert_{i,\, j+1/2,\, k+1/2}^{n+3/2} - {B}_x\rvert_{i,\, j+1/2,\, k+1/2}^{n+1/2}}{\Delta t} 
-	 =& \frac{{E}_y\rvert_{i,\, j+1/2,\, k+1}^{n+1} - {E}_y\rvert_{i\, j+1/2,\, k}^{n+1}}{\Delta z}
-	- \frac{{E}_z\rvert_{i,\, j+1,\, k+1/2}^{n+1} - {E}_z\rvert_{i\, j,\, k+1/2}^{n+1}}{\Delta y}
-	\label{equ:derivB}
+\partial_x u(i\Delta x,j\Delta y,k\Delta z,n\Delta t) &= \frac{u_{i+1/2,j,k}^n - u_{i-1/2,j,k}^n}{\Delta x} 									\label{equ:derTime}	\\
+\partial_x u(i\Delta x,j\Delta y,k\Delta z,n\Delta t) &=  \sum\limits_{l=1/2}^{M-1/2} \left[ g^{2M}_l \frac{u_{i + l, j, k}^n - u_{i - l, j, k}^n}{\Delta x} \right] 	\label{equ:derSpace}	\\
+g^{2M}_l &= \frac{(-1)^{l-1/2}}{2l^2} \frac{((2M-1)!!)^2}{(2M -1 - 2l)!! (2M -1 + 2l)!!}											\label{equ:g_factor}
 \end{align}
 
-First, we calculate $\vec{E}^{(n+1)}$ from \autoref{equ:derivE}, then $\vec{B}^{(n+3/2)}$ from \autoref{equ:derivB}, giving us our fields at each grid point. \autoref{equ:derivE} and \autoref{equ:derivB} are only valid for the Yee-solver, which uses second order special derivatives.
-In this thesis the ArbitraryOrderFDTD solver is used with M=4 \todo{explain more}.
+We use $M=4$ neighboring grid points, resulting in a eight order approximation. The resulting weighting factors in \autoref{tab:g_factor} gives us the full numerical form of the 2 Maxwell equations, which can be found in the appendix in \autoref{chap:numMaxwel}.
+\begin{table}
+\begin{center}
+\begin{tabular}{ |c|c| }
+	\hline
+	$g_{1/2}^{2\cdot 4}$ & \num{11962.891d-04} \\ 
+	$g_{3/2}^{2\cdot 4}$ & \num{-797.526d-04} \\  
+	$g_{5/2}^{2\cdot 4}$ & \num{95.703d-04} \\	
+	$g_{7/2}^{2\cdot 4}$ & \num{-6.976d-04} \\
+	 \hline
+\end{tabular}
+\caption{Weighting factors for eightieth order spacial derivatives.}
+\end{center}\label{tab:g_factor}
+\end{table}
 
+\todo{maybe dispersion relation and short paragraph about lehe}
+
+With the numerical derivatives, we first calculate $\vec{E}^{(n+1)}$, then $\vec{B}^{(n+3/2)}$, giving us our fields at each grid point.
 
 \subsection{Boundary Conditions}
 The behavior of the fields and particles at the borders of the simulation box is determined by the boundary conditions.
