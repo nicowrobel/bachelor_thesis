@@ -2,9 +2,43 @@
 
 \begin{document}
 \chapter{Analysis of the bunch characteristics}
-\section{Movement of the driver particles}
+\section{Movement of the driver electrons}
 In this section, we discuss the movement of the particles in our driver and show the changes in position respective to each other. As such tracking of individual particles is not possible in experiment
 this will give further insight into the effects of the \gls{PWFA} on the drive beam.
+
+In \autoref{fig:q_series} a time series of 2D histograms, showing the driver after entering plasma, can be seen for the y-z-plane. The data is taken from a simulation with the bunch having an initial mean kinetic energy of \qty{250}{\MeV} and divergence of \qty{4.2}{\mrad} 
+\begin{figure}
+	\centering
+	\missingfigure{}
+	\caption{Time series of a charge density histogram of the driver electrons in Log scale. Note the formation of small wings and later the diverging to the borders. The viewing windows moves with light speed with the driver.}
+	\label{fig:q_series}\todo[inline]{charge density plot}
+\end{figure}
+At the start, the distribution follows a 2D Gaussian distribution, as set in \autoref{chap:init}. A log scale is chosen to make the borders with low density visible. After some distance traveled in the plasma, 
+the first cavities start to arise\todo{image with cavities} while the driver forms a tail or jet at its end. These cavities still aren't able to form the blowout. At this point, another plot comes i handy to further explain the formation.
+\todo{make Force plot. Force over time or only y- and z-Forces?) In \autoref{fig:force} one can see the acting Lorentz force layed over our distribution. This force is retrieved from the experienced E- and B-field, that every macroparticle stores.
+\begin{figure}
+	\centering
+	\missingfigure{}
+	\caption{}
+	\label{fig:force}
+\end{figure}
+The window is separated into bins and for every bin the mean of the force has been calculated and plotted as a force field, with the color quantifying the total force. This corresponds to the case where it is assumed, that there is only one macroparticle per bin and 
+the force acting on this particle is plotted.
+
+Only small forces act on the front of the beam, so the front part can move mostly free. In the center and back there are great acting forces, pushing the particles back and simultaneously centering them, resulting in the creation of the jet.
+These forces result from the formation of the first cavities. As can be seen in \autoref{fig:cavity}, the first cavity forms directly behind the front part of the driver so the backside already experiences the decelerating and focusing fields of the cavity.
+\begin{figure}
+	\centering
+	\missingfigure{}
+	\caption{}
+	\label{fig:cavity}
+\end{figure}
+Comparing the length of the beam\todo{show length with lines} shows that the tail isn't a part of the driver falling back, expect for a small part, but instead the backside experiencing focusing forces, which narrow the backside down.
+When looking back at the cavity formation, it shows that with the tail forming, cavities with similar width emerge and start to from the blowout regime.
+
+After narrowing down to a tail, the backside of the beam spreads again, as the focused driver electrons overshoot, forming wing-like structures. With the tail widening again, the cavities also start to widen and form strong fields at its ends.
+While the wings are widening further, new wings form behind it, probably by particles which were pulled back by the focusing force and overshot again. This forms a chain of smaller wings, all spreading with time and broadening the tail further.
+\todo{effect on cavities, diverging wings...}
 
 
 \section{Peak Energy shift}
