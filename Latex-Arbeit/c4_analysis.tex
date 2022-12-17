@@ -4,7 +4,7 @@
 \chapter{Analysis of the bunch characteristics}
 \section{Movement of the driver electrons}
 In this section, we discuss the movement of the particles in our driver and show the changes in position respective to each other. As such tracking of individual particles is not possible in experiment
-this will give further insight into the effects of the \gls{PWFA} on the drive beam.
+this will give further insight into the effects of the \gls{pwfa} on the drive beam.
 
 In \autoref{fig:q_series} a time series of 2D histograms, showing the driver after entering plasma, can be seen for the y-z-plane. The data is taken from a simulation with the bunch having an initial mean kinetic energy of \qty{250}{\MeV} and divergence of \qty{4.2}{\mrad} 
 \begin{figure}
@@ -15,7 +15,7 @@ In \autoref{fig:q_series} a time series of 2D histograms, showing the driver aft
 \end{figure}
 At the start, the distribution follows a 2D Gaussian distribution, as set in \autoref{chap:init}. A log scale is chosen to make the borders with low density visible. After some distance traveled in the plasma, 
 the first cavities start to arise\todo{image with cavities} while the driver forms a tail or jet at its end. These cavities still aren't able to form the blowout. At this point, another plot comes i handy to further explain the formation.
-\todo{make Force plot. Force over time or only y- and z-Forces?) In \autoref{fig:force} one can see the acting Lorentz force layed over our distribution. This force is retrieved from the experienced E- and B-field, that every macroparticle stores.
+\todo{make Force plot. Force over time or only y- and z-Forces?} In \autoref{fig:force} one can see the acting Lorentz force layed over our distribution. This force is retrieved from the experienced $\vec{E}$- and $\vec{B}$-field, that every macroparticle stores.
 \begin{figure}
 	\centering
 	\missingfigure{}
@@ -36,15 +36,62 @@ These forces result from the formation of the first cavities. As can be seen in 
 Comparing the length of the beam\todo{show length with lines} shows that the tail isn't a part of the driver falling back, expect for a small part, but instead the backside experiencing focusing forces, which narrow the backside down.
 When looking back at the cavity formation, it shows that with the tail forming, cavities with similar width emerge and start to from the blowout regime.
 
-After narrowing down to a tail, the backside of the beam spreads again, as the focused driver electrons overshoot, forming wing-like structures. With the tail widening again, the cavities also start to widen and form strong fields at its ends.
+After narrowing down to a tail, the backside of the beam spreads again, as the focused driver electrons overshoot, forming wing-like structures. With the tail widening again, the cavities also start to widen and form the strongest electric fields of the whole \gls{pwfa} stage.
 While the wings are widening further, new wings form behind it, probably by particles which were pulled back by the focusing force and overshot again. This forms a chain of smaller wings, all spreading with time and broadening the tail further.
-\todo{effect on cavities, diverging wings...}
+In this stage, the electric fields in the cavities already start to lose in strength while the electron density in the wakefield starts to rise again.
 
+As the backside of the driver further spreads, it leaves the impact of the focusing fields, letting it grow in tranversal direction together with the front of the bunch. For a long time it grows further, while the $\vec{E}$-fields of the wakfields lose in strength and electrons flood the cavities again.
+Simultaneously there are still strong forces, which act on the middle of the bunch, causing it to lose energy. The discussion of this energy loss will be continued in \autoref{chap:loc_E}, for now we only look at the position of these particles.
+In \autoref{fig:force_time} the strength and and position change of the longitudinal Lorentz-force can be seen over time. It shows how the force pushing the driver back builds up and then loses it's strength with the time.
+\begin{figure}
+	\centering
+	\missingfigure{}
+	\caption{Histogram of the longitudinal part of the Lorentz force. The force is sampled over the $y$-direction at a slice in the middle in $z$-direction for every 2000 timesteps. This slice is here plotted over the time, showing how it changes in position and strength.}
+	\label{fig:force_time}
+\end{figure}
+There is also a forward pushing force on the back, experienced by the particles that fall back to the middle of the cavity where the electric field changes direction. Notable is the part around $t=85000$, where the bunch collapses and particles start to fall back rapidly,
+so they get accelerated again in the back of the first cavity. These particles stem mostly from the middle of the driver, where the strongest backwards-pushing forces acted, causing them to rapidly lose energy.
+\todo{does collapse of wakefield predate bunch breakup?}
+The bunch is longer capable of inducing a wakefield, therefore further timesteps are not analyzed.
+
+With openPMDs capabilities to store IDs for every particle, further investigation of the paths can be made. This was used in \autoref{fig:y_hist_0} to show, which $y$-position the particles have at the end of the simulation.
+\begin{figure}
+	\centering
+	\begin{subfigure}{0.5\textwidth}
+	\centering
+	\missingfigure{}
+	\caption{} \label{fig:y_hist_0}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.5\textwidth}
+	\centering
+	\missingfigure{}
+	\caption{} \label{fig:y_hist_time}
+	\end{subfigure}
+	\caption{(a) 2D histogram of the driver. Each bin shows the minimum $y$-position at timestep \num{120000} of the particles in it, allowing us to see where each particle will eventually fall in the bunch.
+	(b) Histogram taking the z=0 slice from (a) for every 2000 timesteps and plotting them over the time.}
+	\label{fig:y_hist}
+\end{figure} \todo[inline]{add both y-position plots}
+It reveals that the electrons, which fall behind in the bunch breakup indeed originate from a small pool right behind the center of the bunch, where the strongest Lorentz-force is experienced. This results in them being overtaken by the particles behind them.
+The other parts of the bunch don't seem to move much in the $y$-direction, resulting in the clear color gradient on display. To further show this evolution, in \autoref{fig:y_hist_time} the z=0 slice is taken from every timestep and plotted over the time,
+showing how the particles fall behind until they get stopped by the accelerating force from the cavity.
+
+The same tracking was done for the $z$-direction, seen in the time series in \autoref{fig:z_hist}, where the $z$-position was marked in the first timestep and than displayed as the mean of the particles in individual bins.
+\begin{figure}
+	\centering
+	\missingfigure{}
+	\caption{}
+	\label{fig:z_hist}
+\end{figure}
+As the movement in z-direction is symmetric, this results in bins with equal amount of particles from the top and bottom half to be displayed as middle white. Still the effect is clear, as the wings can clearly be seen.
+The alternating colors can be explained by the overshooting of the electrons, which are pulled back to the center and form a new wing. The front part of the driver is clearly unaffected by this.
+\todo{comparison to different parameters}
 
 \section{Peak Energy shift}
 \todo{intro to peak energy}
 
-
 \subsection{Smaller peaks}
 \subsection{Energy loss}
+
+\section{Locality of the energy}\label{chap:loc_E}
 \end{document}
