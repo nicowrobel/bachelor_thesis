@@ -34,13 +34,13 @@ These forces result from the formation of the first cavities. As can be seen in 
 	\label{fig:cavity}
 \end{figure}
 Comparing the length of the beam\todo{show length with lines} shows that the tail isn't a part of the driver falling back, expect for a small part, but instead the backside experiencing focusing forces, which narrow the backside down.
-When looking back at the cavity formation, it shows that with the tail forming, cavities with similar width emerge and start to from the blowout regime.
+When looking back at the cavity formation, it shows that with the tail forming, cavities with similar width emerge and start to form the blowout regime.
 
 After narrowing down to a tail, the backside of the beam spreads again, as the focused driver electrons overshoot, forming wing-like structures. With the tail widening again, the cavities also start to widen and form the strongest electric fields of the whole \gls{pwfa} stage.
 While the wings are widening further, new wings form behind it, probably by particles which were pulled back by the focusing force and overshot again. This forms a chain of smaller wings, all spreading with time and broadening the tail further.
-In this stage, the electric fields in the cavities already start to lose in strength while the electron density in the wakefield starts to rise again.
+In this stage, the electric fields in the cavities already start to lose in strength while the electron density in the wakefield starts to rise again, 
 
-As the backside of the driver further spreads, it leaves the impact of the focusing fields, letting it grow in tranversal direction together with the front of the bunch. For a long time it grows further, while the $\vec{E}$-fields of the wakfields lose in strength and electrons flood the cavities again.
+As the backside of the driver further spreads, it leaves the impact of the focusing fields, letting it grow in tranversal direction together with the front of the bunch. For a long time it grows further, while the $\vec{E}$-fields of the wakfields lose in strength and electrons flood the cavities again, leading back into the linear regime.
 Simultaneously there are still strong forces, which act on the middle of the bunch, causing it to lose energy. The discussion of this energy loss will be continued in \autoref{chap:loc_E}, for now we only look at the position of these particles.
 In \autoref{fig:force_time} the strength and and position change of the longitudinal Lorentz-force can be seen over time. It shows how the force pushing the driver back builds up and then loses it's strength with the time.
 \begin{figure}
@@ -52,7 +52,24 @@ In \autoref{fig:force_time} the strength and and position change of the longitud
 There is also a forward pushing force on the back, experienced by the particles that fall back to the middle of the cavity where the electric field changes direction. Notable is the part around $t=85000$, where the bunch collapses and particles start to fall back rapidly,
 so they get accelerated again in the back of the first cavity. These particles stem mostly from the middle of the driver, where the strongest backwards-pushing forces acted, causing them to rapidly lose energy.
 \todo{does collapse of wakefield predate bunch breakup?}
-The bunch is longer capable of inducing a wakefield, therefore further timesteps are not analyzed.
+The wakefield is completely in the linear regime while electrons further flow back into the cavities.
+
+The depletion of the electric field in longitudinal direction is visualized in \autoref{fig:E_y_hist}, where the field,stored on the $x=z=0$ axis is plotted over time, showing how it changes with loss of the driver quality.
+\begin{figure}
+	\centering
+	\missingfigure{}
+	\caption{}
+	\label{fig:E_y_hist}
+\end{figure}
+It shows the elongation of the cavities with growing fields, experimentally shown in \cite{Schoebel2022}. When we assume a phase locked witness bunch, meaning it doesn't change position relative to the cavities, the theoretical energy gain can be calculated 
+by integration of the Lorentz force over the traversed path. The result can be seen in \autoref{fig:E_gain}, where the gained energy was plotted over position $y-ct$.
+\begin{figure}
+	\centering
+	\missingfigure{Energy gain as integrated Lorentz Force plotted over $y-ct$, showing how much energy an electron can get in this place.}
+	\caption{}
+	\label{fig:E_gain}
+\end{figure}
+When the witness bunch is placed precisely, energies of around \qty{400}{\MeV} can be gained by an electron, exceeding the initial energy of the driver.
 
 With openPMDs capabilities to store IDs for every particle, further investigation of the paths can be made. This was used in \autoref{fig:y_hist_0} to show, which $y$-position the particles have at the end of the simulation.
 \begin{figure}
@@ -84,14 +101,43 @@ The same tracking was done for the $z$-direction, seen in the time series in \au
 	\label{fig:z_hist}
 \end{figure}
 As the movement in z-direction is symmetric, this results in bins with equal amount of particles from the top and bottom half to be displayed as middle white. Still the effect is clear, as the wings can clearly be seen.
-The alternating colors can be explained by the overshooting of the electrons, which are pulled back to the center and form a new wing. The front part of the driver is clearly unaffected by this.
+The alternating colors can be explained by the overshooting of the electrons, which are pulled back to the center and form a new wing. The front part of the driver is mostly unaffected by this.
+
 \todo{comparison to different parameters}
 
 \section{Peak Energy shift}
-\todo{intro to peak energy}
+In this the chapter the change in energy of the \gls{pwfa} driver is discussed, as this gives further insights into the its stability and therefore also the stability of the wakefield.
+The change of the energy over time can be seen in \autoref{fig:E_hist_time}. It shows how the energy-histogram changes over time. As set up, the energy starts as a Gaussian distribution at around \qty{250}{\MeV}.
+\begin{figure}
+	\centering
+	\begin{subfigure}{0.5\textwidth}
+	\centering
+	\missingfigure{}
+	\caption{} \label{fig:E_hist_time}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.5\textwidth}
+	\centering
+	\missingfigure{}
+	\caption{} \label{fig:E_peak}
+	\end{subfigure}
+	\caption{(a) Energy histogram over time. Every 2000 timesteps a histogram of the charge over the energy is made and plotted here over the time.
+	(b) Peak energy plotted over time.}
+	\label{fig:Energy}
+\end{figure}
+When inducing the wakefield, the Lorentz force, created by the fields of the first cavity, act on the driver causing it to lose energy. As it acts only on parts of the driver, the distribution is not moving to lower energies but instead growing in size.
+The plot shows the growth in low energy electrons until $E=0$ is reached. In orange, the mean is also plotted in,  as well as the electrons with the minimal energy, both sinking with time. Also shown is the maximum energy, which actually grows.
+These are particles, which gain energy, as they are so far back in the bunch, that they get pushed by the Lorentz forces in the middle of the first cavity.
 
-\subsection{Smaller peaks}
-\subsection{Energy loss}
+Notable is the fact, that the histogram for every timestep isn't uniform but has visible maximas and minimas. The maximum with the highest energy is called the peak energy, which is also plotted in red.
+This energy is notable, as it the fact, that it stays constant during the \gls{pwfa} is used in experiments to calculate the initial charge the driver had, before entering the \gls{pwfa} (see \cite{Schoebel2022}.
+In \autoref{fig:E_peak} only the peak energy is plotted over time, showing that it isn't constant. Directly after entering the plasma, the peak energy drops from \qtyrange{250}{244}{\MeV}.
+Here, it plateaus until bunch breakup, after which it further drops.
+
+The systematic uncertainty of the peak energy is given by the size of the bins while the statistical uncertainty results from the uncertainty of my fit. \todo{add fit image somewhere} The fit assumes two summed Gaussian distributions as as
+simplification of the real distribution, which consists of multiple peaks with different heights and widths as well as a unknown background noise. Only the peak energy and the second peak are fitted.
+
+Currently the uncertainty on the peak energy measurement in experiments is higher than the \qty{5}{\MeV} jump. Still this indicates, caution is needed when assuming a constant peak energy, especially after bunch breakup.
 
 \section{Locality of the energy}\label{chap:loc_E}
 \end{document}
