@@ -3,18 +3,18 @@
 \begin{document}
 \chapter{Analysis of the bunch characteristics}
 \section{Movement of the driver electrons}
-In this section, we discuss the movement of the particles in our driver and show the changes in position respective to each other. As such tracking of individual particles is not possible in experiment
+In this section, the movement of the particles in our driver is discussed and the changes in position respective to each other are shown. As such tracking of individual particles is not possible in experiment
 this will give further insight into the effects of the \gls{pwfa} on the drive beam.
 
-In \autoref{fig:q_series} a time series of 2D histograms, showing the driver after entering plasma, can be seen for the y-z-plane. The data is taken from a simulation with the bunch having an initial mean kinetic energy of \qty{250}{\MeV} and divergence of \qty{4.2}{\mrad} 
+In \autoref{fig:q_series} a time series of 2D histograms, showing the driver after entering plasma, can be seen for the y-z-plane. The data is taken from a simulation where the bunch has an initial mean kinetic energy of \qty{250}{\MeV} and a divergence of \qty{4.2}{\mrad}. 
 \begin{figure}
 	\centering
 	\missingfigure{}
 	\caption{Time series of a charge density histogram of the driver electrons in Log scale. Note the formation of small wings and later the diverging to the borders. The viewing windows moves with light speed with the driver.}
 	\label{fig:q_series}\todo[inline]{charge density plot}
 \end{figure}
-At the start, the distribution follows a 2D Gaussian distribution, as set in \autoref{chap:init}. A log scale is chosen to make the borders with low density visible. After some distance traveled in the plasma, 
-the first cavities start to arise\todo{image with cavities} while the driver forms a tail or jet at its end. These cavities still aren't able to form the blowout. At this point, another plot comes i handy to further explain the formation.
+At the start, the spacial distribution follows a 2D Gauss, as set in \autoref{chap:init}. A log scale is chosen to make the borders with low density visible. After some distance was traveled in the plasma, 
+the first cavities start to arise\todo{image with cavities}. The focusing Lorentz force of these cavities forms a tail at the end of the driver. The cavities still are in the linear regime. At this point another plot comes in handy to further explain the formation.
 \todo{make Force plot. Force over time or only y- and z-Forces?} In \autoref{fig:force} one can see the acting Lorentz force layed over our distribution. This force is retrieved from the experienced $\vec{E}$- and $\vec{B}$-field, that every macroparticle stores.
 \begin{figure}
 	\centering
@@ -22,10 +22,10 @@ the first cavities start to arise\todo{image with cavities} while the driver for
 	\caption{}
 	\label{fig:force}
 \end{figure}
-The window is separated into bins and for every bin the mean of the force has been calculated and plotted as a force field, with the color quantifying the total force. This corresponds to the case where it is assumed, that there is only one macroparticle per bin and 
+The window is separated into bins and for every bin the mean of the force has been calculated and plotted as a force field, with the color quantifying the absolute force. This corresponds to a case where there only is one macroparticle per bin and 
 the force acting on this particle is plotted.
 
-Only small forces act on the front of the beam, so the front part can move mostly free. In the center and back there are great acting forces, pushing the particles back and simultaneously centering them, resulting in the creation of the jet.
+Only small forces act on the front of the beam, so the front part can diverge freely to the borders. In the center and back there are great acting forces, pushing the particles back and simultaneously centering them, resulting in the creation of the tail.
 These forces result from the formation of the first cavities. As can be seen in \autoref{fig:cavity}, the first cavity forms directly behind the front part of the driver so the backside already experiences the decelerating and focusing fields of the cavity.
 \begin{figure}
 	\centering
@@ -33,16 +33,16 @@ These forces result from the formation of the first cavities. As can be seen in 
 	\caption{}
 	\label{fig:cavity}
 \end{figure}
-Comparing the length of the beam\todo{show length with lines} shows that the tail isn't a part of the driver falling back, expect for a small part, but instead the backside experiencing focusing forces, which narrow the backside down.
+Comparing the length of the beam\todo{show length with lines}over time shows that the tail is not a part of the driver falling back but instead the backside experiencing focusing forces, which narrow the backside down.
 When looking back at the cavity formation, it shows that with the tail forming, cavities with similar width emerge and start to form the blowout regime.
 
-After narrowing down to a tail, the backside of the beam spreads again, as the focused driver electrons overshoot, forming wing-like structures. With the tail widening again, the cavities also start to widen and form the strongest electric fields of the whole \gls{pwfa} stage.
-While the wings are widening further, new wings form behind it, probably by particles which were pulled back by the focusing force and overshot again. This forms a chain of smaller wings, all spreading with time and broadening the tail further.
-In this stage, the electric fields in the cavities already start to lose in strength while the electron density in the wakefield starts to rise again, 
+After narrowing down to a tail, the backside of the beam spreads again, as the focused driver electrons overshoot, forming wing-like structures. With the tail widening, the cavities also start to widen and form the strongest electric fields of the whole \gls{pwfa} stage.
+The formed wings diverge and new wings form behind it by particles which were pulled back by the focusing force and overshot again. This forms a chain of smaller wings, all spreading with time and broadening the tail further.
+In this stage, the electric fields in the cavities already start to lose in strength while the electron density in the wakefield starts to rise again.
 
-As the backside of the driver further spreads, it leaves the impact of the focusing fields, letting it grow in tranversal direction together with the front of the bunch. For a long time it grows further, while the $\vec{E}$-fields of the wakfields lose in strength and electrons flood the cavities again, leading back into the linear regime.
+As the backside of the driver further spreads, it leaves the impact of the focusing fields, letting it grow in tranversal direction together with the front of the bunch. From now on it just grows further, while the $\vec{E}$-fields of the wakfields lose in strength and electrons flood the cavities again, leading back into the linear regime.
 Simultaneously there are still strong forces, which act on the middle of the bunch, causing it to lose energy. The discussion of this energy loss will be continued in \autoref{chap:loc_E}, for now we only look at the position of these particles.
-In \autoref{fig:force_time} the strength and and position change of the longitudinal Lorentz-force can be seen over time. It shows how the force pushing the driver back builds up and then loses it's strength with the time.
+In \autoref{fig:force_time} the strength and and position change of the longitudinal Lorentz-force can be seen over time. It shows how the force pushing the driver back first builds up and then loses it's strength with the time.
 \begin{figure}
 	\centering
 	\missingfigure{}
@@ -130,7 +130,7 @@ The plot shows the growth in low energy electrons until $E=0$ is reached. In ora
 These are particles, which gain energy, as they are so far back in the bunch, that they get pushed by the Lorentz forces in the middle of the first cavity.
 
 Notable is the fact, that the histogram for every timestep isn't uniform but has visible maximas and minimas. The maximum with the highest energy is called the peak energy, which is also plotted in red.
-This energy is notable, as it the fact, that it stays constant during the \gls{pwfa} is used in experiments to calculate the initial charge the driver had, before entering the \gls{pwfa} (see \cite{Schoebel2022}.
+This energy is notable, as the fact, that it stays constant during the \gls{pwfa} is used in experiments to calculate the initial charge the driver had, before entering the \gls{pwfa} (see \cite{Schoebel2022}.
 In \autoref{fig:E_peak} only the peak energy is plotted over time, showing that it isn't constant. Directly after entering the plasma, the peak energy drops from \qtyrange{250}{244}{\MeV}.
 Here, it plateaus until bunch breakup, after which it further drops.
 
@@ -140,4 +140,26 @@ simplification of the real distribution, which consists of multiple peaks with d
 Currently the uncertainty on the peak energy measurement in experiments is higher than the \qty{5}{\MeV} jump. Still this indicates, caution is needed when assuming a constant peak energy, especially after bunch breakup.
 
 \section{Locality of the energy}\label{chap:loc_E}
+The energy loss and spacial locality of the energy peaks can be visualized by again binning the macroparticles in space and analyze the mean energy in every bin. This mean energy is then plotted over the positions of the bins,
+an example of this can be seen in \autoref{fig:E_map}. 
+\begin{figure}
+	\centering
+	\missingfigure{}
+	\caption{Mean energy of the particles in the bins. Every bin has the size .... Every bin with at least one particle is plotted, so to derive information about the energy density, the charge density from \autoref{fig:q_series} has to be considered to.}
+	\label{fig:E_map}
+\end{figure}
+
+Parts of the bunch where a strong decelerating force acts have lost most of the energy while the front part, where only weak forces act, retained their peak energy. The energy loss in the back is also not a steady gradient but instead bigger areas where the energy is more or less constant, 
+for example the yellow area marking the second energy peak.
+
+The complete time series of the energy is plotted in \autoref{fig:E_time}.
+\begin{figure}
+	\centering
+	\missingfigure{}
+	\caption{Mean energy of the particles in the bins over time. Only the bins around $z=0$ are plotted for every timestep, showing the gradually loss of energy in the middle of the driver until bunch breakup.}
+	\label{fig:E_time}
+\end{figure}
+Notable is the constant energy in the front half of the driver and the strong energy loss in the middle. When energies around zero are reached, the electrons fall back, where they get accelerated again from the first cavity.
+Also notable is, that the highest energies are achieved at the back of the driver, where the accelerating part of the cavity starts and pushes the electrons there.
+
 \end{document}
