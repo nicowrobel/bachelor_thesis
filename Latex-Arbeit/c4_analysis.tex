@@ -6,25 +6,19 @@
 In this section, the movement of the particles in our driver is discussed and the changes in position respective to each other are shown. As such tracking of individual particles is not possible in experiment
 this will give further insight into the effects of the \gls{pwfa} on the drive beam.
 
-In \autoref{fig:q_series} a time series of 2D histograms, showing the driver after entering plasma, can be seen for the y-z-plane. The data is taken from a simulation where the bunch has an initial mean kinetic energy of \qty{250}{\MeV} and a divergence of \qty{4.2}{\mrad}. 
+In \autoref{fig:q_series} a time series of 2D histograms, showing the charge density of the driver after entering plasma, can be seen for the $\zeta$-$z$-plane. The data is taken from a simulation where the bunch has an initial mean kinetic energy of \qty{250}{\MeV} and a divergence of \qty{4.2}{\mrad}. 
 \begin{figure}
 	\centering
 	\missingfigure{}
 	\caption{Time series of a charge density histogram of the driver electrons in Log scale. Note the formation of small wings and later the diverging to the borders. The viewing windows moves with light speed with the driver.}
 	\label{fig:q_series}\todo[inline]{charge density plot}
 \end{figure}
-At the start, the spacial distribution follows a 2D Gauss, as set in \autoref{chap:init}. A log scale is chosen to make the borders with low density visible. After some distance was traveled in the plasma, 
-the first cavities start to arise\todo{image with cavities}. The focusing Lorentz force of these cavities forms a tail at the end of the driver. The cavities still are in the linear regime. At this point another plot comes in handy to further explain the formation.
-\todo{make Force plot. Force over time or only y- and z-Forces?} In \autoref{fig:force} one can see the acting Lorentz force layed over our distribution. This force is retrieved from the experienced $\vec{E}$- and $\vec{B}$-field, that every macroparticle stores.
-\begin{figure}
-	\centering
-	\missingfigure{}
-	\caption{}
-	\label{fig:force}
-\end{figure}
-The window is separated into bins and for every bin the mean of the force has been calculated and plotted as a force field, with the color quantifying the absolute force. This corresponds to a case where there only is one macroparticle per bin and 
-the force acting on this particle is plotted.
+At the start, the spacial distribution follows a 2D Gauss, as set in \autoref{chap:init}. A log scale is chosen to make the borders with low density visible. 
+The Lorentz force is also layed over the histogram to visualize the cause of the transformation of the driver. It is retrieved from the experienced $\vec{E}$- and $\vec{B}$-field, that every macroparticle stores.
+The window is then separated into bins and for every bin the mean of the force has been calculated and plotted as a force field, with the color and width of the lines quantifying the absolute force. 
+This corresponds to a case where there only is one macroparticle per bin and the force acting on this particle is plotted.
 
+After some distance was traveled in the plasma, the first cavities start to arise, as seen in \autoref{fig:cavity}. The focusing Lorentz force of these cavities forms a tail at the end of the driver while the cavities are still in the linear regime.
 Only small forces act on the front of the beam, so the front part can diverge freely to the borders. In the center and back there are great acting forces, pushing the particles back and simultaneously centering them, resulting in the creation of the tail.
 These forces result from the formation of the first cavities. As can be seen in \autoref{fig:cavity}, the first cavity forms directly behind the front part of the driver so the backside already experiences the decelerating and focusing fields of the cavity.
 \begin{figure}
@@ -54,7 +48,7 @@ so they get accelerated again in the back of the first cavity. These particles s
 \todo{does collapse of wakefield predate bunch breakup?}
 The wakefield is completely in the linear regime while electrons further flow back into the cavities.
 
-The depletion of the electric field in longitudinal direction is visualized in \autoref{fig:E_y_hist}, where the field,stored on the $x=z=0$ axis is plotted over time, showing how it changes with loss of the driver quality.
+The depletion of the electric field in longitudinal direction is visualized in \autoref{fig:E_y_hist}, where the field, stored on the $x=z=0$ axis is plotted over time, showing how it changes with loss of the driver quality.
 \begin{figure}
 	\centering
 	\missingfigure{}
@@ -103,7 +97,38 @@ The same tracking was done for the $z$-direction, seen in the time series in \au
 As the movement in z-direction is symmetric, this results in bins with equal amount of particles from the top and bottom half to be displayed as middle white. Still the effect is clear, as the wings can clearly be seen.
 The alternating colors can be explained by the overshooting of the electrons, which are pulled back to the center and form a new wing. The front part of the driver is mostly unaffected by this.
 
-\todo{comparison to different parameters}
+\subsection{Parameter comparison}
+The transformation of the driver beam form and subsequent changes of the potential energy gain of a witness beam were compared for different initial parameters.
+First the driver qualities for three different divergences after passing the metal foil were compared. The change of the charge density over time
+for a high divergence ($\theta=\qty{8.7}{\mrad}$), middle divergence($\theta=\qty{8.7}{\mrad}$, as seen in experiments) and low divergence ($\theta=\qty{1.7}{\mrad}$) beam are shown in \autoref{fig:dens_compare}.
+\begin{figure}
+	\centering
+	\begin{subfigure}{0.5\textwidth}
+	\centering
+	\missingfigure{}
+	\caption{} \label{fig:dens_low}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.5\textwidth}
+	\centering
+	\missingfigure{}
+	\caption{} \label{fig:dens_high}
+	\end{subfigure}
+	\caption{(a) }
+	\label{fig:dens_compare}
+\end{figure}
+For the normal divergence the start of the blowout regime as well as the fallback into the linear regime can be seen, as described before.
+In comparison for a low divergence bunch, the cavites are in a strong blowout regime with small electron charge densities, resulting in high strength electric fields. Even before the cavities fill and a linear regime sets in, the driver breaks up
+as the strong forces drain it's energy fast. After the breakup, the linear regime starts but a small cavity in the blowout regime through beam loading\todo{citation needed} still remains behind the fallen back part of the driver.
+For a driver with high divergence, no blowout is achieved so the wakefield remains in the linear regime with weak electric fields. This weak fields are not able to cause a bunch breakup, resulting in the bunch just diverging to the border with time.
+
+In \todo{add comparison of energy gain and energy gain maximas} the energy gain curves over $\zeta$ for the different divergences are compared, as well as as comparison of the peaks in \todo{add this}.
+The normal peak for energy gain lies for all curves at the position, where the backside of the cavity during the linear regime without elongation is positioned. Additionally, there is a second much higher peak for the low divergence curve
+in the backside of the cavity with blowout length. This results from the long standing blowout with extreme fields and the following smaller blowout from the beam loading in the same position. Else witness beams in this position would experience the decelerating
+field of the second cavity after some time. This gives good reasons to strive for low divergent beams, as they bring the highest possible energy gains.
+
+The question arises, why the change in divergence causes such a extreme difference for drivers. Possible is, that the induced current of the low divergence driver is higher, as the velocity in propagation direction is higher and the spatial distribution
+may be denser, as the particles don't diverge as much in the time before entering the plasma.
 
 \section{Peak Energy shift}
 In this the chapter the change in energy of the \gls{pwfa} driver is discussed, as this gives further insights into the its stability and therefore also the stability of the wakefield.
