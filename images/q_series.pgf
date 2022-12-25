@@ -62,8 +62,8 @@
 \begin{pgfscope}%
 \pgfpathrectangle{\pgfqpoint{0.688581in}{2.379784in}}{\pgfqpoint{1.490843in}{1.261883in}}%
 \pgfusepath{clip}%
-\pgfsys@transformcm{1.500000}{0.000000}{0.000000}{1.263889}{0.688581in}{2.379784in}%
-\pgftext[left,bottom]{\includegraphics[interpolate=false,width=1.000000in,height=1.000000in]{q_series-img0.png}}%
+\pgfsys@transformshift{0.688581in}{2.379784in}%
+\pgftext[left,bottom]{\includegraphics[interpolate=true,width=1.500000in,height=1.263889in]{q_series-img0.png}}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%
@@ -6899,8 +6899,8 @@
 \begin{pgfscope}%
 \pgfpathrectangle{\pgfqpoint{2.523869in}{2.379784in}}{\pgfqpoint{1.490843in}{1.261883in}}%
 \pgfusepath{clip}%
-\pgfsys@transformcm{1.500000}{0.000000}{0.000000}{1.263889}{2.523869in}{2.379784in}%
-\pgftext[left,bottom]{\includegraphics[interpolate=false,width=1.000000in,height=1.000000in]{q_series-img1.png}}%
+\pgfsys@transformshift{2.523869in}{2.379784in}%
+\pgftext[left,bottom]{\includegraphics[interpolate=true,width=1.500000in,height=1.263889in]{q_series-img1.png}}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%
@@ -13283,8 +13283,8 @@
 \begin{pgfscope}%
 \pgfpathrectangle{\pgfqpoint{4.359157in}{2.379784in}}{\pgfqpoint{1.490843in}{1.261883in}}%
 \pgfusepath{clip}%
-\pgfsys@transformcm{1.500000}{0.000000}{0.000000}{1.263889}{4.359157in}{2.379784in}%
-\pgftext[left,bottom]{\includegraphics[interpolate=false,width=1.000000in,height=1.000000in]{q_series-img2.png}}%
+\pgfsys@transformshift{4.359157in}{2.379784in}%
+\pgftext[left,bottom]{\includegraphics[interpolate=true,width=1.500000in,height=1.263889in]{q_series-img2.png}}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%
@@ -17613,8 +17613,8 @@
 \begin{pgfscope}%
 \pgfpathrectangle{\pgfqpoint{0.688581in}{0.565123in}}{\pgfqpoint{1.490843in}{1.261883in}}%
 \pgfusepath{clip}%
-\pgfsys@transformcm{1.500000}{0.000000}{0.000000}{1.263889}{0.688581in}{0.565123in}%
-\pgftext[left,bottom]{\includegraphics[interpolate=false,width=1.000000in,height=1.000000in]{q_series-img3.png}}%
+\pgfsys@transformshift{0.688581in}{0.565123in}%
+\pgftext[left,bottom]{\includegraphics[interpolate=true,width=1.500000in,height=1.263889in]{q_series-img3.png}}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%
@@ -22309,8 +22309,8 @@
 \begin{pgfscope}%
 \pgfpathrectangle{\pgfqpoint{2.523869in}{0.565123in}}{\pgfqpoint{1.490843in}{1.261883in}}%
 \pgfusepath{clip}%
-\pgfsys@transformcm{1.500000}{0.000000}{0.000000}{1.263889}{2.523869in}{0.565123in}%
-\pgftext[left,bottom]{\includegraphics[interpolate=false,width=1.000000in,height=1.000000in]{q_series-img4.png}}%
+\pgfsys@transformshift{2.523869in}{0.565123in}%
+\pgftext[left,bottom]{\includegraphics[interpolate=true,width=1.500000in,height=1.263889in]{q_series-img4.png}}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%
@@ -32036,8 +32036,8 @@
 \begin{pgfscope}%
 \pgfpathrectangle{\pgfqpoint{4.359157in}{0.565123in}}{\pgfqpoint{1.490843in}{1.261883in}}%
 \pgfusepath{clip}%
-\pgfsys@transformcm{1.500000}{0.000000}{0.000000}{1.263889}{4.359157in}{0.565123in}%
-\pgftext[left,bottom]{\includegraphics[interpolate=false,width=1.000000in,height=1.000000in]{q_series-img5.png}}%
+\pgfsys@transformshift{4.359157in}{0.565123in}%
+\pgftext[left,bottom]{\includegraphics[interpolate=true,width=1.500000in,height=1.263889in]{q_series-img5.png}}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%
