@@ -2008,7 +2008,7 @@
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=6.101137in,y=2.030000in,,top,rotate=90.000000]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont \(\displaystyle E_{\parallel} \, \mathrm{[GeV/m]}\)}%
+\pgftext[x=6.101137in,y=2.030000in,,top,rotate=90.000000]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont \(\displaystyle E_{||} \, \mathrm{[GeV/m]}\)}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetrectcap%

@@ -1429,16 +1429,16 @@
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetstrokeopacity{0.800000}%
 \pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{3.668903in}{3.021543in}}%
+\pgfpathmoveto{\pgfqpoint{3.622607in}{3.021543in}}%
 \pgfpathlineto{\pgfqpoint{5.302778in}{3.021543in}}%
 \pgfpathquadraticcurveto{\pgfqpoint{5.330556in}{3.021543in}}{\pgfqpoint{5.330556in}{3.049321in}}%
 \pgfpathlineto{\pgfqpoint{5.330556in}{3.422778in}}%
 \pgfpathquadraticcurveto{\pgfqpoint{5.330556in}{3.450556in}}{\pgfqpoint{5.302778in}{3.450556in}}%
-\pgfpathlineto{\pgfqpoint{3.668903in}{3.450556in}}%
-\pgfpathquadraticcurveto{\pgfqpoint{3.641125in}{3.450556in}}{\pgfqpoint{3.641125in}{3.422778in}}%
-\pgfpathlineto{\pgfqpoint{3.641125in}{3.049321in}}%
-\pgfpathquadraticcurveto{\pgfqpoint{3.641125in}{3.021543in}}{\pgfqpoint{3.668903in}{3.021543in}}%
-\pgfpathlineto{\pgfqpoint{3.668903in}{3.021543in}}%
+\pgfpathlineto{\pgfqpoint{3.622607in}{3.450556in}}%
+\pgfpathquadraticcurveto{\pgfqpoint{3.594829in}{3.450556in}}{\pgfqpoint{3.594829in}{3.422778in}}%
+\pgfpathlineto{\pgfqpoint{3.594829in}{3.049321in}}%
+\pgfpathquadraticcurveto{\pgfqpoint{3.594829in}{3.021543in}}{\pgfqpoint{3.622607in}{3.021543in}}%
+\pgfpathlineto{\pgfqpoint{3.622607in}{3.021543in}}%
 \pgfpathclose%
 \pgfusepath{stroke,fill}%
 \end{pgfscope}%
@@ -1449,16 +1449,16 @@
 \definecolor{currentstroke}{rgb}{0.121569,0.466667,0.705882}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{3.696681in}{3.346389in}}%
-\pgfpathlineto{\pgfqpoint{3.835570in}{3.346389in}}%
-\pgfpathlineto{\pgfqpoint{3.974459in}{3.346389in}}%
+\pgfpathmoveto{\pgfqpoint{3.650385in}{3.346389in}}%
+\pgfpathlineto{\pgfqpoint{3.789274in}{3.346389in}}%
+\pgfpathlineto{\pgfqpoint{3.928162in}{3.346389in}}%
 \pgfusepath{stroke}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=4.085570in,y=3.297778in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont gaussian distribution}%
+\pgftext[x=4.039274in,y=3.297778in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont gaussian distribution  }%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetrectcap%
@@ -1467,16 +1467,16 @@
 \definecolor{currentstroke}{rgb}{1.000000,0.498039,0.054902}%
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{3.696681in}{3.152716in}}%
-\pgfpathlineto{\pgfqpoint{3.835570in}{3.152716in}}%
-\pgfpathlineto{\pgfqpoint{3.974459in}{3.152716in}}%
+\pgfpathmoveto{\pgfqpoint{3.650385in}{3.152716in}}%
+\pgfpathlineto{\pgfqpoint{3.789274in}{3.152716in}}%
+\pgfpathlineto{\pgfqpoint{3.928162in}{3.152716in}}%
 \pgfusepath{stroke}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=4.085570in,y=3.104105in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont uniform distribution}%
+\pgftext[x=4.039274in,y=3.104105in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont uniform distribution}%
 \end{pgfscope}%
 \end{pgfpicture}%
 \makeatother%
