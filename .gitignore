@@ -1,5 +1,5 @@
 Word-Text/**
-Notebooks/.ipynb_checkpoints/**
+**/.ipynb_checkpoints/**
 
 # jabref temp
 *.bib.sav.tmp
