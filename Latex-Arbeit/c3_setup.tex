@@ -1,7 +1,7 @@
 \documentclass[bachelor_thesis]{subfiles}
 \begin{document}
 
-\chapter{Setup}
+\chapter{Setup}\label{chap:setup}
 The goal of the setup is to simulate a \gls{pwfa}, assuming a \gls{lwfa} generated electron bunch as driver. It would be possible to let PIConGPU run both stages but creating the bunch via script makes it easier to control the wanted parameters and is faster than a full \gls{lwfa} simulation.
 Therefore, an electron beam which emulates a witness bunch leaving a \gls{lwfa}, is generated with a python script (see \autoref{chap:init}). Afterwards the corresponding fields and the plasma interaction are computed with PIConGPU. 
 The parameters for this will  be explained in \autoref{chap:param}, before we go further to the initialization of the plasma in \autoref{chap:plasma}.
@@ -25,7 +25,7 @@ To save on computational power, a python script generates the electron bunch aft
 so a comparison is easily possible, but they need to be converted to other statistical quantities like the standard deviation. The parameter values used are based on recent experimental results \cite{Kurz2021, Schoebel2022, Cabadag2021}.
 
 The number of bunch particles is derived from the total charge, chosen as \qty{400d-12}{\C}, which results in roughly \num{250d9} electrons. After leaving the \gls{lwfa} stage, the position of the particles is assumed to be normally distributed in each direction.
-For the transversal position this distribution is centered around the axis with the standard deviation $\sigma_{x,z}$ derived from \autoref{equ:sigma_x} with the \gls{rms} radius $r_{rms}=\qty{10}{\um}$\todo{too big?}.
+For the transversal position this distribution is centered around the axis with the standard deviation $\sigma_{x,z}$ derived from \autoref{equ:sigma_x} with the \gls{rms} radius $r_{rms}=\qty{10}{\um}$.
 \begin{equation}
 	\sigma_{x,z}=\frac{r_{rms}}{\sqrt{2}} 
 	\label{equ:sigma_x}
@@ -44,7 +44,7 @@ It follows \autoref{equ:sigma_y} where $2\sqrt{2\cdot\ln{2}}$ is the conversion 
 
 A second driver with uniform distribution in propagation direction and Gaussian distribution in $x$- and $z$-direction was generated for comparison. Standard deviation in all directions is identical to the Gaussian driver.
 
-Momenta are derived from the mean kinetic energy $\bar{E}_{kin}$\todo{fix the bar}. Three different values from \qtyrange{250}{350}{\MeV} are simulated and compared in this thesis.
+Momenta are derived from the mean kinetic energy $E_{kin}$. Three different values from \qtyrange{250}{350}{\MeV} are simulated and compared in this thesis.
 For all simulations a normal distribution of the energy with a \gls{fwhm} of \qty{10}{\MeV} is assumed. The total momentum for each particle is now calculated with \autoref{equ:E_to_mom}.
 \begin{equation}
 	\left|p\right|=\frac{E_{kin}}{c}

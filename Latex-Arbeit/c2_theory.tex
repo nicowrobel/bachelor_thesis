@@ -1,7 +1,7 @@
 \documentclass[bachelor_thesis]{subfiles}
 
 \begin{document}
-\chapter{Theoretical Background}
+\chapter{Theoretical Background} \label{chap:theory}
 \section{Plasma Wakefield Acceleration}
 \Gls{pwfa} is a novel particle accelerator concept (first theorized in 1985 \cite{Chen1985}) with the possibility to produce high accelerating electric fields (more than \qty{100}{\GeV/\m}). This allows for higher energy gains per meter
 and thus several order of magnitude smaller accelerators, compared to conventional \gls{rf} accelerators.
@@ -168,7 +168,28 @@ We use $M=4$ neighboring grid points, resulting in an eight-order approximation.
 
 With the numerical derivatives, we first calculate $\vec{E}^{(n+1)}$, then $\vec{B}^{(n+3/2)}$, giving us our fields at each grid point. Afterwards the \gls{pic}-cycle can repeat.
 
-\todo{maybe add dispersion relation}
+\subsection{Dispersion relation}
+Discretization of the phase space yields us different dispersion relations than for real  electromagnetic waves. For the used Arbitrary Order Finite Differences, this relation
+between frequency $\omega$ and wave vector components $k_x$, $k_y$ and $k_z$ are found in \autoref{equ:disp_rel1} and \autoref{equ:disp_rel2}.
+\begin{align}
+\omega&=\frac{2}{\Delta t} \arcsin  \xi 			\label{equ:disp_rel1}	\\
+\xi &= \left[\sum\limits_{l=1/2}^{M - 1/2} g_l^{2M} \frac{\sin( k_x l \Delta x)}{\Delta x} \right]^2
+	+ \left[\sum\limits_{l=1/2}^{M - 1/2} g_l^{2M} \frac{\sin( k_y l \Delta y)}{\Delta y} \right]^2 + \left[\sum\limits_{l=1/2}^{M - 1/2} g_l^{2M} \frac{\sin( k_z l \Delta z)}{\Delta z} \right]^2 	\label{equ:disp_rel2}
+\end{align}
+$\Delta t$ is here the time discretization, $\Delta x$, $\Delta y$ and $\Delta z$ are the spatial spacings and $g_l^{2M}$ is the weighting factor, given in \autoref{equ:g_factor}.
+
+$\xi$ is maximal when the square of the sine functions return 1. Additionally, the arcsine \autoref{equ:disp_rel1} sets the conditions $\xi_{max} < 1$.
+Together these result in a stability condition \autoref{equ:stabilty} between the spacing of the time steps and the mesh.
+\begin{equation}
+c\Delta t < \frac{1}{ \left[ \sum\limits_{l=1/2}^{M - 1/2} (-1)^{l-\frac{1}{2}} g_l^{2M} \right] \sqrt{ \frac{1}{\Delta x^2} + \frac{1}{\Delta y^2} + \frac{1}{\Delta z^2} }}
+\label{equ:stabilty}
+\end{equation}
+Generally, $\xi_{max}$ is chosen as 0.995, which is low enough to fulfill \autoref{equ:stabilty}. It shouldn't be chosen too low, as the phase velocity $v_p=\omega/k$
+would be reduced as well. This could result in numerical Cherenkov radiation when the charged particles move faster than $v_p$, giving back unphysical results.
+
+As an alternative to the Yee-solver, a Lehe-solver \cite{Lehe2013} is implemented in PIConGPU. Goal of this solver is to avoid numerical Cherenkov radiation, that the Yee- or ArbitraryOrderFDTD solvers emit.
+Tests of this solver showed that this implementation of the Lehe solver is broken, as highly nonphysical electric fields appeared during the simulations. Therefore the ArbitraryOrderFDTD is still used for this thesis.
+
 
 \subsection{Boundary Conditions}
 The behavior of the fields and particles at the borders of the simulation box is determined by the boundary conditions.

@@ -1,7 +1,7 @@
 \documentclass[bachelor_thesis]{subfiles}
 
 \begin{document}
-\chapter{Analysis of the bunch characteristics}
+\chapter{Analysis of the bunch characteristics}\label{chap:analysis}
 In this thesis the analysis of the bunch and the caused wakefields is split into two parts. In \autoref{chap:distro_change} the change of the spatial charge distribution of the driver is discussed as well as its effect on the quality of the produced wakefield, quantified by the maximal gainable energy for a potential witness beam.
 
 The second part in \autoref{chap:E_shift} is concentrated on the energy distribution of the driver, especially on changes to the peak energy, as bigger changes would violate the assumption of constant peak energy over the course of the \gls{pwfa} made in experiments.
@@ -107,7 +107,7 @@ for a potential witness beam is considered. In \autoref{fig:E_y_hist} the charge
 	\textbf{b)} The electric field in $\zeta$ direction for all grid points at $x=z=0$ is plotted over $y$. On the right side the gained energy for a theoretical
 	witness beam is plotted too over $\zeta$.}
 	\label{fig:E_y_hist}
-\end{figure}
+\end{figure}\todo{electric field is measured in GV/m}
 Especially in a) the change in width of the cavities is visible. This effect was measured in experiment, as seen in \cite{Schoebel2022}. A witness beam which is phase locked with the driver, meaning it is constant in $\zeta$,
 would therefore not get maximal energy gain when placed at a position where the accelerating field is maximal as it would later experience a decelerating force, when the cavities shrink again.
 In b) this is visible, as the decelerating blue field moves to the right over the position of the strongest red accelerating field. Drawn in is also the expected energy gain for a potential witness beam.
@@ -145,8 +145,8 @@ resulting in even smaller gain increase, as the main difference between the ener
 The values make also apparent, that there are only small differences in the energy loss behind the driver (first minimum behind \qty{0}{\um}). The driver with higher energy lives only longer because it has more energy to lose, not because it loses less per time.
 
 \paragraph*{Divergence comparison}\label{para:div_comp}\hspace{0pt} \\
-Next, the driver qualities for three different divergences after passing the metal foil were compared. The energy gains over $\zeta$ for a high divergence ($\theta=\qty{8.7}{\mrad}$), middle divergence ($\theta=\qty{4.2}{\mrad}$, as seen in experiments) 
-and low divergence ($\theta=\qty{1.7}{\mrad}$) beam are shown in \autoref{fig:gain_div}.
+Next, the driver qualities for three different divergences after passing the metal foil were compared. The energy gains over $\zeta$ for a high divergence ($\sigma_{\theta}=\qty{8.7}{\mrad}$), middle divergence ($\sigma_{\theta}=\qty{4.2}{\mrad}$, as seen in experiments) 
+and low divergence ($\sigma_{\theta}=\qty{1.7}{\mrad}$) beam are shown in \autoref{fig:gain_div}.
 \begin{figure}
 	\centering
 	\input{../images/gain_div.pgf}
