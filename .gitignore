@@ -7,6 +7,7 @@ Word-Text/**
 
 # latex output
 *.aux
+*.auxlock
 *.bbl
 *.bcf
 *.blg

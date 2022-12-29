@@ -41,7 +41,7 @@ The witness bunch can be accelerated to higher speeds than the speed of the lase
 
 \begin{figure}
 	\centering
-	\missingfigure{good picture in Schoebel2021}
+	\missingfigure{good picture in Schoebel2021 or Ossa2019}
 	\caption{Example for \gls{lpwfa} setup.}
 	\label{fig:lpwfa}
 \end{figure}
@@ -51,7 +51,7 @@ So only the witness bunch makes it to the next gas jet, serving as the driver fo
 This hybrid scheme has the potential to advance the \gls{pwfa} research further and make it more accessible to small scale labs \cite{Kurz2021}.
 
 \paragraph*{Peak energy}\hspace{0pt} \\
-The energy with the highest charge density of driver particles is called peak energy. In experiment it is an important measurement, as it provides the beam charge of a witness beam leaving a \gls{lwfa} stage \cite{Schoebel2021}.
+The energy with the highest charge density of driver particles is called peak energy. In experiment it is an important measurement, as it provides the beam charge of a witness beam leaving a \gls{lwfa} stage \cite{Schoebel2022}.
 The peak energy of the driver is assumed to stay constant during a \gls{pwfa} stage, therefore information about the driver before entering the \gls{pwfa} can be obtained in a \gls{lpwfa}.
 
 \autoref{chap:E_shift} will discuss evidence, that the peak energy is sinking during the \gls{pwfa} stage, and the assumption of constant peak energy therefore can only be made for high uncertainty measurements.
@@ -62,7 +62,7 @@ a relativistic \gls{pic}-code, which specializes in parallelization of the compu
 In the following subsection, we discuss further how input and output is handled in PIConGPU.
 
 \subsection{Particle-in-Cell model} \label{chap:pic}
-\Gls{pic}-code models particles in a simulation box, generally described as a distribution function $f_s(\vec{x}, \vec{p}, t)$ of time $t$ , position $\vec{x}$ and momentum $\vec{p}$ for every particle species $s$ \cite{PICrepo}.
+\Gls{pic}-code models particles in a simulation box, generally described as a distribution function $f_s(\vec{x}, \vec{p}, t)$ of time $t$ , position $\vec{x}$ and momentum $\vec{p}$ for every particle species $s$ \cite{PICRepo}.
 This distribution must now satisfy the collisionless Boltzmann equation, also called Vlasov equation\cite{Vlasov1968}, see \autoref{equ:boltz}.
 
 \begin{equation}
@@ -99,7 +99,7 @@ This system is often called the \gls{pic}-cycle \cite{Huebl2019}, which can be s
 
 \begin{figure}
 	\centering
-	\missingfigure{}
+	\input{../images/cycle.pgf}
 	\caption{The \gls{pic}-cycle. In PIConGPU, every timestep starts with the force calculation. Figure taken from \cite{Pausch2019}}
 	\label{fig:cycle}
 \end{figure}
@@ -137,7 +137,7 @@ At last, a Coulomb force is applied again for half a time step, so the momentum 
 \paragraph*{Current deposition}\hspace{0pt} \\
 For the next step of the PIC-cycle, the current density $\vec{J}$ is calculated with Esirkepov’s current deposition method \cite{Esirkepov2001}.
 The change in current density between two grid points is calculated by accumulating nearby macroparticles with respect to their velocity, charge, assignment functions and change in position between two time steps. 
-The current density components between grid points are stored, like the components of the $\vec{E}$-field.
+Like the components of the $\vec{E}$-field, the current density components not on but between the grid points are stored.
 
 \paragraph*{Field Evolution}\hspace{0pt} \\
 At last, the new fields are calculated at each grid point. The first two Maxwell equations \autoref{equ:maxwell} are only checked at initialization, in general with $\rho=0$. This means, our box is charge neutral at the start, resulting in mirror charges when we don't have a completely neutral setup.
@@ -203,7 +203,7 @@ Particles follow the periodicity of the fields but have different option when no
 \subsection{Acceleration pusher} \label{chap:accpush}
 As will be later discussed in \autoref{chap:init}, the initial bunch from the \gls{lwfa} stage is modeled with given position and momentum of the macroparticles.
 No corresponding fields are given, thus they need to be created by the simulation. This is an iterative process where we first apply a constant force in longitudinal direction to our bunch and calculate backwards how it looked a given number of timesteps before \cite{Huebl2014}.
-Then we can put it in the simulation, apply the same force and let it create a corresponding field through the PIC-cycle (see \autoref{	chap:pic}), while the bunch moves to its initial position in phase space.
+Then we can put it in the simulation, apply the same force and let it create a corresponding field through the PIC-cycle (see \autoref{chap:pic}), while the bunch moves to its initial position in phase space.
 
 Problem is, PIConGPU expects a charge free box, so when electrons are placed in the box it will automatically put a positive mirror charge behind every particle. This mirror charge would then pull back our real 
 bunch, slowing it down in process. Therefore, the acceleration pusher is used instead of the Boris pusher. Here, the constant accelerating force is the only acting force, completely ignoring the created fields.

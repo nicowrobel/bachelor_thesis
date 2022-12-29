@@ -9,7 +9,7 @@ The parameters for this will  be explained in \autoref{chap:param}, before we go
 
 \section{Simulation Parameters}\label{chap:param}
 For all setups, a box consisting of \numproduct{1024 x 2048 x 1024} grid cells for field calculation is used. The currently simulated volume measures \qtyproduct{90.7 x 181.5 x 90.7}{\um} and moves with light speed $c$ in the direction of propagation.
-In contrast to experiment, this direction of propagation is the $y$-axis. Instead of $y$, the co-moving $/zeta$ coordinate is often used.
+In contrast to experiment, this direction of propagation is the $y$-axis. Instead of $y$, the co-moving $\zeta$ coordinate is used in \autoref{chap:analysis}.
 Every calculated time step has a duration of \qty{1.33d-16}{\s}. 
 
 For the first \num{10191} timesteps (corresponds to a distance of \qty{40.5}{\um}) the acceleration pusher (see \autoref{chap:accpush}) acts on the bunch with a constant force, 
@@ -55,7 +55,7 @@ This is a simplification of the relativistic energy-momentum relation where the 
 How much the momentum distribution spreads from the forward propagation axis is given by the pointing angle $\theta$, thus a distribution in spherical coordinates is appropriate. The standard deviation of the pointing angle, 
 the so-called divergence, is set to $\sigma_{\theta}=\qty{1.6}{\mrad}$.
 
-In experiments this value is only calculated for the divergence towards either the x or z axis, so a factor $\sqrt{2}$ must be multiplied (both directions are assumed to have the same divergence) before 
+In experiments this value is only calculated for the divergence towards either the $x$ or $z$ axis, so a factor $\sqrt{2}$ must be multiplied (both directions are assumed to have the same divergence) before 
 it can be used as the standard deviation for the normal distribution of $\theta$. The polar angle $\phi$ is uniformly distributed over all particles, as the divergence is symmetric around the $p_y$-axis.
 Finally, the particle momenta are calculated by transforming from spherical to Cartesian coordinates (\autoref{equ:sph_to_car}). 
 
@@ -65,31 +65,21 @@ Finally, the particle momenta are calculated by transforming from spherical to C
 	p_z&=\cos{\phi} \cdot \sin{\theta} \cdot \left|p\right|	&
 	\label{equ:sph_to_car}
 \end{align}
-With the phase space of position and momentum defined for all particles, we can fully describe a particle bunch after the \gls{lwfa} stage moving close to the speed of light, as shown in \autoref{fig:after_lwfa}.
+With the phase space of position and momentum defined for all particles, we can fully describe a particle bunch after the \gls{lwfa} stage moving close to the speed of light, as shown in \autoref{fig:bunch_gen}a and b.
 
 \begin{figure}
 	\centering
-	\begin{subfigure}{\textwidth}
-		\centering
-		\missingfigure{}
-		\caption{}
-		\label{fig:after_lwfa}
-	\end{subfigure}
-	\newline
-	\begin{subfigure}{\textwidth}
-		\centering
-		\missingfigure{}
-		\caption{}
-		\label{fig:after_vac}
-	\end{subfigure}
-	\caption{Calculated phase spaces. (a) After leaving the \gls{lwfa} stage. Transversal momentum is two orders of magnitude smaller than for the longitudinal direction. (b) After vacuum propagation. Particles with
-	a higher directional momentum will move to the right while slower particles will fall behind to the left, resulting in shearing in the phase space.}
-	\label{fig:phasespace}
+	\input{../images/bunch_gen.pgf}
+	\caption{Macroparticle density in phase spaces. 
+	\textbf{(a)} and \textbf{(b)} After leaving the \gls{lwfa} stage. Transversal momentum is two orders of magnitude smaller than for the longitudinal direction.
+	\textbf{(c)} and \textbf{(d)} After vacuum propagation. Particles with a higher directional momentum will move to the right while slower particles will fall behind to the left, resulting in slight shearing in the phase space.
+	\textbf{(e)} and \textbf{(f)} After back evolution as a preparation for the acceleration phase. As time is reversed, particles with positive momentum now moved to the left.}
+	\label{fig:bunch_gen}
 \end{figure}
 
 Next our beam needs to be prepared for the \gls{pwfa} stage by transmitting it through a metal foil. In experiment the foil is used to block of the laser from the preceding \gls{lwfa} stage, 
 with the side effect of scattering our electron beam \cite{Raj2020}. Here our foil is positioned \qty{700}{\um} after the \gls{lwfa} gas.
-The beam positions are updated by moving the bunch uniformly through a vacuum without applying forces. This introduces a shear between positive and negative momenta in the phase spaces for all directions, as can be seen in \autoref{fig:after_vac}.
+The beam positions are updated by moving the bunch uniformly through a vacuum without applying forces. This introduces a shear between positive and negative momenta in the phase spaces for all directions, as can be seen in \autoref{fig:bunch_gen}c and d.
 
 To emulate the divergence increase of the metal foil, random noise is added to the momentum in $p_x$ and $p_z$ direction, while the new $p_y$ will be calculated so that the total momentum for each particle is conserved.
 The standard deviation of the noise normal distribution was chosen so that after the foil a divergence of \qty{4.2}{\mrad} is achieved, comparable to real experiments \cite{Schoebel2022}.
@@ -97,45 +87,35 @@ Additionally, drivers with divergences of \qtylist{1.7; 8.7}{\mrad} were simulat
 
 The resulting particle bunch has now the wanted position and momentum that could result out of an ideal \gls{lwfa}. As the corresponding electric and magnetic fields are created by the acceleration pusher,
 the condition of the bunch before the acceleration must be computed. The acting force is constant, so simply applying Newtons equations of motion for the same number of timesteps as the pusher returns the bunch in the wanted state.
-The phase space diagrams of the backwards computed bunch can be seen in \autoref {fig:after_push}. Notice, that the $y$-momentum is now centered around \num{0}. For correct field calculations, it was assumed that the bunch moves at non-relativistic speeds,
+The phase space diagrams of the backwards computed bunch can be seen in \autoref {fig:bunch_gen}e and f. Notice, that the $y$-momentum is now centered around \num{0}. For correct field calculations, it was assumed that the bunch moves at non-relativistic speeds,
 else nonphysical fields could be produced. This thesis demonstrated that this precaution step was not necessary. \todo{never demonstrated in analysis}
-
-\begin{figure}
-	\missingfigure{}
-	\caption{Phase space for $x$- and $y$- direction after the backwards evolution of the acceleration pusher. Again, a strong shearing effect can be seen, especially for backwards moving particles in the $y$ plot.}
-	\label{fig:after_push}
-\end{figure}
 
 At last, the bunch is placed inside the simulation box. In $x$- and $z$-direction it should be in the middle in the box, while being put closer to the front end in $y$-direction, so no particles fall so far behind, that they leave the box when moving.
 The simulation can now be run on this synthetically generated bunch.
 
 \section{Entering Plasma}\label{chap:plasma}
-After the acceleration (\autoref{chap:accpush}) phase our bunch can now enter the plasma, also called gas jet.
+After the acceleration phase (\autoref{chap:accpush}), our bunch can now enter the plasma, also called gas jet.
 Only electrons are explicitly added as particles, the corresponding ions are emulated from the field solver. It expects a neutral plasma, so a positive background charge is added. 
-In this case our plasma is already defined as completely ionized. The density function as seen in \autoref{fig:dens} is separated in multiple regimes starting in the vacuum ($\rho=0$). 
+In this case our plasma is already defined as completely ionized. The density function as seen in \autoref{fig:e_density}a is separated in multiple regimes starting in the vacuum ($\rho=0$). 
 
 \begin{figure}
 	\centering
 	\input{../images/e_density.pgf}
-	\caption{The electron density plotted over the propagation direction. The function stays constant outside of the frame.}
-	\label{fig:dens}
+	\caption{The electron density plotted over the propagation direction. A Super-Gauss distribution is used as a transition between vacuum and the density plateau.
+	\textbf{(a)} After an initial vacuum, an infinitely long gas jet is described as a constant plateau.
+	\textbf{(b)} In contrast to a), the plateau ends after \qty{3}{\mm} and density drops down to 0. This is comparable to real experiments.}
+	\label{fig:e_density}
 \end{figure}
 
 A super-Gaussian density profile (\autoref{equ:sgauss}) is than used to approximate a smooth transition into the plateau where our density $\rho$ stays constant at $\rho_0 = \qty{4d18}{\cm^{-3}}$. Comparable values for the mean density can be found in experiments \cite{Schoebel2022, Kurz2021}.
 \begin{equation}
-	\rho = \rho_0 \exp\left(-\left(\frac{y-y_{peak start}}{\sigma}\right)^6\right)
+	\rho = \rho_0 \exp\left(-\left(\frac{y-6\sigma}{\sigma}\right)^6\right)
 	\label{equ:sgauss}
 \end{equation}
 The here assumed constant plateau is an idealization of the small density fluctuations in real plasma.
 
 Generally, in all simulations the driver traversed in the plateau for over \qty{6}{\mm}, where the blowout regime of the wakefield ended for all drivers. As real experiments do measurements on the driver after leaving the gas jet,
-a second density function was defined were the plateau ends after \qty{3}{\mm}, again with a super-Gaussian transition to vacuum, as seen in \autoref{fig:downramp}.
-\begin{figure}
-	\centering
-	\missingfigure{}
-	\caption{The electron density plotted over the propagation direction. After \qty{3}{\mm}, the density drops down to 0.}
-	\label{fig:downramp}
-\end{figure}
+a second density function was defined were the plateau ends after \qty{3}{\mm}, again with a super-Gaussian transition to vacuum, as seen in \autoref{fig:e_density}b.
 This allows us to confirm results in this thesis in real experiment.
 
 \end{document}
