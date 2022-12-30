@@ -19,12 +19,12 @@ In \autoref{fig:q_series} a time series of 2D histograms, showing the charge den
 	\centering
 	\input{../images/q_series.pgf}
 	\caption{Time series of a charge density histogram of the driver electrons integrated over the $x$-axis in Log scale. The acting Lorentz Force is drawn on top as vector lines. Vertical lines are drawn in to make change in length of the bunch better visible. 
-	\textbf{a)} ($y=\qty{0.04}{mm}$) When entering the plasma. Still a Gaussian distribution, weak forces focus the backside.
-	\textbf{b)} ($y=\qty{0.36}{mm}$) Formation of the tail from focusing forces. Decelerating forces grow.
-	\textbf{c)} ($y=\qty{0.76}{mm}$) First wing spreads from tail. Strong decelerating forces on the backside.
-	\textbf{d)} ($y=\qty{1.08}{mm}$) More wings emerge and spread. Still strong decelerating forces.
-	\textbf{e)} ($y=\qty{2.90}{mm}$) Shortly before bunch breakup with visible elongation of the bunch. Only weak forces act.
-	\textbf{f)} ($y=\qty{3.38}{mm}$) Bunch after breakup. The fallen back part gets accelerated from the backside of the first cavity.}
+	\textbf{a)} ($y=$ \qty{0.04}{mm}) When entering the plasma. Still a Gaussian distribution, weak forces focus the backside.
+	\textbf{b)} ($y=$ \qty{0.36}{mm}) Formation of the tail from focusing forces. Decelerating forces grow.
+	\textbf{c)} ($y=$ \qty{0.76}{mm}) First wing spreads from tail. Strong decelerating forces on the backside.
+	\textbf{d)} ($y=$ \qty{1.08}{mm}) More wings emerge and spread. Still strong decelerating forces.
+	\textbf{e)} ($y=$ \qty{2.90}{mm}) Shortly before bunch breakup with visible elongation of the bunch. Only weak forces act.
+	\textbf{f)} ($y=$ \qty{3.38}{mm}) Bunch after breakup. The fallen back part gets accelerated from the backside of the first cavity.}
 	\label{fig:q_series}
 \end{figure}
 A log scale is chosen to make the borders with low density visible. Additionally, the Lorentz force is layered over the histogram to visualize the cause of the transformation of the driver. It is retrieved from the experienced $\vec{E}$- and $\vec{B}$-field, that every macroparticle stores.
@@ -37,33 +37,33 @@ These forces result from the formation of the first cavities. As can be seen in 
 \begin{figure}
 	\centering
 	\input{../images/cavity.pgf}
-	\caption{Time series of the charge density of the plasma and the driver.
-	\textbf{a)} ($y=\qty{0.04}{mm}$) After entering plasma. The vacuum can still be seen on the left border. Weak cavity can already be seen.
-	\textbf{b)} ($y=\qty{0.36}{mm}$) Cavities forming together with the tail of the driver.
-	\textbf{c)} ($y=\qty{0.68}{mm}$) Blowout regime during spread of the wings on the backside of the driver.
-	\textbf{d)} ($y=\qty{2.27}{mm}$) Wakefield returns to linear regime before bunch breakup.}
+	\caption{Time series of the charge density of the plasma and the driver at $x=0$.
+	\textbf{a)} ($y=$ \qty{0.04}{mm}) After entering plasma. The vacuum can still be seen on the left border. Weak cavity can already be seen.
+	\textbf{b)} ($y=$ \qty{0.36}{mm}) Cavities forming together with the tail of the driver.
+	\textbf{c)} ($y=$ \qty{0.68}{mm}) Blowout regime during spread of the wings on the backside of the driver.
+	\textbf{d)} ($y=$ \qty{2.27}{mm}) Wakefield returns to linear regime before bunch breakup.}
 	\label{fig:cavity}
 \end{figure}
 Comparing the length of the beam over time (see vertical lines in \autoref{fig:q_series}) shows that the tail is not an elongation of the driver backwards but the backside experiencing focusing forces, which are narrowing it.
 Looking back at the cavity formation shows that with tail formation, cavities with similar width emerge and start to form the blowout regime.
 
 The focus forces in the back of the driver cause the electrons to overshoot. This results in widening of the tail and the formation of wing-like structures. The cavities also start to widen and form the strongest electric fields of the whole \gls{pwfa} stage during this process.
-The formed wings are diverging while new wings form behind them by particles which oscillate as the got pulled back by the focusing force, causing them to overshoot again. This forms a chain of smaller wings, all spreading with time and broadening the tail further.
+The formed wings are diverging while new wings form behind them by particles which oscillate as they got pulled back by the focusing force, causing them to overshoot again. This forms a chain of smaller wings, all spreading with time and broadening the tail further.
 In this stage, the strength of the electric fields in the cavities already decreases while the electron density in the wakefield rises.
 
 The backside of the driver spreads further as the impact of the focusing fields is left by the particles. This causes it to grow in transversal direction together with the front of the bunch. 
 Meanwhile the $\vec{E}$-fields of the wakefield lose in strength and the cavities are flood by electrons again. The blowout regime goes over into the linear regime, as seen in \autoref{fig:cavity}d.
 Still there are strong forces acting on the center of the bunch, causing it to lose energy. The discussion of this energy loss is continued in \autoref{chap:E_shift}, for now we only look at the distribution of these particles.
 
-In \autoref{fig:force_time} the strength and position change of the longitudinal Lorentz-force can be seen over traversed distance. It shows how the force pushing the driver back first builds up and then loses its strength after having traveled long enough.
+In \autoref{fig:force_time} the strength and position change of the longitudinal Lorentz force can be seen over traversed distance. It shows how the force pushing the driver back first builds up and then loses its strength after having traveled long enough.
 \begin{figure}
 	\centering
 	\input{../images/force_time.pgf}
-	\caption{Histogram of the longitudinal part of the Lorentz force. The force is sampled over the $\zeta$-direction at a slice in the middle in $z$-direction for every 2000 timesteps. This slice is here plotted over the distance of the driver from the start of the plasma, showing how it changes in position and strength.}
+	\caption{Histogram of the longitudinal part of the Lorentz force. The force is sampled over the $\zeta$-direction at a slice in the middle in $z$-direction for every 2000 timesteps. This slice is here plotted over $y$, the distance of the driver from the start of the plasma, showing how it changes in position and strength.}
 	\label{fig:force_time}
 \end{figure}
 A forward pushing force on the backside of the driver can also be seen, as the Gaussian distribution of the driver reaches so far back, that some particles are positioned in the accelerating part of the first cavity.
-Notable is the part around $y=\qty{3}{mm}$, where the bunch collapses and particles start to fall back rapidly, so they get accelerated again in the back of the first cavity. These particles stem mostly from the middle of the driver,
+Notable is the part around $y=$ \qty{3}{mm}, where the bunch collapses and particles start to fall back rapidly, so they get accelerated again in the back of the first cavity. These particles stem mostly from the middle of the driver,
 where the strongest backwards-pushing forces acted before, causing them to drain their energy. 
 
 Here the bunch breakup has no big effect, as the cavities already resumed to the linear regime and only a small part of the driver did fall back. Only small forces remain to act on the driver, so it slowly diverges to the borders of the box.
@@ -74,11 +74,11 @@ To support the claims made about the particle movement, particle tracking was us
 	\centering
 	\input{../images/y_hist_time.pgf}
 	\caption{Position of the particles in bins after bunch breakup. Each bin shows the minimal $\zeta$-position of the particles in it to visualize how it will move over time.
-	\textbf{a)} 2D distribution of the bins for $\zeta=\qty{0.60}{\mm}$. The blue particles in the middle will fall back to the backside of the driver with time.
-	\textbf{b)} The bins centered at $z=0$ are sampled every 2000 timesteps and plotted over the traversed distance $y$ in the plasma. Around $y=\qty{3}{mm}$ the particles in the middle falls behind.}
+	\textbf{a)} 2D distribution of the bins for $\zeta=$ \qty{0.60}{\mm}. The blue particles in the middle will fall back to the backside of the driver with time.
+	\textbf{b)} The bins centered at $z=0$ are sampled every 2000 timesteps and plotted over the traversed distance $y$ in the plasma. Around $y=$ \qty{3}{mm} the particles in the middle falls behind.}
 	\label{fig:y_hist_time}
 \end{figure}
-The colors show the $\zeta$-position of the respective particles after bunch breakup. Driver electrons, which fall behind during bunch breakup originate from a small region right behind the center of the bunch. 
+The colors show the $\zeta$-position of the respective particles after bunch breakup. Driver electrons which fall behind during bunch breakup originate from a small region right behind the center of the bunch. 
 As seen in \autoref{fig:q_series}, this is the region where the strongest Lorentz force acted.
 The $\zeta$ position change of other particles is neglectable small, as only weak forces act.
 
@@ -88,11 +88,11 @@ The same tracking was done for the $z$-direction, seen in the time series in \au
 \begin{figure}
 	\centering
 	\input{../images/z_hist_0.pgf}
-	\caption{$z$-positions of the particles before entering plasma plotted over there current position ($y=\qty{1.31}{mm}$). Each bin represents the mean $z$-value at a timestep. In the back of the driver, 
+	\caption{$z$-positions of the particles before entering plasma plotted over there current position ($y=$ \qty{1.31}{mm}). Each bin represents the mean $z$-value at a timestep. In the back of the driver, 
 	particles from below and above $z=0$ alternate. }
 	\label{fig:z_hist_0}
 \end{figure}
-As the movement in z-direction is symmetric, this results in bins with equal number of particles from the top and bottom half to be displayed as middle white. Still the effect is clear, as the wings can clearly be seen at the end of the driver.
+As the movement in z-direction is symmetric, this results in bins with equal number of particles from the top and bottom half to be displayed as middle white, thus the transition of particles from top to bottom and reversed can not be seen. Still the effect is clear, as the wings can clearly be seen at the end of the driver.
 The alternating colors can be explained by the oscillation of the electrons, as they get pulled back to the center and form smaller wings. No such motion is observed in the front part in the driver.
 
 
@@ -107,7 +107,7 @@ for a potential witness beam is considered. In \autoref{fig:E_y_hist} the charge
 	\textbf{b)} The electric field in $\zeta$ direction for all grid points at $x=z=0$ is plotted over $y$. On the right side the gained energy for a theoretical
 	witness beam is plotted too over $\zeta$.}
 	\label{fig:E_y_hist}
-\end{figure}\todo{electric field is measured in GV/m}
+\end{figure}
 Especially in a) the change in width of the cavities is visible. This effect was measured in experiment, as seen in \cite{Schoebel2022}. A witness beam which is phase locked with the driver, meaning it is constant in $\zeta$,
 would therefore not get maximal energy gain when placed at a position where the accelerating field is maximal as it would later experience a decelerating force, when the cavities shrink again.
 In b) this is visible, as the decelerating blue field moves to the right over the position of the strongest red accelerating field. Drawn in is also the expected energy gain for a potential witness beam.
@@ -124,9 +124,9 @@ This results in slightly increased energy gains, as seen in \autoref{fig:gain_E}
 	\hline
  	$E_{kin} \, \mathrm{[MeV]}$ & $E_{gain} \, \mathrm{[MeV]}$ \\ 
  	\hline
-	250 & 439.7 \\ 
- 	300 & 502.6 \\
-	350 & 518.9 \\
+	$250$ & $439.7$ \\ 
+ 	$300$ & $502.6$ \\
+	$350$ & $518.9$ \\
 	\hline
 \end{tabular}
 \caption{Maximal possible energy gain for different initial kinetic energies.}\label{tab:gain_E}
@@ -145,8 +145,8 @@ resulting in even smaller gain increase, as the main difference between the ener
 The values make also apparent, that there are only small differences in the energy loss behind the driver (first minimum behind \qty{0}{\um}). The driver with higher energy lives only longer because it has more energy to lose, not because it loses less per time.
 
 \paragraph*{Divergence comparison}\label{para:div_comp}\hspace{0pt} \\
-Next, the driver qualities for three different divergences after passing the metal foil were compared. The energy gains over $\zeta$ for a high divergence ($\sigma_{\theta}=\qty{8.7}{\mrad}$), middle divergence ($\sigma_{\theta}=\qty{4.2}{\mrad}$, as seen in experiments) 
-and low divergence ($\sigma_{\theta}=\qty{1.7}{\mrad}$) beam are shown in \autoref{fig:gain_div}.
+Next, the driver qualities for three different divergences after passing the metal foil were compared. The energy gains over $\zeta$ for a high divergence ($\sigma_{\theta}=$ \qty{8.7}{\mrad}), middle divergence ($\sigma_{\theta}=$ \qty{4.2}{\mrad}, as seen in experiments) 
+and low divergence ($\sigma_{\theta}=$ \qty{1.7}{\mrad}) beam are shown in \autoref{fig:gain_div}.
 \begin{figure}
 	\centering
 	\input{../images/gain_div.pgf}
@@ -160,7 +160,7 @@ This results from the long-standing blowout with extreme fields and the followin
 	\centering
 	\input{../images/cavity_low.pgf}
 	\caption{Charge density of driver and plasma for a low divergent driver for different time steps.
-	\textbf{a)} ($y=\qty{3.22}{mm}$) Charge density histogram showing a small cavity forming behind the broken up part of the driver.
+	\textbf{a)} ($y=$ \qty{3.22}{mm}) Charge density histogram showing a small cavity forming behind the broken up part of the driver.
 	\textbf{b)} Charge density slice of the centered grid points plotted over $y$. 
 	}
 	\label{fig:cavity_low}
@@ -175,12 +175,12 @@ The resulting maximal gained energies can be found in \autoref{tab:gain_div}.
 \begin{center}
 \begin{tabular}{|c|c|} 
 	\hline
- 	$divergence \, \mathrm{[mrad]}$ & $E_{gain} \, \mathrm{[MeV]}$ \\ 
+ 	$\sigma_{\theta} \, \mathrm{[mrad]}$ & $E_{gain} \, \mathrm{[MeV]}$ \\ 
  	\hline
-	1.7 & 359.3 \\ 
-	1.7 (sec. peak) & 840.7 \\ 
- 	4.2 & 439.7 \\
-	8.7 & 176.9 \\
+	$1.7$ & $359.3$ \\ 
+	$1.7$ (sec. peak) & $840.7$ \\ 
+ 	$4.2$ & $439.7$ \\
+	$8.7$ & $176.9$ \\
 	\hline
 \end{tabular}
 \caption{Maximal possible energy gain for different initial divergences.}\label{tab:gain_div}
@@ -211,12 +211,12 @@ The biggest difference in the two curves lies in the higher minimum positioned a
 	\centering
 	\input{../images/q_series_square.pgf}
 	\caption{Time series of a charge density histogram of a driver uniform in $\zeta$-direction, with the acting Lorentz Force drawn on top as vector lines. Vertical lines are drawn in to make change in length of the bunch better visible. 
-	\textbf{a)} ($y=\qty{0.04}{mm}$) When entering the plasma. Still uniform in $\zeta$.
-	\textbf{b)} ($y=\qty{0.36}{mm}$) Compared to the Gaussian driver, the tail doesn't get as thin.
-	\textbf{c)} ($y=\qty{0.76}{mm}$) First wing spreads from tail. Strong decelerating forces on the backside.
-	\textbf{d)} ($y=\qty{1.08}{mm}$) More wings emerge and spread. Driver expends in $\zeta$ with higher elongation near the $z$-center
-	\textbf{e)} ($y=\qty{3.54}{mm}$) Shortly before bunch breakup. Note the longer distance before bunch breakup.
-	\textbf{f)} ($y=\qty{4.97}{mm}$) Bunch after breakup.}
+	\textbf{a)} ($y=$ \qty{0.04}{mm}) When entering the plasma. Still uniform in $\zeta$.
+	\textbf{b)} ($y=$ \qty{0.36}{mm}) Compared to the Gaussian driver, the tail doesn't get as thin.
+	\textbf{c)} ($y=$ \qty{0.76}{mm}) First wing spreads from tail. Strong decelerating forces on the backside.
+	\textbf{d)} ($y=$ \qty{1.08}{mm}) More wings emerge and spread. Driver expends in $\zeta$ with higher elongation near the $z$-center
+	\textbf{e)} ($y=$ \qty{3.54}{mm}) Shortly before bunch breakup. Note the longer distance before bunch breakup.
+	\textbf{f)} ($y=$ \qty{4.97}{mm}) Bunch after breakup.}
 	\label{fig:q_series_square}
 \end{figure}
 Still the uniform driver survives longer before breakup, caused by the weaker decelerating forces, as seen in the higher minimum in \autoref{fig:gain_square}.
@@ -256,23 +256,19 @@ Currently the uncertainty on the peak energy measurement in experiments is highe
 
 \subsection{Locality of the energy}\label{chap:loc_E}
 The energy loss and spatial locality of the energy peaks can be visualized by again binning the macroparticles in space and analyze the mean energy in every bin. This mean energy is then plotted over the positions of the bins,
-an example of this can be seen in \autoref{fig:E_map}. 
-\begin{figure}
-	\centering
-	\input{../images/E_map.pgf}
-	\caption{($y=\qty{2.19}{mm}$) Mean energy of the particles in the bins. The bins measure \qtyproduct{0.16 x 0.45}{\um}. Every bin with at least one particle is plotted, so no information about the energy density can be derived.}
-	\label{fig:E_map}
-\end{figure}
-
-Parts of the bunch where a strong decelerating force acts have lost most of the energy while the front part, where only weak forces act, retained their peak energy. The energy loss in the back consists not of a steady gradient but islands with constant energy.
-
-The complete time series of the energy is plotted in \autoref{fig:E_time}.
+an example of this can be seen in \autoref{fig:E_time}a. 
 \begin{figure}
 	\centering
 	\input{../images/E_time.pgf}
-	\caption{Mean energy of the particles in the bins over time. Only the bins around $z=0$ are plotted for every timestep, showing the gradually loss of energy in the middle of the driver until bunch breakup.}
+	\caption{Mean energy of the particles in the bins.
+	\textbf{(a)} ($y=$ \qty{2.19}{mm}) Energy map over $\zeta$-$z$- The bins measure \qtyproduct{0.16 x 0.45}{\um}. Every bin with at least one particle is plotted, so no information about the energy density can be derived.
+	\textbf{(b)} Mean energy of the particles in the bins over time. Only the bins around $z=0$ are plotted for every timestep, showing the gradually loss of energy in the middle of the driver until bunch breakup.}
 	\label{fig:E_time}
 \end{figure}
+
+Parts of the bunch where a strong decelerating force acts have lost most of the energy while the front part, where only weak forces act, retained their peak energy. The energy loss in the back consists not of a steady gradient but islands with constant energy.
+The complete time series of the energy is plotted in \autoref{fig:E_time}b.
+
 Notable is the constant energy in the front half of the driver and the strong energy loss in the middle. When energies around zero are reached, the electrons fall back, where they get accelerated again from the first cavity.
 Also notable is, that the highest energies are achieved at the back of the driver, where the accelerating part of the cavity starts and pushes the electrons forwards.
 

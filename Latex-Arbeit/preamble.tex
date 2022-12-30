@@ -1,7 +1,7 @@
 % Last given language will be selected
 % twoside used for book layout
 % BCOR is space for bookbinding and should be chosen with the thickness of the book in mind
-\documentclass[ngerman,english,BCOR=10mm,cdgeometry=no,DIV=15,twoside,open=right]{tudscrreprt}
+\documentclass[ngerman, english, BCOR=10mm, cdgeometry=no, DIV=15, twoside, open=right]{tudscrreprt}
 % European Symbols
 \usepackage[T1]{fontenc}
 \usepackage[ngerman=ngerman-x-latest]{hyphsubst}
@@ -23,7 +23,7 @@
 % Hyperlinks to the refs given in table of contents or in the text
 \usepackage{hyperref}
 
-\TUDoptions{cd=lightcolor,cdhead=heavy,ddcfoot=true, cdfont=true}
+\TUDoptions{cd=lightcolor,cdhead=heavy,ddcfoot=true, cdfont=true, cdmath=false}
 
 \renewcaptionname{ngerman}{\abstractname}{Kurzfassung}
 
@@ -64,14 +64,16 @@
                     % \qty{<number>}{<unit>} prints numbers with units
                     % there are different modes regarding type of unit
                     % printing, e.g. slash or real fracs for fracs
+\sisetup{detect-all}
 \DeclareSIUnit \mrad {\milli\radian}
 
 \usepackage{subcaption} % provides subfigure environment
 
 % Load the package
-\usepackage[nopostdot, style=super, nonumberlist, toc]{glossaries}
+\usepackage[nopostdot, style=super, nonumberlist]{glossaries}
 \setacronymstyle{long-short} 	% first use in long form, abbreviation else
 \loadglsentries{defns}
+\glsdisablehyper
 
 \addto\captionsenglish{% Replace "english" with the language you use
   \renewcommand{\contentsname}%

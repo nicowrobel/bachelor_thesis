@@ -13,19 +13,19 @@ In contrast to experiment, this direction of propagation is the $y$-axis. Instea
 Every calculated time step has a duration of \qty{1.33d-16}{\s}. 
 
 For the first \num{10191} timesteps (corresponds to a distance of \qty{40.5}{\um}) the acceleration pusher (see \autoref{chap:accpush}) acts on the bunch with a constant force, 
-created by an electric field with a strength of \qty{620.4}{\MeV/\mm}. Afterwards the Boris pusher is used. 
+created by an electric field with a strength of \qty{620.4}{\mega\volt/\mm}. Afterwards the Boris pusher is used. 
 The boundary of the box is using a \gls{pml}-absorber in all directions. 
 
 Additional to the standard openPMD data, an ID is stored for every bunch particle for back tracing, as well as field probe properties, which stores the experienced electric and magnetic field for every particle. 
-For the evaluation this information will be generally used instead of the fields stored for the grid points.
+This is only used for visualization of the forces on the bunch, while grid data is used for calculation of the energy gain.
 
 
-\section{Initialization of bunch from script}\label{chap:init}
+\section{Initialization of an electron bunch from script}\label{chap:init}
 To save on computational power, a python script generates the electron bunch after a \gls{lwfa} stage from given parameters. Parameters which can be measured in experiments are used,
 so a comparison is easily possible, but they need to be converted to other statistical quantities like the standard deviation. The parameter values used are based on recent experimental results \cite{Kurz2021, Schoebel2022, Cabadag2021}.
 
 The number of bunch particles is derived from the total charge, chosen as \qty{400d-12}{\C}, which results in roughly \num{250d9} electrons. After leaving the \gls{lwfa} stage, the position of the particles is assumed to be normally distributed in each direction.
-For the transversal position this distribution is centered around the axis with the standard deviation $\sigma_{x,z}$ derived from \autoref{equ:sigma_x} with the \gls{rms} radius $r_{rms}=\qty{10}{\um}$.
+For the transversal position this distribution is centered around the axis with the standard deviation $\sigma_{x,z}$ derived from \autoref{equ:sigma_x} with the \gls{rms} radius $r_{rms}=$ \qty{10}{\um}.
 \begin{equation}
 	\sigma_{x,z}=\frac{r_{rms}}{\sqrt{2}} 
 	\label{equ:sigma_x}
@@ -34,7 +34,7 @@ For the transversal position this distribution is centered around the axis with 
 The $1/\sqrt{2}$ factor is a geometric factor, originating from the fact that for a normal distribution with zero mean the \gls{rms} and the standard deviation are identical. 
 The \gls{rms} radius can then be calculated by $r_{rms}^2=\sigma_{x}^2 + \sigma_{z}^2$ or $r_{rms}^2=2\sigma_{x,z}^2$ as we can assume that the distribution is the same in both directions.
 
-For calculation of the deviation in the longitudinal direction $\sigma_y$ the \gls{fwhm} of the bunch duration is chosen as $\tau_{FWHM}=\qty{20d-15}{\s}$. 
+For calculation of the deviation in the longitudinal direction $\sigma_y$ the \gls{fwhm} of the bunch duration is chosen as $\tau_{FWHM}=$ \qty{20d-15}{\s}. 
 It follows \autoref{equ:sigma_y} where $2\sqrt{2\cdot\ln{2}}$ is the conversion factor between the standard deviation and the \gls{fwhm}.
 
 \begin{equation}
@@ -53,7 +53,7 @@ For all simulations a normal distribution of the energy with a \gls{fwhm} of \qt
 This is a simplification of the relativistic energy-momentum relation where the rest mass is neglectable ($m_{e}c^2$ is only around \qty{0.5}{\MeV} which is an order of magnitude smaller than measurable \gls{fwhm}).
 
 How much the momentum distribution spreads from the forward propagation axis is given by the pointing angle $\theta$, thus a distribution in spherical coordinates is appropriate. The standard deviation of the pointing angle, 
-the so-called divergence, is set to $\sigma_{\theta}=\qty{1.6}{\mrad}$.
+the so-called divergence, is set to $\sigma_{\theta}=$ \qty{1.6}{\mrad}.
 
 In experiments this value is only calculated for the divergence towards either the $x$ or $z$ axis, so a factor $\sqrt{2}$ must be multiplied (both directions are assumed to have the same divergence) before 
 it can be used as the standard deviation for the normal distribution of $\theta$. The polar angle $\phi$ is uniformly distributed over all particles, as the divergence is symmetric around the $p_y$-axis.
@@ -88,12 +88,12 @@ Additionally, drivers with divergences of \qtylist{1.7; 8.7}{\mrad} were simulat
 The resulting particle bunch has now the wanted position and momentum that could result out of an ideal \gls{lwfa}. As the corresponding electric and magnetic fields are created by the acceleration pusher,
 the condition of the bunch before the acceleration must be computed. The acting force is constant, so simply applying Newtons equations of motion for the same number of timesteps as the pusher returns the bunch in the wanted state.
 The phase space diagrams of the backwards computed bunch can be seen in \autoref {fig:bunch_gen}e and f. Notice, that the $y$-momentum is now centered around \num{0}. For correct field calculations, it was assumed that the bunch moves at non-relativistic speeds,
-else nonphysical fields could be produced. This thesis demonstrated that this precaution step was not necessary. \todo{never demonstrated in analysis}
+else nonphysical fields could be produced. During tests for this thesis, it was demonstrated that this precaution step was not necessary.
 
 At last, the bunch is placed inside the simulation box. In $x$- and $z$-direction it should be in the middle in the box, while being put closer to the front end in $y$-direction, so no particles fall so far behind, that they leave the box when moving.
 The simulation can now be run on this synthetically generated bunch.
 
-\section{Entering Plasma}\label{chap:plasma}
+\section{Plasma parameters}\label{chap:plasma}
 After the acceleration phase (\autoref{chap:accpush}), our bunch can now enter the plasma, also called gas jet.
 Only electrons are explicitly added as particles, the corresponding ions are emulated from the field solver. It expects a neutral plasma, so a positive background charge is added. 
 In this case our plasma is already defined as completely ionized. The density function as seen in \autoref{fig:e_density}a is separated in multiple regimes starting in the vacuum ($\rho=0$). 
@@ -103,11 +103,11 @@ In this case our plasma is already defined as completely ionized. The density fu
 	\input{../images/e_density.pgf}
 	\caption{The electron density plotted over the propagation direction. A Super-Gauss distribution is used as a transition between vacuum and the density plateau.
 	\textbf{(a)} After an initial vacuum, an infinitely long gas jet is described as a constant plateau.
-	\textbf{(b)} In contrast to a), the plateau ends after \qty{3}{\mm} and density drops down to 0. This is comparable to real experiments.}
+	\textbf{(b)} In contrast to a), the plateau ends after \qty{3}{\mm} and density drops down to 0. This makes results comparable to real experiments.}
 	\label{fig:e_density}
 \end{figure}
 
-A super-Gaussian density profile (\autoref{equ:sgauss}) is than used to approximate a smooth transition into the plateau where our density $\rho$ stays constant at $\rho_0 = \qty{4d18}{\cm^{-3}}$. Comparable values for the mean density can be found in experiments \cite{Schoebel2022, Kurz2021}.
+A super-Gaussian density profile (\autoref{equ:sgauss}) is than used to approximate a smooth transition into the plateau where our density $\rho$ stays constant at $\rho_0 =$ \qty{4d18}{\cm^{-3}}. Comparable values for the mean density can be found in experiments \cite{Schoebel2022, Kurz2021}.
 \begin{equation}
 	\rho = \rho_0 \exp\left(-\left(\frac{y-6\sigma}{\sigma}\right)^6\right)
 	\label{equ:sgauss}
@@ -116,6 +116,6 @@ The here assumed constant plateau is an idealization of the small density fluctu
 
 Generally, in all simulations the driver traversed in the plateau for over \qty{6}{\mm}, where the blowout regime of the wakefield ended for all drivers. As real experiments do measurements on the driver after leaving the gas jet,
 a second density function was defined were the plateau ends after \qty{3}{\mm}, again with a super-Gaussian transition to vacuum, as seen in \autoref{fig:e_density}b.
-This allows us to confirm results in this thesis in real experiment.
+This allows us to produce results, confirmable in real experiments.
 
 \end{document}

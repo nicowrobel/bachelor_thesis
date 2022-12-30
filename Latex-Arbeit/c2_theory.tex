@@ -3,7 +3,7 @@
 \begin{document}
 \chapter{Theoretical Background} \label{chap:theory}
 \section{Plasma Wakefield Acceleration}
-\Gls{pwfa} is a novel particle accelerator concept (first theorized in 1985 \cite{Chen1985}) with the possibility to produce high accelerating electric fields (more than \qty{100}{\GeV/\m}). This allows for higher energy gains per meter
+\Gls{pwfa} is a novel particle accelerator concept \cite{Chen1985} with the possibility to produce high accelerating electric fields (more than \qty{100}{\giga\volt/\m}). This allows for higher energy gains per meter
 and thus several order of magnitude smaller accelerators, compared to conventional \gls{rf} accelerators.
 
 \Gls{pwfa} works by sending a bunch of charged particles (also called drive beam or driver) with relativistic speed ($v_{beam}\approx c$) into a neutral plasma. Multiple sources are possible for this beam and will be further discussed in \autoref{chap:lpfwa}.
@@ -16,17 +16,17 @@ When being pulled back towards the center of the cavity, the electrons overshoot
 
 \begin{figure}
 	\centering
-	\missingfigure{good picture in T. Kurz dissertation}
-	\caption{The blow-out regime of a \gls{pwfa} stage with an electron driver at the front. Alternating accelerating/decelerating fields in transverse and focusing/defocusing fields in longitudinal direction form in the cavities.}
-	\label{fig:pwfa}
+	\includegraphics[scale=0.3]{pwfa.png}
+	\caption{The blowout regime of a \gls{pwfa} stage with an electron driver at the front. Alternating accelerating/decelerating fields in transverse and focusing/defocusing fields in longitudinal direction form in the cavities. Inspired by \cite{Kurz2020}.}
+	\label{fig:pwfa} \todo[inline]{maybe remake graphic}
 \end{figure}
 
 This train of cavities is called the wakefield. If the electron density in these cavities is several orders of magnitude smaller than in the rest of the plasma, this is called the blowout regime, else only the linear regime.
-When injecting a charged particle bunch, called the witness beam, into wakefield, it sees fields acting from different directions due to the gradient towards the center of the positive cavity. 
+When injecting a charged particle bunch, called the witness beam, into the wakefield, it sees fields acting from different directions due to the gradient towards the center of the positive cavity. 
 
 For a witness beam in propagation direction, consisting of negative charged particles, the electric field accelerates towards the center of the cavity while decelerating when reaching its front half. 
 Perpendicular to the direction of propagation are electric fields pointing towards the center and magnetic fields rotating, resulting in focusing of the witness beam. In contrast there are defocusing forces between the cavities, as the oscillating electrons are densest here.
-When witness electrons are injected into the back of the cavity, they will be accelerated while the cavity itself moves at light speed with the driver.
+When witness electrons are injected into the back of the cavity, they will be accelerated while the cavity itself moves at near light speed with the driver.
 These accelerating forces peak when the wakefield is in the blowout regime, therefore achieving blowout as long as possible is a goal of \gls{pwfa}.
 
 Near light speed, the velocity of the witness beam won't increase in a meaningful way. The witness electrons would therefore be trapped in the accelerating part of the cavity, resulting in a net increase of momentum and energy.
@@ -35,19 +35,19 @@ Near light speed, the velocity of the witness beam won't increase in a meaningfu
 For a long time, a big downside of \gls{pwfa} was the creation of the relativistic drive beams, as this would need kilometer long \gls{rf} accelerators as a preliminary stage. Recent research \cite{Kurz2021} investigated the potential of the so called \gls{lpwfa}.
 Here, the witness bunch of a \gls{lwfa} was used as driver for the \gls{pwfa}, allowing for a very compact design.
 
-\Gls{lwfa} is very similar to \gls{pwfa}. Instead of charged particles, here a laser is shot into a plasma to drive the wakefields, also generating hundreds of \unit{\GeV/\m} of accelerating fields.
+\Gls{lwfa} is very similar to \gls{pwfa}. Instead of charged particles, here a laser is shot into a plasma to drive the wakefields, also generating hundreds of \unit{\giga\volt/\m} of accelerating fields.
 The witness bunch can be accelerated to higher speeds than the speed of the laser in the plasma, resulting in dephasing, where the witness beam is fast enough to reach the center of the cavity and get decelerated. This limits the acceleration capabilities of the \gls{lwfa},
  but the resulting witness bunch can still be used as the driver for the \gls{pwfa}. As the driver here already moves roughly at light speed, dephasing is no problem. 
 
 \begin{figure}
 	\centering
-	\missingfigure{good picture in Schoebel2021 or Ossa2019}
-	\caption{Example for \gls{lpwfa} setup.}
-	\label{fig:lpwfa}
-\end{figure}
+	\includegraphics[scale=1.4]{lpwfa.png}
+	\caption{Example for a \gls{lpwfa} setup. Taken from \cite{Ossa2019}}
+	\label{fig:lpwfa} \todo[inline]{remake graphic}
+\end{figure} 
 Experimental setups for \gls{lpwfa} (see \autoref{fig:lpwfa}) consist of a laser initiating a \gls{lwfa} stage in a gas jet. 
-Both, the accelerated witness bunch and the laser are leaving the jet into vacuum, where a metal foil is installed to block the laser and let only the beam particle beam through. 
-So only the witness bunch makes it to the next gas jet, serving as the driver for the \gls{pwfa} stage and accelerating injected electrons.
+Both, the accelerated witness bunch and the laser are leaving the jet into vacuum, where a metal foil is installed to block the laser and let only the particle beam through. 
+Thus, only the witness bunch makes it to the next gas jet, serving as the driver for the \gls{pwfa} stage and accelerating injected electrons.
 This hybrid scheme has the potential to advance the \gls{pwfa} research further and make it more accessible to small scale labs \cite{Kurz2021}.
 
 \paragraph*{Peak energy}\hspace{0pt} \\
@@ -56,20 +56,21 @@ The peak energy of the driver is assumed to stay constant during a \gls{pwfa} st
 
 \autoref{chap:E_shift} will discuss evidence, that the peak energy is sinking during the \gls{pwfa} stage, and the assumption of constant peak energy therefore can only be made for high uncertainty measurements.
 
+
 \section{PIConGPU}
-To simulate complex driver-plasma interactions efficiently, the \gls{pic}-model is often chosen. There are many different code implementations, often developed to innovate with new techniques. For this thesis PIConGPU \cite{PIConGPU2013, PICRepo} is used, 
+To simulate complex driver-plasma interactions efficiently, the \acrfull{pic}-model is often chosen. There are many different code implementations, often developed to innovate with new techniques. For this thesis PIConGPU \cite{PIConGPU2013, PICRepo} is used, 
 a relativistic \gls{pic}-code, which specializes in parallelization of the computational steps. Therefor it is designed to work on GPUs instead of CPUs. We will start with an introduction to the \gls{pic} method in general in \autoref{chap:pic}.
-In the following subsection, we discuss further how input and output is handled in PIConGPU.
+In the following subsection, we discuss further how certain inputs and outputs are handled in PIConGPU.
 
 \subsection{Particle-in-Cell model} \label{chap:pic}
-\Gls{pic}-code models particles in a simulation box, generally described as a distribution function $f_s(\vec{x}, \vec{p}, t)$ of time $t$ , position $\vec{x}$ and momentum $\vec{p}$ for every particle species $s$ \cite{PICRepo}.
+\Gls{pic}-code models particles in a simulation box, generally described as a distribution function $f_s(\vec{x}, \vec{p}, t)$ of time $t$, position $\vec{x}$ and momentum $\vec{p}$ for every particle species $s$ \cite{PICRepo}.
 This distribution must now satisfy the collisionless Boltzmann equation, also called Vlasov equation\cite{Vlasov1968}, see \autoref{equ:boltz}.
 
 \begin{equation}
 	\frac{\mathrm{d}f_s}{\mathrm{d}t}=\frac{\partial f_s}{\partial t} + \frac{\partial \vec{x}}{\partial t} \frac{\partial f_s}{\partial \vec{x}} + \frac{\partial \vec{p}}{\partial t} \frac{\partial f_s}{\partial \vec{p}} = 0
 	\label{equ:boltz}
 \end{equation}
-Using the Nabla-Operator and the derivatives of $\vec{x}$ and $\vec{p}$, we get \autoref{equ:vlasov} with the Lorentz factor $\gamma$ and the Lorentz Force $\vec{F}_L$, see \autoref{equ:lorentz}.
+Using the Nabla-Operator and the derivatives of $\vec{x}$ and $\vec{p}$, we get \autoref{equ:vlasov} with the Lorentz factor $\gamma$, the species mass $m_s$ and the Lorentz Force $\vec{F}_L$, see \autoref{equ:lorentz}.
 
 \begin{equation}
 	\partial_t f_s + \frac{\vec{p}}{m_s \gamma} \vec{\nabla}_{\vec{x}} f_s + \vec{F}_L \vec{\nabla}_{\vec{p}} f_s = 0
@@ -85,8 +86,8 @@ To be a self-consistent set of electro-magnetic equations, the Maxwell equations
 
 \begin{equation}
 \begin{aligned}
-	\vec{\nabla}\cdot\vec{E}  &= \frac{1}{\epsilon_0}\sum_s \rho_s 									\\
-	\vec{\nabla}\cdot\vec{B}  &= 0 														\\
+	\vec{\nabla}\cdotp\vec{E}  &= \frac{1}{\epsilon_0}\sum_s \rho_s 									\\
+	\vec{\nabla}\cdotp\vec{B}  &= 0 														\\
 	\vec{\nabla}\times\vec{E} &= -\frac{\partial \vec{B}}{\partial t}									\\
 	\vec{\nabla}\times\vec{B}&= \mu_0 \left(\sum_s \vec{J}_s + \epsilon_0 \frac{\partial \vec{E}}{\partial t}\right)	
 \end{aligned}
@@ -99,7 +100,7 @@ This system is often called the \gls{pic}-cycle \cite{Huebl2019}, which can be s
 
 \begin{figure}
 	\centering
-	\input{../images/cycle.pgf}
+	\resizebox{0.8\textwidth}{!}{\input{../images/cycle.pgf}}
 	\caption{The \gls{pic}-cycle. In PIConGPU, every timestep starts with the force calculation. Figure taken from \cite{Pausch2019}}
 	\label{fig:cycle}
 \end{figure}
@@ -110,7 +111,7 @@ The weighting is determined by the assignment density function which the macro p
 In this thesis, the assignment function of the driver particles is given by a piecewise quadratic spline.
 
 At last, the fields need to be divided into the so-called Yee-grid \cite{Yee1966}, which can be seen in \autoref{fig:cell}. The corresponding fields are placed between the grid points, motivated by the fact that for the later described centered finite difference, 
-the spatial derivative of the fields lies between these fields. At this point, the time derivatives are calculated and therefore the grid points positioned.
+the spatial derivative of the fields lies between these fields. At this points, the time derivatives are calculated and therefore the grid points positioned.
 
 \begin{figure}
 	\centering
@@ -130,7 +131,7 @@ calculated by only applying the first part of the Lorentz-Force $\vec{F}_L$ (the
 At last, a Coulomb force is applied again for half a time step, so the momentum at the full step $n+1$ is returned \cite{Zenitani2018, Pausch2019}. Updating the particle position is done by applying the Euler-method, see \autoref{equ:euler}.
 
 \begin{equation}
-	\vec{x}^{(n+1)} = \vec{x}^{(n)} + \Delta t \frac{\vec{p}^{(n+1)}}{\gamma m}
+	\vec{x}^{\,(n+1)} = \vec{x}^{\,(n)} + \Delta t \frac{\vec{p}^{\,(n+1)}}{\gamma m}
 	\label{equ:euler}
 \end{equation}
 
@@ -149,7 +150,7 @@ Here, the time derivative is always replaced by a second order approximation, se
 \partial_t u(i\Delta x,j\Delta y,k\Delta z,n\Delta t) &= \frac{u_{i,j,k}^{n+1/2} - u_{i,j,k}^{n-1/2}}{\Delta t}								\label{equ:derTime}	\\
 \partial_x u(i\Delta x,j\Delta y,k\Delta z,n\Delta t) &=  \sum\limits_{l=1/2}^{M-1/2} \left[ g^{2M}_l \frac{u_{i + l, j, k}^n - u_{i - l, j, k}^n}{\Delta x} \right] 	\label{equ:derSpace}	\\
 g^{2M}_l &= \frac{(-1)^{l-1/2}}{2l^2} \frac{((2M-1)!!)^2}{(2M -1 - 2l)!! (2M -1 + 2l)!!}											\label{equ:g_factor}
-\end{align}\todo[inline]{new mathfont!}
+\end{align}
 
 We use $M=4$ neighboring grid points, resulting in an eight-order approximation. The resulting weighting factors in \autoref{tab:g_factor} gives us the full numerical form of the 2 Maxwell equations, which can be found in the appendix in \autoref{chap:numMaxwell}.
 \begin{table}[h]
@@ -176,10 +177,10 @@ between frequency $\omega$ and wave vector components $k_x$, $k_y$ and $k_z$ are
 \xi &= \left[\sum\limits_{l=1/2}^{M - 1/2} g_l^{2M} \frac{\sin( k_x l \Delta x)}{\Delta x} \right]^2
 	+ \left[\sum\limits_{l=1/2}^{M - 1/2} g_l^{2M} \frac{\sin( k_y l \Delta y)}{\Delta y} \right]^2 + \left[\sum\limits_{l=1/2}^{M - 1/2} g_l^{2M} \frac{\sin( k_z l \Delta z)}{\Delta z} \right]^2 	\label{equ:disp_rel2}
 \end{align}
-$\Delta t$ is here the time discretization, $\Delta x$, $\Delta y$ and $\Delta z$ are the spatial spacings and $g_l^{2M}$ is the weighting factor, given in \autoref{equ:g_factor}.
+$\Delta t$ is here the time discretization, $\Delta x$, $\Delta y$ and $\Delta z$ are the grid spacings and $g_l^{2M}$ is the weighting factor, given in \autoref{equ:g_factor}.
 
-$\xi$ is maximal when the square of the sine functions return 1. Additionally, the arcsine \autoref{equ:disp_rel1} sets the conditions $\xi_{max} < 1$.
-Together these result in a stability condition \autoref{equ:stabilty} between the spacing of the time steps and the mesh.
+$\xi$ is maximal when the squares of the sine functions return 1. Additionally, the arcsine in \autoref{equ:disp_rel1} sets the conditions $\xi_{max} < 1$.
+Together these result in a stability condition \autoref{equ:stabilty} between the spacing of the time steps and the grid.
 \begin{equation}
 c\Delta t < \frac{1}{ \left[ \sum\limits_{l=1/2}^{M - 1/2} (-1)^{l-\frac{1}{2}} g_l^{2M} \right] \sqrt{ \frac{1}{\Delta x^2} + \frac{1}{\Delta y^2} + \frac{1}{\Delta z^2} }}
 \label{equ:stabilty}
@@ -213,7 +214,7 @@ the real simulation can proceed.
 
 \subsection{openPMD}
 PIConGPU supports multiple plugins which act as outputs for the simulated data. Most of the analysis in this thesis is done through the output of the openPMD-api \cite{openPMDAPI} plugin.
-It returns the simulation data according to the openPMD standard, which provides a unified convention for naming and attributes of simulated data \cite{openPMDstandard}.
+It returns the simulation data according to the openPMD standard, which provides a unified convention for names and attributes of simulated data \cite{openPMDstandard}.
 
 Stored will be data for the fields and the particle species for the timestep. Field data is stored per grid point and includes the $\vec{E}$- and $\vec{B}$-field as well as the charge- and energy density for every particle species.
 For particles the position (cell + position in cell), momentum and weighting can be read among other quantities. 

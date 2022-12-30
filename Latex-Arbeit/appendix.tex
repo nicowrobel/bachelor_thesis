@@ -2,26 +2,28 @@
 
 \begin{document}
 \appendix
-\chapter{Calculation} \label{chap:numMaxwell}
+\chapter{Approximation for spatial derivative} \label{chap:numMaxwell}
+
+The full calculation for numerical integration through central finite differences up to the eighth order can be found below.
 \begin{align*}
 \frac{{B}_x\rvert_{i,\, j+1/2,\, k+1/2}^{n+3/2} - {B}_x\rvert_{i,\, j+1/2,\, k+1/2}^{n+1/2}}{\Delta t}
-	=& 1.196 \left(\frac{{E}_y\rvert_{i,\, j+1/2,\, k+1}^{n+1} - {E}_y\rvert_{i,\, j+1/2,\, k}^{n+1}}{\Delta z}
-	- \frac{{E}_z\rvert_{i,\, j+1,\, k+1/2}^{n+1} - {E}_z\rvert_{i,\, j,\, k+1/2}^{n+1}}{\Delta y}\right)			\\&
+	= 1.196 \left(\frac{{E}_y\rvert_{i,\, j+1/2,\, k+1}^{n+1} - {E}_y\rvert_{i,\, j+1/2,\, k}^{n+1}}{\Delta z}
+	- \frac{{E}_z\rvert_{i,\, j+1,\, k+1/2}^{n+1} - {E}_z\rvert_{i,\, j,\, k+1/2}^{n+1}}{\Delta y}\right)			\\
 	- 7.975\cdot 10^{-2} \left(\frac{{E}_y\rvert_{i,\, j+1/2,\, k+2}^{n+1} - {E}_y\rvert_{i,\, j+1/2,\, k-1}^{n+1}}{\Delta z}
-	- \frac{{E}_z\rvert_{i,\, j+2,\, k+1/2}^{n+1} - {E}_z\rvert_{i,\, j-1,\, k+1/2}^{n+1}}{\Delta y}\right)			\\&
+	- \frac{{E}_z\rvert_{i,\, j+2,\, k+1/2}^{n+1} - {E}_z\rvert_{i,\, j-1,\, k+1/2}^{n+1}}{\Delta y}\right)			\\
 	+ 9.570\cdot 10^{-3} \left(\frac{{E}_y\rvert_{i,\, j+1/2,\, k+3}^{n+1} - {E}_y\rvert_{i,\, j+1/2,\, k-2}^{n+1}}{\Delta z}
-	- \frac{{E}_z\rvert_{i,\, j+3,\, k+1/2}^{n+1} - {E}_z\rvert_{i,\, j-2,\, k+1/2}^{n+1}}{\Delta y}\right)			\\&
+	- \frac{{E}_z\rvert_{i,\, j+3,\, k+1/2}^{n+1} - {E}_z\rvert_{i,\, j-2,\, k+1/2}^{n+1}}{\Delta y}\right)			\\
 	- 6.975\cdot 10^{-4} \left(\frac{{E}_y\rvert_{i,\, j+1/2,\, k+4}^{n+1} - {E}_y\rvert_{i,\, j+1/2,\, k-3}^{n+1}}{\Delta z}
-	- \frac{{E}_z\rvert_{i,\, j+4,\, k+1/2}^{n+1} - {E}_z\rvert_{i,\, j-3,\, k+1/2}^{n+1}}{\Delta y}\right)			\\
+	- \frac{{E}_z\rvert_{i,\, j+4,\, k+1/2}^{n+1} - {E}_z\rvert_{i,\, j-3,\, k+1/2}^{n+1}}{\Delta y}\right)			\\ \\
 \frac{E_y\rvert_{i, j+1/2, k}^{n+1} - E_y\rvert_{i, j+1/2, k}^{n}}{c^2 \Delta t} 
-	=& 1.196 \left(\frac{B_x\rvert_{i, j+1/2, k+1/2}^{n+1/2} - B_x\rvert_{i, j+1/2, k-1/2}^{n+1/2}}{\Delta z}
-	 - \frac{B_z\rvert_{i+1/2, j+1/2, k}^{n+1/2} - B_z\rvert_{i-1/2, j+1/2, k}^{n+1/2}}{\Delta x}\right)			\\&
+	= 1.196 \left(\frac{B_x\rvert_{i, j+1/2, k+1/2}^{n+1/2} - B_x\rvert_{i, j+1/2, k-1/2}^{n+1/2}}{\Delta z}
+	 - \frac{B_z\rvert_{i+1/2, j+1/2, k}^{n+1/2} - B_z\rvert_{i-1/2, j+1/2, k}^{n+1/2}}{\Delta x}\right)			\\
  	- 7.975\cdot 10^{-2} \left(\frac{B_x\rvert_{i, j+1/2, k+3/2}^{n+1/2} - B_x\rvert_{i, j+1/2, k-3/2}^{n+1/2}}{\Delta z}
- 	 -\frac{B_z\rvert_{i+3/2, j+1/2, k}^{n+1/2} - B_z\rvert_{i-3/2, j+1/2, k}^{n+1/2}}{\Delta x}\right)			\\&
+ 	 -\frac{B_z\rvert_{i+3/2, j+1/2, k}^{n+1/2} - B_z\rvert_{i-3/2, j+1/2, k}^{n+1/2}}{\Delta x}\right)			\\
  	+ 9.570\cdot 10^{-3} \left(\frac{B_x\rvert_{i, j+1/2, k+5/2}^{n+1/2} - B_x\rvert_{i, j+1/2, k-5/2}^{n+1/2}}{\Delta z}
- 	- \frac{B_z\rvert_{i+5/2, j+1/2, k}^{n+1/2} - B_z\rvert_{i-5/2, j+1/2, k}^{n+1/2}}{\Delta x}\right)			\\&
+ 	- \frac{B_z\rvert_{i+5/2, j+1/2, k}^{n+1/2} - B_z\rvert_{i-5/2, j+1/2, k}^{n+1/2}}{\Delta x}\right)			\\
  	- 6.975\cdot 10^{-4} \left(\frac{B_x\rvert_{i, j+1/2, k+7/2}^{n+1/2} - B_x\rvert_{i, j+1/2, k-7/2}^{n+1/2}}{\Delta z}
-	-\frac{B_z\rvert_{i+7/2, j+1/2, k}^{n+1/2} - B_z\rvert_{i-7/2, j+1/2, k}^{n+1/2}}{\Delta x}\right)			\\&
+	-\frac{B_z\rvert_{i+7/2, j+1/2, k}^{n+1/2} - B_z\rvert_{i-7/2, j+1/2, k}^{n+1/2}}{\Delta x}\right)			\\
  	- \mu_0 J_y\rvert_{i, j+1/2, k}^{n+1/2}
 \end{align*}
 
