@@ -2,24 +2,24 @@
 
 \begin{document}
 \chapter{Analysis of the bunch characteristics}\label{chap:analysis}
-In this thesis the analysis of the bunch and the caused wakefields is split into two parts. In \autoref{chap:distro_change} the change of the spatial charge distribution of the driver is discussed as well as its effect on the quality of the produced wakefield, quantified by the maximal gainable energy for a potential witness beam.
+In this thesis, the analysis of the bunch and the resulting wakefields are split into two parts. In \autoref{chap:distro_change} the change of the spatially resolved charge distribution of the driver is discussed as well as its effect on the quality of the produced wakefield, quantified by the maximal gainable energy for a potential witness beam.
 
-The second part in \autoref{chap:E_shift} is concentrated on the energy distribution of the driver, especially on changes to the peak energy, as bigger changes would violate the assumption of constant peak energy over the course of the \gls{pwfa} made in experiments.
+The second part in \autoref{chap:E_shift} focuses on the energy distribution of the driver, especially on changes to the peak energy, as larger changes would violate the assumption of constant peak energy over the course of the \gls{pwfa} made in experiments \cite{Schoebel2022}.
 
-Analysis is for both sections initially done for a driver with Gaussian charge distribution, an initial kinetic energy of \qty{250}{\MeV} and a divergence of \qty{4.2}{\mrad}. This driver is then compared to drivers with different charge distributions, initial energy or divergence,
+In both sections, analysis is initially done for a driver with Gaussian charge distribution, an initial kinetic energy of \qty{250}{\MeV} and a divergence of \qty{4.2}{\mrad}. This driver is then compared to drivers with different charge distributions, initial energy or divergence,
 highlighting its effects on the created wakefield. 
  
 \section{Transformation of the driver distribution} \label{chap:distro_change}
-In this section, the movement of particles in our driver is discussed and the changes in position respective to each other are shown. As such tracking of individual particles is not possible in experiment
+In this section, the movement of particles of the driver is discussed and the changes in position with respect to each other are shown. As such tracking of individual particles is not possible in experiment
 this will give further insight into the effects of the \gls{pwfa} on the drive beam. Additionally, the created wakefields are analyzed with respect to their formed electric fields and the energy which can be
 gained by these fields from a potential witness beam. 
 
-In \autoref{fig:q_series} a time series of 2D histograms, showing the charge density of the driver after entering plasma, can be seen for the $\zeta$-$z$-plane, with $\zeta$ being an axis, which moves with light speed with the driver. Also given is $y$, the distance to the start of the plasma upramp.
+In \autoref{fig:q_series} a time series of 2D histograms, showing the charge density of the driver after entering the plasma, can be seen for the $\zeta$-$z$-plane, with $\zeta$ being an axis, which moves at the speed of light parallel to the driver bunch. Also given is $y$, the distance to the start of the plasma upramp.
 \begin{figure}
 	\centering
 	\input{../images/q_series.pgf}
-	\caption{Time series of a charge density histogram of the driver electrons integrated over the $x$-axis in Log scale. The acting Lorentz Force is drawn on top as vector lines. Vertical lines are drawn in to make change in length of the bunch better visible. 
-	\textbf{a)} ($y=$ \qty{0.04}{mm}) When entering the plasma. Still a Gaussian distribution, weak forces focus the backside.
+	\caption{Time series of a charge density histogram of the driver electrons integrated over the $x$-axis in Log scale. The acting Lorentz Force is drawn on top as vector lines. Vertical lines are drawn to make changes in length of the bunch better visible. 
+	\textbf{a)} ($y=$ \qty{0.04}{mm}) When entering the plasma. Still a Gaussian distribution, weak focus forces at the backside.
 	\textbf{b)} ($y=$ \qty{0.36}{mm}) Formation of the tail from focusing forces. Decelerating forces grow.
 	\textbf{c)} ($y=$ \qty{0.76}{mm}) First wing spreads from tail. Strong decelerating forces on the backside.
 	\textbf{d)} ($y=$ \qty{1.08}{mm}) More wings emerge and spread. Still strong decelerating forces.
@@ -27,13 +27,13 @@ In \autoref{fig:q_series} a time series of 2D histograms, showing the charge den
 	\textbf{f)} ($y=$ \qty{3.38}{mm}) Bunch after breakup. The fallen back part gets accelerated from the backside of the first cavity.}
 	\label{fig:q_series}
 \end{figure}
-A log scale is chosen to make the borders with low density visible. Additionally, the Lorentz force is layered over the histogram to visualize the cause of the transformation of the driver. It is retrieved from the experienced $\vec{E}$- and $\vec{B}$-field, that every macroparticle stores.
-The window is then separated into bins and for every bin the mean of the force was calculated and plotted as a force field, with the color and width of the lines quantifying the absolute force. 
-This corresponds to a case where there only is one macroparticle per bin and the force acting on this particle is plotted.
+A log scale is chosen to make the borders with low density visible. Additionally, the Lorentz force is layered over the histogram to visualize the cause of the transformation of the driver. It is retrieved from the $\vec{E}$- and $\vec{B}$-field, that every macroparticle stores.
+The window is then separated into bins and for every bin the mean force was calculated and plotted as a force field, with the color and width of the lines quantifying the absolute force. 
+This corresponds to a case where there is only one macroparticle per bin and the force acting on this particle is plotted.
 
-At start, the spatial distribution still follows a 2D Gauss, as set in \autoref{chap:init}. After some distance was traveled in the plasma, the first cavities start to arise. The focusing Lorentz force of these cavities forms a tail at the end of the driver while the cavities are still in the linear regime.
-Only small forces act on the front of the beam, so the front part can diverge freely to the borders. In the center and back are great acting forces, pushing the particles back and simultaneously centering them, resulting in the creation of the tail.
-These forces result from the formation of the first cavities. As can be seen in \autoref{fig:cavity}b, the first cavity forms directly behind the center of the driver so the backside already experiences the decelerating and focusing fields of the cavity.
+At start, the spatial distribution still follows a 2D Gaussian distribution, as seen in \autoref{chap:init}. After the driver propagated for \qty{0.3}{mm} through the plasma , the first cavities start to arise. The focusing Lorentz force of these cavities forms a tail at the end of the driver while the cavities are still in the linear regime.
+Only small forces act on the front of the beam, so the front part can diverge freely. In the center and back of the driving bunch are great forces, pushing the particles back and simultaneously centering them, resulting in the creation of a tail.
+These forces result from the formation of the first cavity behind the driver. As can be seen in \autoref{fig:cavity}b, the nearest cavity forms directly behind the center of the driver so the backside already experiences the decelerating and focusing fields of the cavity.
 \begin{figure}
 	\centering
 	\input{../images/cavity.pgf}
@@ -45,40 +45,40 @@ These forces result from the formation of the first cavities. As can be seen in 
 	\label{fig:cavity}
 \end{figure}
 Comparing the length of the beam over time (see vertical lines in \autoref{fig:q_series}) shows that the tail is not an elongation of the driver backwards but the backside experiencing focusing forces, which are narrowing it.
-Looking back at the cavity formation shows that with tail formation, cavities with similar width emerge and start to form the blowout regime.
+Cavities in blowout regime form with the same width as the tail of the driver and widen when the tail spreads apart.
 
-The focus forces in the back of the driver cause the electrons to overshoot. This results in widening of the tail and the formation of wing-like structures. The cavities also start to widen and form the strongest electric fields of the whole \gls{pwfa} stage during this process.
+The focus forces at the back of the driver cause the electrons to overshoot. This results in widening of the tail and the formation of wing-like structures. The cavities also start to widen and form the strongest electric fields of the whole \gls{pwfa} stage during this process.
 The formed wings are diverging while new wings form behind them by particles which oscillate as they got pulled back by the focusing force, causing them to overshoot again. This forms a chain of smaller wings, all spreading with time and broadening the tail further.
 In this stage, the strength of the electric fields in the cavities already decreases while the electron density in the wakefield rises.
 
-The backside of the driver spreads further as the impact of the focusing fields is left by the particles. This causes it to grow in transversal direction together with the front of the bunch. 
-Meanwhile the $\vec{E}$-fields of the wakefield lose in strength and the cavities are flood by electrons again. The blowout regime goes over into the linear regime, as seen in \autoref{fig:cavity}d.
+The backside of the driver spreads further as particles from the wings leave the cavities and therefore the impact of the focusing fields. This causes it to grow in transversal direction together with the front of the bunch. 
+Meanwhile the $\vec{E}$-fields of the wakefield lose in strength and the cavities are flooded by electrons again. The blowout regime goes over into the linear regime, as seen in \autoref{fig:cavity}d.
 Still there are strong forces acting on the center of the bunch, causing it to lose energy. The discussion of this energy loss is continued in \autoref{chap:E_shift}, for now we only look at the distribution of these particles.
 
-In \autoref{fig:force_time} the strength and position change of the longitudinal Lorentz force can be seen over traversed distance. It shows how the force pushing the driver back first builds up and then loses its strength after having traveled long enough.
+In \autoref{fig:force_time} the strength and position change of the longitudinal Lorentz force can be seen over the traverse distance $y$. It shows how the force pushing the driver back first builds up and then loses its strength after the maximum at \qty{1}{\mm}.
 \begin{figure}
 	\centering
 	\input{../images/force_time.pgf}
-	\caption{Histogram of the longitudinal part of the Lorentz force. The force is sampled over the $\zeta$-direction at a slice in the middle in $z$-direction for every 2000 timesteps. This slice is here plotted over $y$, the distance of the driver from the start of the plasma, showing how it changes in position and strength.}
+	\caption{Histogram of the longitudinal part of the Lorentz force. The force is sampled over the co-moving $\zeta$-axis at a slice in the middle in $z$-direction for every 2000 timesteps. This slice is here plotted over $y$, the distance of the driver from the start of the plasma, showing how it changes in position and strength.}
 	\label{fig:force_time}
 \end{figure}
 A forward pushing force on the backside of the driver can also be seen, as the Gaussian distribution of the driver reaches so far back, that some particles are positioned in the accelerating part of the first cavity.
-Notable is the part around $y=$ \qty{3}{mm}, where the bunch collapses and particles start to fall back rapidly, so they get accelerated again in the back of the first cavity. These particles stem mostly from the middle of the driver,
-where the strongest backwards-pushing forces acted before, causing them to drain their energy. 
+Notable is the situation around $y=$ \qty{3}{mm}, where the bunch collapses and particles start to fall back rapidly, so they get accelerated again in the back of the first cavity. These particles stem mostly from the middle of the driver,
+where the strongest backwards-pushing forces acted before and caused them to drain their energy. 
 
-Here the bunch breakup has no big effect, as the cavities already resumed to the linear regime and only a small part of the driver did fall back. Only small forces remain to act on the driver, so it slowly diverges to the borders of the box.
+Here the bunch breakup has no big effect, as the cavities already resumed to the linear regime and only a small part of the driver did fall back. Only small forces remain to act on the driver, so it slowly diverges to the transversal sides.
 
 \subsection{Particle tracking}
 To support the claims made about the particle movement, particle tracking was used. In \autoref{fig:y_hist_time}a the particle distribution, shortly after entering the plasma, can be seen.
 \begin{figure}
 	\centering
 	\input{../images/y_hist_time.pgf}
-	\caption{Position of the particles in bins after bunch breakup. Each bin shows the minimal $\zeta$-position of the particles in it to visualize how it will move over time.
+	\caption{Position of the particles in bins after bunch breakup. Each bin shows the minimal $\zeta$-position (co-moving position) of the particles in it to visualize how it will move over time.
 	\textbf{a)} 2D distribution of the bins for $\zeta=$ \qty{0.60}{\mm}. The blue particles in the middle will fall back to the backside of the driver with time.
 	\textbf{b)} The bins centered at $z=0$ are sampled every 2000 timesteps and plotted over the traversed distance $y$ in the plasma. Around $y=$ \qty{3}{mm} the particles in the middle falls behind.}
 	\label{fig:y_hist_time}
 \end{figure}
-The colors show the $\zeta$-position of the respective particles after bunch breakup. Driver electrons which fall behind during bunch breakup originate from a small region right behind the center of the bunch. 
+The colors show the co-moving $\zeta$-position of the respective particles after the bunch breakup. Driver electrons which fall behind during the bunch breakup originate from a small region right behind the center of the bunch. 
 As seen in \autoref{fig:q_series}, this is the region where the strongest Lorentz force acted.
 The $\zeta$ position change of other particles is neglectable small, as only weak forces act.
 
@@ -92,30 +92,31 @@ The same tracking was done for the $z$-direction, seen in the time series in \au
 	particles from below and above $z=0$ alternate. }
 	\label{fig:z_hist_0}
 \end{figure}
-As the movement in z-direction is symmetric, this results in bins with equal number of particles from the top and bottom half to be displayed as middle white, thus the transition of particles from top to bottom and reversed can not be seen. Still the effect is clear, as the wings can clearly be seen at the end of the driver.
+As the movement in z-direction is symmetric, this results in bins with equal number of particles from the top and bottom half to be displayed as yellowish white, thus the transition of particles from top to bottom and reversed can not be seen. Still the effect is clear, as the wings can clearly be seen at the end of the driver.
 The alternating colors can be explained by the oscillation of the electrons, as they get pulled back to the center and form smaller wings. No such motion is observed in the front part in the driver.
 
 
 \subsection{Parameter comparison}
-The transformation of the driver beam form and subsequent changes of quality of the wakefield were compared for different initial parameters. To quantify this quality, the maximal gained energy 
-for a potential witness beam is considered. In \autoref{fig:E_y_hist} the charge distribution and $\zeta$-direction of the electric field of the plasma electrons are compared over time. 
+The transformation of the driver beam shape and subsequent changes of quality of the wakefield were compared for different initial parameters. To quantify the wakefield quality, the maximally gained energy 
+for a potential witness beam is considered. In \autoref{fig:E_y_hist} the charge distribution and longituduinal direction $E_{\parallel}$ of the electric field (accelerating and decelerating) of the plasma electrons are compared over time. 
 \begin{figure}
 	\centering
 	\input{../images/E_y_hist.pgf}
 	\caption{
-	\textbf{a)} The charge distribution for all grid points at $x=z=0$ is plotted over the distance in plasma $y$. Clearly visible is a change in the width of the cavities.
-	\textbf{b)} The electric field in $\zeta$ direction for all grid points at $x=z=0$ is plotted over $y$. On the right side the gained energy for a theoretical
-	witness beam is plotted too over $\zeta$.}
+	\textbf{a)} The charge distribution for all grid points at the co-moving $\zeta$ axis with $x=z=0$ is plotted over the distance in plasma $y$. Clearly visible is a change in the width of the cavities.
+	\textbf{b)} The electric field in co-moving $\zeta$ direction for all grid points at $x=z=0$ is plotted over $y$. On the right side the gained energy for a theoretical
+	witness beam is plotted over $\zeta$ too.}
 	\label{fig:E_y_hist}
 \end{figure}
-Especially in a) the change in width of the cavities is visible. This effect was measured in experiment, as seen in \cite{Schoebel2022}. A witness beam which is phase locked with the driver, meaning it is constant in $\zeta$,
+
+In a), a change in width of the cavities can be observed, an effect that was measured in experiment \cite{Schoebel2022}. A witness beam which is phase locked with the driver, meaning it is constant in $\zeta$,
 would therefore not get maximal energy gain when placed at a position where the accelerating field is maximal as it would later experience a decelerating force, when the cavities shrink again.
 In b) this is visible, as the decelerating blue field moves to the right over the position of the strongest red accelerating field. Drawn in is also the expected energy gain for a potential witness beam.
 This gain was calculated by integrating the Lorentz Force, created by the fields, over the traversed distance. The peak is not over the position with the highest field but at the position where the highest field is after the cavities shrank.
-This peak gained energy can now be used to compare the wakefields for different drivers.
+This maximum of gained energy can now be used to compare the wakefields for different drivers. Effects of the hypothetical witness beam on the wakefield, like beam loading \cite{Kirchen2021, Goetzfried2020}, are not considered in this discussion.
 
 \paragraph*{Energy comparison}\hspace{0pt} \\
-First, a comparison between different initial mean kinetic energies of the drivers with same divergence was made. We compare the three energies \qtylist{250; 300; 350}{\MeV} under the aspect how much more energy can be gained with higher initial energy.
+A comparison between different initial mean kinetic energies of the drivers with same divergence was made. We compare the three energies \qtylist{250; 300; 350}{\MeV} under the aspect how much more witness energy can be gained with higher initial bunch energy.
 Only small qualitative differences exist in the wakefields between the three energies. Generally, the blowout regime can be achieved over a longer distance for higher energy drivers.
 This results in slightly increased energy gains, as seen in \autoref{fig:gain_E}. The maximal gainable energies can be found in \autoref{tab:gain_E}.
 \begin{table}[h]
@@ -136,7 +137,7 @@ This results in slightly increased energy gains, as seen in \autoref{fig:gain_E}
 \begin{figure}
 	\centering
 	\input{../images/gain_E.pgf}
-	\caption{Energy gain curves for three different initial kinetic energies.}
+	\caption{Witness energy gain curves for three different initial kinetic driver energies.}
 	\label{fig:gain_E}
 \end{figure}
 
@@ -150,11 +151,11 @@ and low divergence ($\sigma_{\theta}=$ \qty{1.7}{\mrad}) beam are shown in \auto
 \begin{figure}
 	\centering
 	\input{../images/gain_div.pgf}
-	\caption{Energy gain curves for three different initial divergences.}
+	\caption{Witness energy gain curves for three different initial driver divergences.}
 	\label{fig:gain_div}
 \end{figure}
-For all curves a normal maximum like in the graphs before can be seen. Additionally, there is a second much higher peak for the low divergence curve in the backside of the cavity with blowout length.
-This results from the long-standing blowout with extreme fields and the following smaller blowout, as seen in the charge density graphs \autoref{fig:cavity_low}.
+For all curves at least one maximum, like in the graphs before, can be seen per cavity. Additionally, there is a second much higher peak for the low divergence curve at the position, where the backside of the cavity was during blowout.
+This peak results from the long-standing blowout with extreme fields and the following smaller blowout, as seen in the charge density graphs \autoref{fig:cavity_low}.
 
 \begin{figure}
 	\centering
@@ -166,11 +167,11 @@ This results from the long-standing blowout with extreme fields and the followin
 	\label{fig:cavity_low}
 \end{figure}
 Even before the cavities fill and a linear regime sets in, the driver breaks up as the strong forces cause fast energy drain (see the high energy loss in the first minimum behind the driver in \autoref{fig:gain_div}.
-Through beam loading \cite{Kirchen2021, Goetzfried2020}, the energy of the wakefield was absorbed by the fallen back part of the driver, causing the cavities to transition into the linear regime. 
-Still there remains a small blowout behind the  fallen back driver, caused by its high charge density.
+Through beam loading, the energy of the wakefield was absorbed by the fallen back part of the driver, causing the cavities to transition into the linear regime. 
+Still there remains a small blowout behind the fallen back driver, caused by its high charge density. The peak of the energy gain is positioned in this smaller wakefield.
 
-For a driver with high divergence, no blowout is achieved so the wakefield remains in the linear regime with weak electric fields. This weak fields are not able to cause a bunch breakup, resulting in the bunch just diverging to the border with time.
-The resulting maximal gained energies can be found in \autoref{tab:gain_div}.
+For a driver with high divergence, no blowout is achieved so the wakefield remains in the linear regime with weak electric fields. This weak fields are not able to cause a bunch breakup, resulting in the bunch just diverging with time.
+The resulting maximally gained energies can be found in \autoref{tab:gain_div}.
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{|c|c|} 
@@ -188,20 +189,20 @@ The resulting maximal gained energies can be found in \autoref{tab:gain_div}.
 \end{table}
 While the normal maximum is highest for the \qty{4.2}{\mrad} driver, the second maximum of the low divergence driver achieves nearly double the energy gain, giving good reasons to strive for low divergent beams.
  
-The question arises, why the change in divergence causes such an extreme difference for drivers. Possible is, that the induced current of the low divergence driver is higher. The velocity in propagation direction is higher and the spatial distribution
-is denser, as the particles don't diverge as much in the time before entering the plasma, causing a high current. 
+The question arises, why the change in divergence causes such an extreme difference for drivers. It is possible that, that the induced current of the low divergence driver is higher. The velocity in propagation direction is higher and the spatial distribution
+is denser, as the particles do not diverge as much before entering the plasma, causing a higher current. 
 
 
 \paragraph*{Distribution comparison}\hspace{0pt} \\
-Even though in experiment the form of a beam is hard to control when leaving the \gls{lwfa} for our \gls{pwfa}, a comparison between different distributions can give new insights into the properties that are needed from a driver
+Even though in the experiment the shape of a driver beam is hard to control when leaving the \gls{lwfa} for our \gls{pwfa}, a comparison between different distributions can give new insights into the properties that are needed from a driver
 to form high accelerating fields. Besides the driver with Gaussian distribution in all spatial direction, a driver with Gaussian distribution in transversal direction and uniform charge distribution in propagation direction 
 was simulated.
 
-The energy gain graph \autoref{fig:gain_square} shows only a small win of \qty{14}{\MeV} in maximal energy can be achieved compared to our Gaussian driver.
+The energy gain graph \autoref{fig:gain_square} shows only a small win of \qty{14}{\MeV} in maximal energy can be achieved compared to the Gaussian driver.
 \begin{figure}
 	\centering
 	\input{../images/gain_square.pgf}
-	\caption{Energy gain curves for three different initial divergences.}
+	\caption{Witness energy gain curves for two different initial charge distributions.}
 	\label{fig:gain_square}
 \end{figure}
 The biggest difference in the two curves lies in the higher minimum positioned at the backside of the driver, that results in smaller energy loss and therefore a \qty{0.7}{mm} longer traversed distance before breakup.
@@ -210,7 +211,7 @@ The biggest difference in the two curves lies in the higher minimum positioned a
 \begin{figure}
 	\centering
 	\input{../images/q_series_square.pgf}
-	\caption{Time series of a charge density histogram of a driver uniform in $\zeta$-direction, with the acting Lorentz Force drawn on top as vector lines. Vertical lines are drawn in to make change in length of the bunch better visible. 
+	\caption{Time series of a charge density histogram of a driver uniform in co-moving $\zeta$-direction, with the acting Lorentz Force drawn on top as vector lines. Vertical lines are drawn to make change in length of the bunch better visible. 
 	\textbf{a)} ($y=$ \qty{0.04}{mm}) When entering the plasma. Still uniform in $\zeta$.
 	\textbf{b)} ($y=$ \qty{0.36}{mm}) Compared to the Gaussian driver, the tail doesn't get as thin.
 	\textbf{c)} ($y=$ \qty{0.76}{mm}) First wing spreads from tail. Strong decelerating forces on the backside.
@@ -223,54 +224,54 @@ Still the uniform driver survives longer before breakup, caused by the weaker de
 
 
 \section{Peak Energy shift} \label{chap:E_shift}
-In this the chapter the change in energy of the \gls{pwfa} driver is discussed, as this gives further insights into its stability and therefore also the stability of the wakefield.
+In this chapter, the change in energy of the \gls{pwfa} driver is discussed, as this gives further insights into its stability and therefore also the stability of the wakefield.
 In \autoref{fig:E_hist_time}a the change of the energy distribution over time can be seen for the \qty{250}{\MeV}, \qty{4.2}{\mrad} Gaussian driver.
 \begin{figure}
 	\centering
 	\input{../images/E_hist_time.pgf}
 	\caption{
 	\textbf{(a)} Energy histogram over time. A histogram of the charge distribution over the energy is created every 2000 timesteps and plotted here over $y$.
-	\textbf{(b)} Peak energy plotted over $y$. A second curve for a simulation where the plasma jet ends after \qty{3}{\mm} is drawn in too with the vertical line marking the point of the downramp. Note the curves of the small systematic uncertainty vanishing behind the data curve.}
+	\textbf{(b)} Peak energy plotted over $y$. A second curve for a simulation where the plasma jet ends after \qty{3}{\mm} is drawn in too with the vertical line marking the point of the downramp. Note that the curves of the small systematic uncertainty vanish behind the data curve.}
 	\label{fig:E_hist_time}
 \end{figure}
-When inducing the wakefield, the Lorentz force created by the fields of the first cavity act on the driver causing it to lose energy. As only parts of the driver experience this force, the energy distribution is not moving to lower energies but instead spreading.
-The plot shows the growth in low energy electrons until $E=0$ is reached, visualized by the $E_{min}$ curve. In blue, the mean is also plotted in, showing how it sinks with time. Also shown is the maximum energy $E_{max}$, which grows.
-These are particles, which gain energy, as they are so far back in the bunch, that they get pushed by the Lorentz forces in the middle of the first cavity.
+When inducing the wakefield, the Lorentz force created by the fields of the first cavity acts on the driver causing it to lose energy. As only parts of the driver experience this force, the energy distribution is not moving to lower energies entirely, but instead spreading.
+The plot shows the growth in low energy electrons until $E=0$ is reached, visualized by the $E_{min}$ curve. In blue, the mean is also plotted, showing how it reduces with time. Also the maximum energy $E_{max}$ is shown, which increases.
+This increase stems from the particles, which gain energy as they are so far back in the bunch, that they get pushed by the Lorentz forces in the middle of the first cavity.
 
-Notable is the fact, that the histogram for every timestep isn't uniform but has visible maxima and minima in form of the black and yellow stripes. The maximum with the highest energy is called the peak energy, here additionally plotted in green.
-This energy is important in experiment, as the fact that it stays constant during the \gls{pwfa} is used to calculate the initial charge of the driver before entering the \gls{pwfa} (see \cite{Schoebel2022}.
+Notable is the fact, that the histogram for every timestep is not uniform but has visible maxima and minima in form of the black and yellow stripes in \autoref{fig:E_hist_time}a. The maximum with the highest energy is called the peak energy, here additionally plotted in green.
+This energy is important in experiment, as the fact that it stays constant during the \gls{pwfa} is used to calculate the initial charge of the driver before entering the \gls{pwfa} (see \cite{Schoebel2022}).
 In \autoref{fig:E_hist_time}b only the peak energy is plotted over time, showing that it is in fact not constant. The peak energy drops from \qtyrange{250}{244}{\MeV} shortly after entering the plasma.
 A plateau exists at this energy until bunch breakup, after which the peak further drops.
 
 The systematic uncertainty of the peak energy is given by the size of the bins while the statistical uncertainty results from the uncertainty of the fit. 
 
 The fit assumes two summed Gaussian distributions as a simplification of the real distribution, which consists of multiple peaks with different heights and widths as well as an unknown background noise. Only the peak energy and the second peak are fitted.
-This fit can produce strong outliers during the first half millimeter and still seems to slightly lie off the real curve visually afterwards, so better fits should be used in future studies.
+This fit can produce strong outliers during the first half millimeter and still seems to have a slight visual offset to the real curve afterwards, so better fits should be used in future studies.
 
-Also drawn in is the curve for a simulation with a down ramp for the plasma after \qty{2.7}{\mm} of traversal, as peak energy is generally measured after leaving the plasma jet. The drop-off of \qty{5}{\MeV} remains after 
-the downramp and could therefore be measured in experiment, when high enough accuracy can be achieved. Even after the plasma was left by the driver, the peak energy further dropped. No significant decelerating forces act in this phase so the loss may result
-from peak energy particles leaving the simulation box perpendicular to propagation direction. Even when the peak in the energy histogram should only decrease in size but not position, this would result in inaccuracies of the energy fit,
-causing the energy loss.
+Also drawn is the curve for a simulation with a down ramp for the plasma after \qty{2.7}{\mm} of traversal, as peak energy is measured after leaving the plasma jet in experiment. The drop-off of \qty{5}{\MeV} remains after 
+the downramp and could therefore be measured in experiment, when high enough accuracy can be achieved. Even after the driver left the plasma, the peak energy further dropped. No significant decelerating forces act in this phase so the loss may be caused
+from peak energy particles leaving the simulation box perpendicularly to propagation direction. Even when the peak in the energy histogram should only decrease in size but not position, this would result in inaccuracies of the energy fit,
+causing the observed energy loss.
 
-Currently the uncertainty on the peak energy measurement in experiments is higher than the \qty{5}{\MeV} jump. Still, this indicates caution is needed when assuming a constant peak energy, especially after bunch breakup.
+Currently the uncertainty on the peak energy measurement in experiments is higher than the \qty{5}{\MeV} jump\todo{Susanne fragen}. Thus, caution is needed when assuming a constant peak energy, especially after bunch breakup.
 
 \subsection{Locality of the energy}\label{chap:loc_E}
-The energy loss and spatial locality of the energy peaks can be visualized by again binning the macroparticles in space and analyze the mean energy in every bin. This mean energy is then plotted over the positions of the bins,
+The energy loss and spatial locality of the energy peaks can be visualized again by binning the macroparticles in space and analyzing the mean energy in every bin. This mean energy is then plotted over the positions of the bins,
 an example of this can be seen in \autoref{fig:E_time}a. 
 \begin{figure}
 	\centering
 	\input{../images/E_time.pgf}
 	\caption{Mean energy of the particles in the bins.
 	\textbf{(a)} ($y=$ \qty{2.19}{mm}) Energy map over $\zeta$-$z$- The bins measure \qtyproduct{0.16 x 0.45}{\um}. Every bin with at least one particle is plotted, so no information about the energy density can be derived.
-	\textbf{(b)} Mean energy of the particles in the bins over time. Only the bins around $z=0$ are plotted for every timestep, showing the gradually loss of energy in the middle of the driver until bunch breakup.}
+	\textbf{(b)} Mean energy of the particles in the bins over time. Only the bins around $z=0$ are plotted and averaged in $x$-direction for every timestep, showing the gradually loss of energy in the middle of the driver until bunch breakup.}
 	\label{fig:E_time}
 \end{figure}
 
-Parts of the bunch where a strong decelerating force acts have lost most of the energy while the front part, where only weak forces act, retained their peak energy. The energy loss in the back consists not of a steady gradient but islands with constant energy.
+Parts of the bunch, where a strong decelerating force acts, have lost most of the energy while the front part, where only weak forces act, retained the peak energy. The energy loss in the back consists not of a steady gradient but islands with constant energy, as seen by by the big areas with a constant color.
 The complete time series of the energy is plotted in \autoref{fig:E_time}b.
 
 Notable is the constant energy in the front half of the driver and the strong energy loss in the middle. When energies around zero are reached, the electrons fall back, where they get accelerated again from the first cavity.
-Also notable is, that the highest energies are achieved at the back of the driver, where the accelerating part of the cavity starts and pushes the electrons forwards.
+Also notable is, that the highest energies are achieved at the back of the driver, where the accelerating part of the cavity starts and pushes the electrons forwards in propagation direction.
 
 \subsection{Parameter comparison}
 \paragraph*{Energy comparison}\hspace{0pt} \\
@@ -278,16 +279,17 @@ These results are again compared to different initial conditions of the driver. 
 \begin{figure}
 	\centering
 	\input{../images/E_peak_energy.pgf}
-	\caption{Loss of peak energy for different initial energies are plotted over $y$.}
+	\caption{Loss of peak energy for different initial energies are plotted over distance in plasma $y$.}
 	\label{fig:E_peak_energy}
 \end{figure}
 
-For all energies the initial energy drop of \qtyrange{6}{7}{\MeV} can be observed, as well as the slower loss of peak energy afterwards. The initial drop off ends for all energies after a plasma distance of \qty{1}{\mm}, with the high energy drivers having bigger energy losses. 
-While the \qty{250}{\MeV} driver has a visible plateau, there are smaller or no plateaus for the other two energies. Still the energy loss happens slower at the point after the initial drop off and only increases with progressing distance in the plasma.
-The slow energy loss afterwards exists for all drivers. While the distance between the \qty{250}{\MeV} and \qty{300}{\MeV} curve stays roughly the same except for some fluctuations, 
-the distance between the \qty{300}{\MeV} and \qty{350}{\MeV} curve increases with time, meaning that the \qty{350}{\MeV} peak loses its energy faster. Drawn in are also the point of bunch breakup, which seems to be uncorrelated to the progression of the curve.
+For all energies the initial energy drop of \qtyrange{6}{7}{\MeV} can be observed, as well as the slower loss of peak energy afterwards. The initial drop-off ends for all energies after a distance of plasma traversal of \qty{1}{\mm}, with the high energy drivers having bigger energy losses. 
+While the \qty{250}{\MeV} driver has a visible plateau, there are smaller or no plateaus for the other two energies. Still the energy loss happens slower at the point after the initial drop-off and only increases with advancing distance in the plasma.
 
-Even when there is no plateau for higher initial energies, the energy loss beyond the initial drop off is comparably small before the end of the gas jet would be achieved in experiments at around \qty{3}{\mm} \cite{Schoebel2022}.
+The slow energy loss afterwards exists for all drivers. While the difference between the \qty{250}{\MeV} and \qty{300}{\MeV} curve stays roughly the same except for some fluctuations, 
+the difference between the \qty{300}{\MeV} and \qty{350}{\MeV} curve increases with time, meaning that the \qty{350}{\MeV} peak loses its energy faster. The points of bunch breakup are also marked, which seem to be uncorrelated to the progression of the curve.
+
+Even when there is no plateau for higher initial energies, the energy loss beyond the initial drop-off is comparably small before the end of the gas jet  in experiments at around \qty{3}{\mm} \cite{Schoebel2022}.
 
 \paragraph*{Divergence comparison}\hspace{0pt} \\
 When the same analysis is done on the different initial divergences, as seen in \autoref{fig:E_peak_divergence}, big qualitative differences become apparent. 
@@ -297,11 +299,10 @@ When the same analysis is done on the different initial divergences, as seen in 
 	\caption{Loss of peak energy for different initial divergences are plotted over $y$.}
 	\label{fig:E_peak_divergence}
 \end{figure}
-The low divergence driver has the same drop off as the one with normal divergence but afterwards no further energy loss but instead a small increase of roughly \qty{0.5}{\MeV} can be observed.
-For the high divergence driver, the initial drop off is smaller with only \qty{4}{\MeV} but afterwards the peak energy decreases linear. After \qty{3}{\mm} the driver already has lost \qty{9}{\MeV} of energy. This could be measurable in experiment.
+The low divergence driver has the same drop-off as the one with normal divergence but afterwards no further energy loss but instead a small increase of roughly \qty{0.5}{\MeV} can be observed.
+For the high divergence driver, the initial drop-off is smaller, with only \qty{4}{\MeV}, but afterwards the peak energy decreases linear. After \qty{3}{\mm} the driver already has lost \qty{9}{\MeV} of energy. This could be measurable in experiment.
 
-There could be too weak fields after bunch breakup of the low divergence driver, which cannot further decrease the peak energy. This would result in the curve depicted above. 
-Meanwhile the linear regime of the high divergence driver is capable of further decelerate the front part of the driver, resulting in the high peak energy loss, as the bunch never breaks during simulation time. 
-This could also just be an error of the peak fit, which could be resolved in future studies.
+The remaining fields after bunch breakup of the low divergence driver may be too weak to decelerate the bunch, thus the fields cannot further decrease the peak energy. This would result in the curve depicted above. 
+Meanwhile the linear regime of the high divergence driver is capable of further decelerating the front part of the driver, resulting in a high peak energy loss, as the bunch never breaks during the simulation time. 
 
 \end{document}
