@@ -19,32 +19,35 @@ In \autoref{fig:q_series} a time series of 2D histograms, showing the charge den
 	\centering
 	\input{../images/q_series.pgf}
 	\caption{Time series of a charge density histogram of the driver electrons integrated over the $x$-axis in Log scale. The acting Lorentz Force is drawn on top as vector lines. Vertical lines are drawn to make changes in length of the bunch better visible. 
+	The histogram is plotted in the $\zeta$-$z$ plane, with $\zeta$ being a co-moving coordinate axis. Instead of time, the distance $y$ traversed in plasma is given.
 	\textbf{a)} ($y=$ \qty{0.04}{mm}) When entering the plasma. Still a Gaussian distribution, weak focus forces at the backside.
 	\textbf{b)} ($y=$ \qty{0.36}{mm}) Formation of the tail from focusing forces. Decelerating forces grow.
 	\textbf{c)} ($y=$ \qty{0.76}{mm}) First wing spreads from tail. Strong decelerating forces on the backside.
 	\textbf{d)} ($y=$ \qty{1.08}{mm}) More wings emerge and spread. Still strong decelerating forces.
-	\textbf{e)} ($y=$ \qty{2.90}{mm}) Shortly before bunch breakup with visible elongation of the bunch. Only weak forces act.
+	\textbf{e)} ($y=$ \qty{2.90}{mm}) Shortly before bunch breakup with visible elongation of the bunch. Only weak forces remain.
 	\textbf{f)} ($y=$ \qty{3.38}{mm}) Bunch after breakup. The fallen back part gets accelerated from the backside of the first cavity.}
 	\label{fig:q_series}
 \end{figure}
+Both, $\zeta$ and $y$ are used as coordinates for most figures in this chapter.
+
 A log scale is chosen to make the borders with low density visible. Additionally, the Lorentz force is layered over the histogram to visualize the cause of the transformation of the driver. It is retrieved from the $\vec{E}$- and $\vec{B}$-field, that every macroparticle stores.
-The window is then separated into bins and for every bin the mean force was calculated and plotted as a force field, with the color and width of the lines quantifying the absolute force. 
+The window is then separated into bins and for every bin the mean force was calculated and plotted as a force field, with the color of the lines quantifying the absolute force. 
 This corresponds to a case where there is only one macroparticle per bin and the force acting on this particle is plotted.
 
-At start, the spatial distribution still follows a 2D Gaussian distribution, as seen in \autoref{chap:init}. After the driver propagated for \qty{0.3}{mm} through the plasma , the first cavities start to arise. The focusing Lorentz force of these cavities forms a tail at the end of the driver while the cavities are still in the linear regime.
+At start, the spatial distribution still follows a 2D Gaussian distribution, as seen in \autoref{chap:init}. After the driver propagated for \qty{0.3}{mm} through the plasma, the first cavities start to arise. The focusing Lorentz force of these cavities forms a tail at the end of the driver while the cavities are still in the linear regime.
 Only small forces act on the front of the beam, so the front part can diverge freely. In the center and back of the driving bunch are great forces, pushing the particles back and simultaneously centering them, resulting in the creation of a tail.
 These forces result from the formation of the first cavity behind the driver. As can be seen in \autoref{fig:cavity}b, the nearest cavity forms directly behind the center of the driver so the backside already experiences the decelerating and focusing fields of the cavity.
 \begin{figure}
 	\centering
 	\input{../images/cavity.pgf}
-	\caption{Time series of the charge density of the plasma and the driver at $x=0$.
+	\caption{Time series of the charge density of the plasma and the driver at $x=0$ over co-moving $\zeta$ and $z$.
 	\textbf{a)} ($y=$ \qty{0.04}{mm}) After entering plasma. The vacuum can still be seen on the left border. Weak cavity can already be seen.
 	\textbf{b)} ($y=$ \qty{0.36}{mm}) Cavities forming together with the tail of the driver.
 	\textbf{c)} ($y=$ \qty{0.68}{mm}) Blowout regime during spread of the wings on the backside of the driver.
 	\textbf{d)} ($y=$ \qty{2.27}{mm}) Wakefield returns to linear regime before bunch breakup.}
 	\label{fig:cavity}
 \end{figure}
-Comparing the length of the beam over time (see vertical lines in \autoref{fig:q_series}) shows that the tail is not an elongation of the driver backwards but the backside experiencing focusing forces, which are narrowing it.
+Comparing the length of the beam over time (see vertical lines in \autoref{fig:q_series}) shows that the tail is not an elongation of the driver backwards but the backside experiencing focusing forces, which are narrowing the backside.
 Cavities in blowout regime form with the same width as the tail of the driver and widen when the tail spreads apart.
 
 The focus forces at the back of the driver cause the electrons to overshoot. This results in widening of the tail and the formation of wing-like structures. The cavities also start to widen and form the strongest electric fields of the whole \gls{pwfa} stage during this process.
@@ -74,7 +77,7 @@ To support the claims made about the particle movement, particle tracking was us
 	\centering
 	\input{../images/y_hist_time.pgf}
 	\caption{Position of the particles in bins after bunch breakup. Each bin shows the minimal $\zeta$-position (co-moving position) of the particles in it to visualize how it will move over time.
-	\textbf{a)} 2D distribution of the bins for $\zeta=$ \qty{0.60}{\mm}. The blue particles in the middle will fall back to the backside of the driver with time.
+	\textbf{a)} 2D distribution of the bins for $y=$ \qty{0.60}{\mm}. The blue particles in the middle will fall back to the backside of the driver with time.
 	\textbf{b)} The bins centered at $z=0$ are sampled every 2000 timesteps and plotted over the traversed distance $y$ in the plasma. Around $y=$ \qty{3}{mm} the particles in the middle falls behind.}
 	\label{fig:y_hist_time}
 \end{figure}
@@ -82,7 +85,7 @@ The colors show the co-moving $\zeta$-position of the respective particles after
 As seen in \autoref{fig:q_series}, this is the region where the strongest Lorentz force acted.
 The $\zeta$ position change of other particles is neglectable small, as only weak forces act.
 
-Additionally in \autoref{fig:y_hist_time}b the middle slice of this distribution was captured every 2000 timesteps and plotted over the traversed distance. The fallback of the particles in the middle during bunch breakup can clearly be seen.
+Additionally in \autoref{fig:y_hist_time}b the middle slice of this distribution was captured every 2000 timesteps and plotted over the traversed distance $y$. The fallback of the particles in the middle during bunch breakup can clearly be seen.
 
 The same tracking was done for the $z$-direction, seen in the time series in \autoref{fig:z_hist_0}.
 \begin{figure}
@@ -189,7 +192,7 @@ The resulting maximally gained energies can be found in \autoref{tab:gain_div}.
 \end{table}
 While the normal maximum is highest for the \qty{4.2}{\mrad} driver, the second maximum of the low divergence driver achieves nearly double the energy gain, giving good reasons to strive for low divergent beams.
  
-The question arises, why the change in divergence causes such an extreme difference for drivers. It is possible that, that the induced current of the low divergence driver is higher. The velocity in propagation direction is higher and the spatial distribution
+The question arises, why the change in divergence causes such an extreme difference for drivers. It is possible that, that a higher current is induced from the low divergence driver. The velocity in propagation direction is higher and the spatial distribution
 is denser, as the particles do not diverge as much before entering the plasma, causing a higher current. 
 
 
@@ -211,7 +214,7 @@ The biggest difference in the two curves lies in the higher minimum positioned a
 \begin{figure}
 	\centering
 	\input{../images/q_series_square.pgf}
-	\caption{Time series of a charge density histogram of a driver uniform in co-moving $\zeta$-direction, with the acting Lorentz Force drawn on top as vector lines. Vertical lines are drawn to make change in length of the bunch better visible. 
+	\caption{Time series of a charge density histogram of a driver uniform in co-moving $\zeta$-direction, integrated over $x$, with the acting Lorentz Force drawn on top as vector lines. Vertical lines are drawn to make change in length of the bunch better visible. 
 	\textbf{a)} ($y=$ \qty{0.04}{mm}) When entering the plasma. Still uniform in $\zeta$.
 	\textbf{b)} ($y=$ \qty{0.36}{mm}) Compared to the Gaussian driver, the tail doesn't get as thin.
 	\textbf{c)} ($y=$ \qty{0.76}{mm}) First wing spreads from tail. Strong decelerating forces on the backside.
@@ -223,7 +226,7 @@ The biggest difference in the two curves lies in the higher minimum positioned a
 Still the uniform driver survives longer before breakup, caused by the weaker decelerating forces, as seen in the higher minimum in \autoref{fig:gain_square}.
 
 
-\section{Peak Energy shift} \label{chap:E_shift}
+\section{Peak energy shift} \label{chap:E_shift}
 In this chapter, the change in energy of the \gls{pwfa} driver is discussed, as this gives further insights into its stability and therefore also the stability of the wakefield.
 In \autoref{fig:E_hist_time}a the change of the energy distribution over time can be seen for the \qty{250}{\MeV}, \qty{4.2}{\mrad} Gaussian driver.
 \begin{figure}
