@@ -115,8 +115,8 @@ the spatial derivative of the fields lies between these fields. At this points, 
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.5]{Yee-cell.png}
-	\caption{One Yee-cell. Note, that fields are calculated between the grid-points. Image taken from \cite{PICRepo}}
+	\resizebox{0.8\textwidth}{!}{\input{../images/cell.pgf}}
+	\caption{One Yee-cell with components of the electric $\vec{E}$-field, the magnetic $\vec{B}$-field and the current density $\vec{J}$ drawn in. Note, that fields are calculated between the grid-points. Image similar to \cite{PICRepo}}
 	\label{fig:cell}
 \end{figure}
 
@@ -138,7 +138,7 @@ At last, a Coulomb force is applied again for half a time step, so the momentum 
 \paragraph*{Current deposition}\hspace{0pt} \\
 For the next step of the PIC-cycle, the current density $\vec{J}$ is calculated with Esirkepov’s current deposition method \cite{Esirkepov2001}.
 The change in current density between two grid points is calculated by accumulating nearby macroparticles with respect to their velocity, charge, assignment functions and change in position between two time steps. 
-Like the components of the $\vec{E}$-field, the current density components not on but between the grid points are stored.
+As for the components of the $\vec{E}$-field, the current density components are stored not on but between the grid points, as seen in \autoref{fig:cell}.
 
 \paragraph*{Field evolution}\hspace{0pt} \\
 At last, the new fields are calculated at each grid point. The first two Maxwell equations \autoref{equ:maxwell} are only checked at initialization, in general with $\rho=0$. This means, our box is charge neutral at the start, resulting in mirror charges when we don't have a completely neutral setup.
