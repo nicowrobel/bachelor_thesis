@@ -2,24 +2,36 @@
 
 \begin{document}
 \chapter{Analysis of the bunch characteristics}\label{chap:analysis}
-In this thesis, the analysis of the bunch and the resulting wakefields are split into two parts. In \autoref{chap:distro_change} the change of the spatially resolved charge distribution of the driver is discussed as well as its effect on the quality of the produced wakefield, quantified by the maximal gainable energy for a potential witness beam.
+In this thesis, the analysis of the bunch and the resulting wakefields are split into two parts. In \autoref{chap:distro_change} the change of the spatially resolved charge distribution of the driver is discussed 
+as well as its effect on the quality of the produced wakefield, quantified by the maximal gainable energy for a potential witness beam.
 
-The second part in \autoref{chap:E_shift} focuses on the energy distribution of the driver, especially on changes to the peak energy, as larger changes would violate the assumption of constant peak energy over the course of the \gls{pwfa} made in experiments \cite{Schoebel2022}.
+The second part in \autoref{chap:E_shift} focuses on the energy distribution of the driver, especially on changes to the peak energy, 
+as larger changes would violate the assumption of constant peak energy over the course of the \gls{pwfa} made in experiments \cite{Schoebel2022}.
 
-In both sections, analysis is initially done for a driver with Gaussian charge distribution, an initial kinetic energy of \qty{250}{\MeV} and a divergence of \qty{4.2}{\mrad}. This driver is then compared to drivers with different charge distributions, initial energy or divergence,
-highlighting its effects on the created wakefield. 
+In both sections, analysis is initially done for a driver with Gaussian charge distribution, an initial kinetic energy of \qty{250}{\MeV} and a divergence of \qty{4.2}{\mrad}. 
+This driver is then compared to drivers with different charge distributions, initial energy or divergence, highlighting its effects on the created wakefield. 
+
+\begin{figure}
+	\centering
+	\input{../images/zeta.pgf}
+	\caption{Relation between the co-moving coordinate $\zeta$ and the traversed distance $y$. The position of the driver is constant in $\zeta$ as the axis moves with it.}
+	\label{fig:zeta}
+\end{figure}
+Many figures in this chapter show a spatial distribution in the $\zeta$-$z$-plane. $\zeta$ is  an axis that moves at the speed of light parallel to the driver bunch. It is defined as $\zeta=y-ct$ with the speed of light $c$, time $t$ and propagation axis $y$.
+The $y$-coordinate has the meaning of the distance of the bunch to the start of the plasma and is given in the description of the figures. The connection of the coordinates is also depicted in \autoref{fig:zeta}. 
+
  
 \section{Transformation of the driver distribution} \label{chap:distro_change}
 In this section, the movement of particles of the driver is discussed and the changes in position with respect to each other are shown. As such tracking of individual particles is not possible in experiment
 this will give further insight into the effects of the \gls{pwfa} on the drive beam. Additionally, the created wakefields are analyzed with respect to their formed electric fields and the energy which can be
 gained by these fields from a potential witness beam. 
 
-In \autoref{fig:q_series} a time series of 2D histograms, showing the charge density of the driver after entering the plasma, can be seen for the $\zeta$-$z$-plane, with $\zeta$ being an axis, which moves at the speed of light parallel to the driver bunch. Also given is $y$, the distance to the start of the plasma upramp.
+In \autoref{fig:q_series} a time series of 2D histograms, showing the charge density of the driver after entering the plasma, can be seen for the $\zeta$-$z$-plane, with $\zeta$ being the axis, which moves with the driver bunch. Also given is $y$, the distance to the start of the plasma upramp.
 \begin{figure}
 	\centering
 	\input{../images/q_series.pgf}
 	\caption{Time series of a charge density histogram of the driver electrons integrated over the $x$-axis in Log scale. The acting Lorentz Force is drawn on top as vector lines. Vertical lines are drawn to make changes in length of the bunch better visible. 
-	The histogram is plotted in the $\zeta$-$z$ plane, with $\zeta$ being a co-moving coordinate axis. Instead of time, the distance $y$ traversed in plasma is given.
+	The histogram is plotted in the $\zeta$-$z$ plane, with $\zeta$ being a co-moving coordinate axis. The distance $y$ traversed in plasma is given.
 	\textbf{a)} ($y=$ \qty{0.04}{mm}) When entering the plasma. Still a Gaussian distribution, weak focus forces at the backside.
 	\textbf{b)} ($y=$ \qty{0.36}{mm}) Formation of the tail from focusing forces. Decelerating forces grow.
 	\textbf{c)} ($y=$ \qty{0.76}{mm}) First wing spreads from tail. Strong decelerating forces on the backside.
@@ -28,7 +40,6 @@ In \autoref{fig:q_series} a time series of 2D histograms, showing the charge den
 	\textbf{f)} ($y=$ \qty{3.38}{mm}) Bunch after breakup. The fallen back part gets accelerated from the backside of the first cavity.}
 	\label{fig:q_series}
 \end{figure}
-Both, $\zeta$ and $y$ are used as coordinates for most figures in this chapter.
 
 A log scale is chosen to make the borders with low density visible. Additionally, the Lorentz force is layered over the histogram to visualize the cause of the transformation of the driver. It is retrieved from the $\vec{E}$- and $\vec{B}$-field, that every macroparticle stores.
 The window is then separated into bins and for every bin the mean force was calculated and plotted as a force field, with the color of the lines quantifying the absolute force. 
@@ -256,7 +267,7 @@ the downramp and could therefore be measured in experiment, when high enough acc
 from peak energy particles leaving the simulation box perpendicularly to propagation direction. Even when the peak in the energy histogram should only decrease in size but not position, this would result in inaccuracies of the energy fit,
 causing the observed energy loss.
 
-Currently the uncertainty on the peak energy measurement in experiments is higher than the \qty{5}{\MeV} jump\todo{Susanne fragen}. Thus, caution is needed when assuming a constant peak energy, especially after bunch breakup.
+Currently the uncertainty on the peak energy measurement in experiments is significantly higher than the \qty{5}{\MeV} jump. Thus, caution is needed when assuming a constant peak energy, especially after bunch breakup.
 
 \subsection{Locality of the energy}\label{chap:loc_E}
 The energy loss and spatial locality of the energy peaks can be visualized again by binning the macroparticles in space and analyzing the mean energy in every bin. This mean energy is then plotted over the positions of the bins,
@@ -292,7 +303,7 @@ While the \qty{250}{\MeV} driver has a visible plateau, there are smaller or no 
 The slow energy loss afterwards exists for all drivers. While the difference between the \qty{250}{\MeV} and \qty{300}{\MeV} curve stays roughly the same except for some fluctuations, 
 the difference between the \qty{300}{\MeV} and \qty{350}{\MeV} curve increases with time, meaning that the \qty{350}{\MeV} peak loses its energy faster. The points of bunch breakup are also marked, which seem to be uncorrelated to the progression of the curve.
 
-Even when there is no plateau for higher initial energies, the energy loss beyond the initial drop-off is comparably small before the end of the gas jet  in experiments at around \qty{3}{\mm} \cite{Schoebel2022}.
+Even when there is no plateau for higher initial energies, the energy loss beyond the initial drop-off is comparably small before the end of the gas jet in experiments at around \qty{3}{\mm} \cite{Schoebel2022}.
 
 \paragraph*{Divergence comparison}\hspace{0pt} \\
 When the same analysis is done on the different initial divergences, as seen in \autoref{fig:E_peak_divergence}, big qualitative differences become apparent. 
@@ -303,7 +314,7 @@ When the same analysis is done on the different initial divergences, as seen in 
 	\label{fig:E_peak_divergence}
 \end{figure}
 The low divergence driver has the same drop-off as the one with normal divergence but afterwards no further energy loss but instead a small increase of roughly \qty{0.5}{\MeV} can be observed.
-For the high divergence driver, the initial drop-off is smaller, with only \qty{4}{\MeV}, but afterwards the peak energy decreases linear. After \qty{3}{\mm} the driver already has lost \qty{9}{\MeV} of energy. This could be measurable in experiment.
+For the high divergence driver, the initial drop-off is smaller, with only \qty{4}{\MeV}, but afterwards the peak energy decreases linear. After \qty{3}{\mm} the driver already has lost \qty{9}{\MeV} of energy, which is still smaller than the energy uncertainty in experiments \cite{Schoebel2022}.
 
 The remaining fields after bunch breakup of the low divergence driver may be too weak to decelerate the bunch, thus the fields cannot further decrease the peak energy. This would result in the curve depicted above. 
 Meanwhile the linear regime of the high divergence driver is capable of further decelerating the front part of the driver, resulting in a high peak energy loss, as the bunch never breaks during the simulation time. 
