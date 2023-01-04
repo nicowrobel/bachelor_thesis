@@ -1,9 +1,11 @@
 \documentclass[bachelor_thesis]{subfiles}
 \begin{document}
 \chapter{Introduction}
-The combination of \gls{lwfa} and \gls{pwfa} could be one of the most critical steps in the development of compact particle accelerators in the last centuries.
+The combination of \gls{lwfa} and \gls{pwfa} could be a critical step in boosting research with plasma wakefield accelerators.
+Their compactness allows for small facilities to still operate their own \gls{pwfa} while the \gls{lwfa}'s high repetition rate allows for an significant time reduction when performing statistical analysis. 
+
 Since the invention of the first particle accelerators in the late 19\textsuperscript{th} century \cite{Malka2016}, the development of new \gls{rf} accelerators progressed at a fast pace
-due to their practicality in applied science, like cancer therapy, and basic research, like particle physics. In the latter example, considerable advancements in our understanding of the universe
+due to their practicality in applied science, cancer therapy, and basic research, like particle physics. In the latter example, considerable advancements in our understanding of the universe
 could be made thanks to \gls{rf} accelerators, with modern particle physics and the standard model being funded on the discoveries made with them.
 
 Still, modern \gls{rf} accelerators are restricted by the sustainability of the metal cavities enclosing them, allowing only acceleration fields up to around \qty{100}{\mega\volt\per\m}.
@@ -38,7 +40,7 @@ These studies are done in PIConGPU, a relativistic \gls{pic}-code developed at t
 The results are compared for different initial conditions of the driver to propose possible directions the experimental research could take when optimizing bunch parameters.
 
 Lastly, research was done on the so-called peak energy, an important measurement of bunch characteristics between the two stages of the \gls{lpwfa} \cite{Schoebel2022}.
-Limits to the constancy of this quantity are investigated, as this would diminish its practicability in experiment.
+Limits to the constancy of this quantity are investigated, as this is an essential experimental assumption that needed verification via simulation.
 
 In \autoref{chap:theory}, the theoretical background is established for both the physics of \gls{pwfa} and the usage of \gls{pic}-code. Particular focus is put on the implementation in PIConGPU.
 Then the setup of the used simulations is discussed in \autoref{chap:setup}.
