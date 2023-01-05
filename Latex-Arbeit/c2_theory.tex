@@ -17,7 +17,7 @@ When being pulled back towards the center of the cavity, the electrons overshoot
 \begin{figure}
 	\centering
 	\input{../images/pwfa.pgf}
-	\caption{The blowout regime of a \gls{pwfa} stage with an electron driver at the front. Alternating accelerating/decelerating fields in transverse and focusing/defocusing fields in longitudinal direction form in the cavities. 
+	\caption{The blowout regime of a \gls{pwfa} stage with an electron driver at the front. Alternating accelerating/decelerating fields in longitudinal and focusing/defocusing fields in transverse direction form in the cavities. 
 	Blue dots mark the remaining ions, red dots the electrons. Figure similar to \cite{Kurz2020}.}
 	\label{fig:pwfa}
 \end{figure}
@@ -30,7 +30,7 @@ Perpendicular to the direction of propagation are electric fields pointing towar
 When witness electrons are injected into the back of the cavity, they will be accelerated while the cavity itself moves at near light speed with the driver.
 These accelerating forces peak when the wakefield is in the blowout regime, therefore achieving blowout as long as possible is a goal of \gls{pwfa}.
 
-Near light speed, the velocity of the witness beam will not increase in a meaningful way. The witness electrons would therefore be trapped in the accelerating part of the cavity, resulting in a net increase of momentum and energy.
+Near light speed, the velocity of the witness beam will not increase in a meaningful way. The witness electrons would therefore be trapped in the accelerating part of the cavity, resulting in a net increase of their momentum and energy.
 
 \subsection{LWFA driven PWFA} \label{chap:lpfwa}
 For a long time, a big downside of \gls{pwfa} was the creation of the relativistic drive beams, as this would need kilometer long \gls{rf} accelerators as a preliminary stage. Recent research \cite{Kurz2021} investigated the potential of the so called \gls{lpwfa}.
@@ -43,7 +43,7 @@ This limits the acceleration capabilities of the \gls{lwfa}. Still, the resultin
 \begin{figure}
 	\centering
 	\input{../images/lpwfa.pgf}
-	\caption{Example for a \gls{lpwfa} setup. The laser starts a \gls{lwfa} in the first gas jet. The resulting \gls{lwfa} beam is then used to start a \gls{pwfa} in a second gas jet. A metal foil blocks the laser after the first stage. Figure similar to \cite{Ossa2019}}
+	\caption{Example for an \gls{lpwfa} setup. The laser starts an \gls{lwfa} in the first gas jet. The resulting \gls{lwfa} beam is then used to start a \gls{pwfa} in a second gas jet. A metal foil blocks the laser after the first stage. Figure similar to \cite{Ossa2019}}
 	\label{fig:lpwfa}
 \end{figure} 
 Experimental setups for \gls{lpwfa} (see \autoref{fig:lpwfa}) consist of a laser initiating a \gls{lwfa} stage in a gas jet. 
@@ -61,7 +61,7 @@ with current experimental uncertainties but needs to be considered for future ex
 
 \section{PIConGPU}
 To simulate complex driver-plasma interactions efficiently, the \acrfull{pic}-method is often chosen. There are many different code implementations developed to overcome prevailing technical limitations. For this thesis PIConGPU \cite{PIConGPU2013, PICRepo} is used, 
-a relativistic \gls{pic}-code, which specializes in parallelization of the computational steps. Therefor it is designed to work on GPUs instead of CPUs. We will start with an introduction to the \gls{pic} method in general in \autoref{chap:pic}.
+a relativistic \gls{pic}-code, which specializes in parallelization of the computational steps. Therefore it is designed to work on GPUs instead of CPUs. We will start with an introduction to the \gls{pic} method in general in \autoref{chap:pic}.
 In the following subsection, we discuss further how certain inputs and outputs are handled in PIConGPU.
 
 \subsection{Particle-in-cell model} \label{chap:pic}
@@ -108,12 +108,12 @@ This system is called the \gls{pic}-cycle \cite{Huebl2019}, which can be seen in
 \end{figure}
 
 Instead of the complex high-dimensional distribution function $f_s(\vec{x}, \vec{p}, t)$, we look at a simulation box in 3 dimensions of space and describe the distribution for a species as discrete macroparticles in this box \cite{Burau2010}.
-The movement of these macro particles are then described by their position and momentum, the acceleration from the acting force depends on their set mass $m$, charge $q$ and weighting $w$.
-The weighting is determined by the assignment density function which the macro particle represents and can also be seen as the number of real particles for each macro particle.
+The movement of these macroparticles is then described by their position and momentum, the acceleration from the acting force depends on their set mass $m$, charge $q$ and weighting $w$.
+The weighting is determined by the assignment density function which the macroparticle represents and can also be seen as the number of real particles for each macroparticle.
 In this thesis, the assignment function of the driver particles is given by a piecewise quadratic spline.
 
-At last, the fields need to be divided into the so-called Yee-grid \cite{Yee1966}, which can be seen in \autoref{fig:cell}. The corresponding fields are placed between the grid points, motivated by the fact that for the later described centered finite difference, 
-the spatial derivative of the fields lies between these fields. At this points, the time derivatives are calculated and therefore the grid points positioned.
+At last, the fields need to be divided into the so-called Yee-grid \cite{Yee1966}, which can be seen in \autoref{fig:cell}. The corresponding fields are placed between the grid-points, motivated by the fact that for the later described centered finite difference, 
+the spatial derivative of the fields lies between these fields. At these points, the time derivatives are calculated, and therefore the grid-points positioned.
 
 \begin{figure}
 	\centering
@@ -123,14 +123,14 @@ the spatial derivative of the fields lies between these fields. At this points, 
 \end{figure}
 
 \paragraph*{Force calculation}\hspace{0pt} \\
-When the macroparticles and the corresponding fields at each grid point $(i, \, j, \,k)$ at a timestep $n$ are given, the calculation of the next time step can start.
+When the macroparticles and the corresponding fields at each grid-point $(i, \, j, \,k)$ at a timestep $n$ are given, the calculation of the next timestep can start.
 At first, the grid fields are interpolated to the position of the macroparticles so that the acting forces can be calculated. PIConGPU uses trilinear interpolation for this task \cite{Huebl2019, PICRepo}, a 3D extension of linear interpolation.
 Then the acting Lorentz Force can be calculated by \autoref{equ:lorentz}. With the forces at each particles position, now the particle pusher can calculate the new positions and momenta of the particle distributions.
 
 \paragraph*{Particle pusher}\hspace{0pt} \\
 There exist multiple implementations for this problem in PIConGPU, the standard one being the relativistic Boris-pusher \cite{Boris1970}, which conserves the phase-space volume \cite{PICRepo}. Instead of centering the $\vec{B}$-field on integer timesteps, the momentum at half integer timesteps gets
-calculated by only applying the first part of the Lorentz-Force $\vec{F}_L$ (the Coulomb-force) for $\Delta t/2$. Afterward the magnetic part of the Lorentz-Force is calculated at this half timestep $n+1/2$ and then added to the momentum, amounting for the full timestep.
-At last, the Coulomb force is applied again for half a time step, so the momentum at the full step $n+1$ is returned \cite{Zenitani2018, Pausch2019}. Updating the particle position is done by applying the Euler-method, see \autoref{equ:euler}.
+calculated by only applying the first part of the Lorentz-Force $\vec{F}_L$ (the Coulomb-force) for $\Delta t/2$. Afterward, the magnetic part of the Lorentz-Force is calculated at this half timestep $n+1/2$ and then added to the momentum, amounting for the full timestep.
+At last, the Coulomb force is applied again for half a timestep, so the momentum at the full step $n+1$ is returned \cite{Zenitani2018, Pausch2019}. Updating the particle position is done by applying the Euler-method, see \autoref{equ:euler}.
 
 \begin{equation}
 	\vec{x}^{\,(n+1)} = \vec{x}^{\,(n)} + \Delta t \frac{\vec{p}^{\,(n+1)}}{\gamma m}
@@ -139,13 +139,13 @@ At last, the Coulomb force is applied again for half a time step, so the momentu
 
 \paragraph*{Current deposition}\hspace{0pt} \\
 For the next step of the PIC-cycle, the current density $\vec{J}$ is calculated with Esirkepov’s current deposition method \cite{Esirkepov2001}.
-The change in current density between two grid points is calculated by accumulating nearby macroparticles with respect to their velocity, charge, assignment functions and change in position between two time steps. 
+The change in current density between two grid-points is calculated by accumulating nearby macroparticles with respect to their velocity, charge, assignment functions and change in position between two time steps. 
 As for the components of the $\vec{E}$-field, the current density components are stored not on but between the grid points, as seen in \autoref{fig:cell}.
 
 \paragraph*{Field evolution}\hspace{0pt} \\
-At last, the new fields are calculated at each grid point. The first two Maxwell equations \autoref{equ:maxwell} are assumed to be fulfilled at initialization, in general with $\rho=0$. This means, our box is charge neutral at the start, resulting in mirror charges when we don't have a completely neutral setup.
-For the rest of the simulation only the last two of Maxwell's equation need to be solved, which is done by numerical integration. 
-Multiple field solver implementations can be used in PIConGPU. In this thesis the Finite-Difference Time-Domain method is used in the form of the ArbitraryOrderFDTD solver \cite{PICRepo}. It uses centered finite differences with a given number $M$ of neighbor grid points around our wanted point.
+At last, the new fields are calculated at each grid-point. The first two Maxwell equations \autoref{equ:maxwell} are assumed to be fulfilled at initialization, in general with $\rho=0$. This means, our box is charge neutral at the start, resulting in mirror charges when we don't have a completely neutral setup.
+For the rest of the simulation, only the last two of Maxwell's equation need to be solved, which is done by numerical integration. 
+Multiple field solver implementations can be used in PIConGPU. In this thesis the Finite-Difference Time-Domain method is used in the form of the ArbitraryOrderFDTD solver \cite{PICRepo}. It uses centered finite differences with a given number $M$ of neighbor grid-points around our wanted point.
 Here, the time derivative is always replaced by a second order approximation, shown for a general function $u(i\Delta x,j\Delta y,k\Delta z,n\Delta t)$ in \autoref{equ:derTime}. The spatial derivative for $u$ of order $2M$ can be calculated by \autoref{equ:derSpace} \cite{PICRepo} with $g_l^{2M}$ as a weighting factor (see \autoref{equ:g_factor}).
 
 \begin{align}
@@ -154,22 +154,22 @@ Here, the time derivative is always replaced by a second order approximation, sh
 g^{2M}_l &= \frac{(-1)^{l-1/2}}{2l^2} \frac{((2M-1)!!)^2}{(2M -1 - 2l)!! (2M -1 + 2l)!!}											\label{equ:g_factor}
 \end{align}
 
-We use $M=4$ neighboring grid points, resulting in an eight-order approximation. The resulting weighting factors in \autoref{tab:g_factor} gives us the full numerical form of the 2 Maxwell equations, which can be found in the appendix in \autoref{chap:numMaxwell}.
+We use $M=4$ neighboring grid-points, resulting in an eight-order approximation. The resulting weighting factors in \autoref{tab:g_factor} give us the full numerical form of the 2 Maxwell equations, which can be found in the appendix in \autoref{chap:numMaxwell}.
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{ |c|c| }
 	\hline
-	$g_{1/2}^{2\cdot 4}$ & \num{11962.891d-04} \\ 
-	$g_{3/2}^{2\cdot 4}$ & \num{-797.526d-04} \\  
-	$g_{5/2}^{2\cdot 4}$ & \num{95.703d-04} \\	
-	$g_{7/2}^{2\cdot 4}$ & \num{-6.976d-04} \\
+	$g_{1/2}^{2\cdot 4}$ & $\num{11962.891d-04}$ \\ 
+	$g_{3/2}^{2\cdot 4}$ & $\num{-797.526d-04}$ \\  
+	$g_{5/2}^{2\cdot 4}$ & $\num{95.703d-04}$ \\	
+	$g_{7/2}^{2\cdot 4}$ & $\num{-6.976d-04}$ \\
 	 \hline
 \end{tabular}
 \caption{Weighting factors for 8\textsuperscript{th} order spacial derivatives.}\label{tab:g_factor}
 \end{center}
 \end{table}
 
-With the numerical derivatives, we first calculate $\vec{E}^{(n+1)}$, then $\vec{B}^{(n+3/2)}$, giving us our fields at each grid point. Afterwards the \gls{pic}-cycle can repeat.
+With the numerical derivatives, we first calculate $\vec{E}^{(n+1)}$, then $\vec{B}^{(n+3/2)}$, giving us our fields at each grid-point. Afterwards the \gls{pic}-cycle can repeat.
 
 \subsection{Dispersion relation}
 Discretization of the phase space yields us different dispersion relations than for real electromagnetic waves. For the used Arbitrary Order Finite Differences, this relation
@@ -182,7 +182,7 @@ between frequency $\omega$ and wave vector components $k_x$, $k_y$ and $k_z$ are
 $\Delta t$ is here the time discretization, $\Delta x$, $\Delta y$ and $\Delta z$ are the grid spacings and $g_l^{2M}$ is the weighting factor, given in \autoref{equ:g_factor}.
 
 $\xi$ is maximal when the squares of the sine functions return 1. Additionally, the arcsine in \autoref{equ:disp_rel1} sets the condition $\xi_{max} < 1$.
-Together these result in a stability condition \autoref{equ:stabilty} between the spacing of the time steps and the grid.
+Together these result in a stability condition between the spacing of the time steps and the grid, see \autoref{equ:stabilty}.
 \begin{equation}
 c\Delta t < \frac{1}{ \left[ \sum\limits_{l=1/2}^{M - 1/2} (-1)^{l-\frac{1}{2}} g_l^{2M} \right] \sqrt{ \frac{1}{\Delta x^2} + \frac{1}{\Delta y^2} + \frac{1}{\Delta z^2} }}
 \label{equ:stabilty}
@@ -191,7 +191,7 @@ Generally, $\xi_{max}$ is chosen as 0.995, which is low enough to fulfill \autor
 would be reduced as well. This could result in numerical Cherenkov radiation when the charged particles move faster than $v_p$, giving back unphysical results.
 
 Increasing the terms which are taken into account for the finite difference approximation increases the accuracy of the approximation. It, therefore, results in less numerical Cherenkov radiation than low order solver, like the standard second-order Yee-solver.
-As an alternative approach, a Lehe-solver \cite{Lehe2013} is implemented in PIConGPU. Goal of this solver is to avoid numerical Cherenkov radiation, that is emitted for the Yee- or ArbitraryOrderFDTD solvers.
+As an alternative approach, a Lehe-solver \cite{Lehe2013} is implemented in PIConGPU. The goal of this solver is to avoid numerical Cherenkov radiation, that is emitted for the Yee- or ArbitraryOrderFDTD solvers.
 
 Tests of this solver showed that this implementation of the Lehe solver is not suitable for the required initialization methods of \gls{pwfa} simulations, as highly nonphysical electric fields appeared during the simulations. 
 Therefore, the ArbitraryOrderFDTD solver of eighth order is still used for this thesis.
@@ -204,7 +204,7 @@ In the latter case, the fields start to be absorbed at a set distance from the b
 
 The \gls{pml}-absorber is used as the standard in PIConGPU. When using periodic conditions, the condition can be toggled for each individual axis (periodic behavior in longitudinal direction is normally not wanted for \gls{pwfa}s).
 
-Particles follow the periodicity of the fields but have different option when no periodic conditions apply. For this thesis absorbing conditions are also used, so all particles crossing the border are deleted from the simulation.
+Particles follow the periodicity of the fields but have different option when no periodic conditions apply. For this thesis, absorbing conditions are used, so all particles crossing the border are deleted from the simulation.
 
 \subsection{Acceleration pusher} \label{chap:accpush}
 As will be later discussed in \autoref{chap:init}, the initial bunch from the \gls{lwfa} stage is modeled with given position and momentum of the macroparticles.
@@ -221,9 +221,9 @@ the real simulation can proceed.
 PIConGPU supports multiple plugins which act as outputs for the simulated data. Most of the analysis in this thesis is done through the output of the openPMD-api \cite{openPMDAPI} plugin.
 It returns the simulation data according to the openPMD standard, which provides a unified convention for names and attributes of simulated data \cite{openPMDstandard}.
 
-Data will be stored for the fields and the particle species for given timesteps. Field data is stored per grid point and includes the $\vec{E}$- and $\vec{B}$-field as well as the charge- and energy density for every particle species.
+Data will be stored for the fields and the particle species for given timesteps. Field data is stored per grid-point and includes the $\vec{E}$- and $\vec{B}$-field as well as the charge- and energy density for every particle species.
 For particles, the position (cell + position in cell), momentum and weighting can be read among other quantities. 
 
-Additional non-standard attributes can be defined and stored, a use case of this will be described in \autoref{chap:param}. All data is stored in PIConGPU-internal units, multiplication factors are stored as well for conversion to SI units.
+Additional non-standard attributes can be defined and stored. A use case of this will be described in \autoref{chap:param}. All data is stored in PIConGPU-internal units, multiplication factors are stored as well for conversion to SI units.
 
 \end{document}
