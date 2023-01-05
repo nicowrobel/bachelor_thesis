@@ -722,6 +722,20 @@
 \pgftext[x=0.577778in,y=1.808411in,,bottom,rotate=90.000000]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont \(\displaystyle y \, \mathrm{[mm]}\)}%
 \end{pgfscope}%
 \begin{pgfscope}%
+\pgfpathrectangle{\pgfqpoint{0.800000in}{0.750000in}}{\pgfqpoint{4.000000in}{2.116822in}}%
+\pgfusepath{clip}%
+\pgfsetbuttcap%
+\pgfsetroundjoin%
+\pgfsetlinewidth{1.003750pt}%
+\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{currentstroke}%
+\pgfsetstrokeopacity{0.500000}%
+\pgfsetdash{}{0pt}%
+\pgfpathmoveto{\pgfqpoint{1.688391in}{1.513498in}}%
+\pgfpathlineto{\pgfqpoint{4.585642in}{1.513498in}}%
+\pgfusepath{stroke}%
+\end{pgfscope}%
+\begin{pgfscope}%
 \pgfsetrectcap%
 \pgfsetmiterjoin%
 \pgfsetlinewidth{0.803000pt}%
@@ -764,6 +778,18 @@
 \pgfpathmoveto{\pgfqpoint{0.800000in}{2.866822in}}%
 \pgfpathlineto{\pgfqpoint{4.800000in}{2.866822in}}%
 \pgfusepath{stroke}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=1.185298in, y=1.534765in, left, base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont position }%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=1.296988in, y=1.382759in, left, base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont  of a)}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
