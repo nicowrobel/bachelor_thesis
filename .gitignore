@@ -1,4 +1,6 @@
 Word-Text/**
+Vortrag/Videos/**
+Vortrag/Images/Frames/**
 **/.ipynb_checkpoints/**
 
 # jabref temp
@@ -17,3 +19,6 @@ Word-Text/**
 *.run.xml
 *.synctex.gz
 *.toc
+
+# powerpoint
+*.pptx
