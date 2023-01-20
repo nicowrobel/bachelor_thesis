@@ -22,3 +22,8 @@ Vortrag/Images/Frames/**
 
 # powerpoint
 *.pptx
+
+# blender
+*.blend
+*.blend1
+*.blend2
